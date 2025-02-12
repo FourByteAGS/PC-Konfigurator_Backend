@@ -1,31 +1,44 @@
-name: Docker Build Pipeline
+name: Docker Build & Deploy
 
 on:
   push:
     branches:
       - main  # Starte Workflow, wenn auf 'main' gepusht wird
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Falls du einen eigenen Runner hast, ersetze mit [self-hosted]
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
     steps:
       # 📥 1. Repository auschecken
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 🛠️ 2. Debugging: Prüfen, ob das Dockerfile vorhanden ist
-      - name: Check if Dockerfile exists
-        run: ls -la
+      # 🐳 2. Docker Login (Docker Hub oder GHCR)
+      - name: Docker Login
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      # 🔨 3. Docker-Image bauen (angepasst für dein Projekt)
+      # 🔨 3. Docker-Image bauen & taggen
       - name: Build Docker Image
-        run: docker build -t my-backend:latest -f PCKonfiguratorBackend/Dockerfile .
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest .
+          docker tag ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:${{ github.run_number }}
 
+      # 🚀 4. Docker-Image pushen
+      - name: Push Docker Image
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:${{ github.run_number }}
 
-      # ✅ 4. Überprüfung, ob das Image erfolgreich gebaut wurde
-      - name: Verify Docker Image
-        run: docker images | grep my-backend
+      # 📡 5. Deployment: SSH auf Server & Container neustarten
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+            docker stop pckonfigurator-backend || true
+            docker rm pckonfigurator-backend || true
+            docker run -d -p 80:8080 --name pckonfigurator-backend ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
