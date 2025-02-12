@@ -1,12 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using PCKonfiguratorBackend;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 
-var app = builder.Build();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Configure the HTTP request pipeline.
+var app = builder.Build();
 
 app.UseHttpsRedirection();
 
