@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  pckonfiguratorbackend:
+    build:
+      context: "/Users/nilszentgraf/Development/Schule/PC-Konfigurator_Backend"
+      dockerfile: "PCKonfiguratorBackend/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/PCKonfiguratorBackend.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "pckonfiguratorbackend:dev"
+    ports: []
+    volumes:
+    - "/Users/nilszentgraf/Development/Schule/PC-Konfigurator_Backend/PCKonfiguratorBackend:/app:rw"
+    - "/Users/nilszentgraf/Development/Schule/PC-Konfigurator_Backend:/src:rw"
+    - "/Users/nilszentgraf/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
