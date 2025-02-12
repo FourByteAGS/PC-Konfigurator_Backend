@@ -18,6 +18,9 @@ jobs:
       - name: Docker Login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+      - name: Debug
+        run: ls -R
+
       # 🔨 3. Docker-Image bauen & taggen
       - name: Build Docker Image
         run: |
