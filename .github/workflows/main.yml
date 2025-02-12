@@ -1,0 +1,31 @@
+name: Docker Build Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Starte Workflow, wenn auf 'main' gepusht wird
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Falls du einen eigenen Runner hast, ersetze mit [self-hosted]
+
+    steps:
+      # 📥 1. Repository auschecken
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 🛠️ 2. Debugging: Prüfen, ob das Dockerfile vorhanden ist
+      - name: Check if Dockerfile exists
+        run: ls -la
+
+      # 🔨 3. Docker-Image bauen (angepasst für dein Projekt)
+      - name: Build Docker Image
+        run: |
+          docker build -t my-backend:latest -f PCKonfiguratorBackend/Dockerfile PCKonfiguratorBackend
+
+      # ✅ 4. Überprüfung, ob das Image erfolgreich gebaut wurde
+      - name: Verify Docker Image
+        run: docker images | grep my-backend
