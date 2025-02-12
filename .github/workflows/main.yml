@@ -1,4 +1,4 @@
-name: Docker Build & Test Pipeline
+name: Docker Build, Test & Deploy Pipeline
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -43,9 +43,26 @@ jobs:
 
       # 🔨 7. Docker-Image bauen
       - name: Build Docker Image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest -f PCKonfiguratorBackend/Dockerfile .
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest -f PCKonfiguratorBackend/Dockerfile .
+          docker tag ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:${{ github.run_number }}
 
       # 🚀 8. Docker-Image pushen (optional)
       - name: Push Docker Image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:${{ github.run_number }}
         if: success()
+
+      # 📡 9. Deployment auf den Server per SSH
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+            docker stop pckonfigurator-backend || true
+            docker rm pckonfigurator-backend || true
+            docker run -d -p 80:8080 --name pckonfigurator-backend ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
