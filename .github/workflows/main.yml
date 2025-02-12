@@ -1,12 +1,15 @@
-name: Docker Build & Deploy
+name: Docker Build & Test Pipeline
 
 on:
   push:
     branches:
       - main  # Starte Workflow, wenn auf 'main' gepusht wird
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,34 +17,35 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 🐳 2. Docker Login (Docker Hub oder GHCR)
+      # 🔧 2. .NET SDK installieren
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0'
+
+      # 📦 3. Abhängigkeiten wiederherstellen
+      - name: Restore dependencies
+        run: dotnet restore PCKonfiguratorBackend/PCKonfiguratorBackend.csproj
+
+      # 🔨 4. Das Backend bauen
+      - name: Build Backend
+        run: dotnet build PCKonfiguratorBackend/PCKonfiguratorBackend.csproj --configuration Release --no-restore
+
+      # ✅ 5. Tests ausführen (falls Tests vorhanden sind)
+      - name: Run Tests
+        run: dotnet test PCKonfiguratorBackend.Tests/PCKonfiguratorBackend.Tests.csproj --no-restore --verbosity normal
+        continue-on-error: true  # 🔹 Falls du Tests hast, aber sie nicht blockieren sollen
+
+      # 🐳 6. Docker-Login (falls Image gepusht werden soll)
       - name: Docker Login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        if: success()
 
-      - name: Debug
-        run: ls -R
-
-      # 🔨 3. Docker-Image bauen & taggen
+      # 🔨 7. Docker-Image bauen
       - name: Build Docker Image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest .
-          docker tag ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:${{ github.run_number }}
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest -f PCKonfiguratorBackend/Dockerfile .
 
-      # 🚀 4. Docker-Image pushen
+      # 🚀 8. Docker-Image pushen (optional)
       - name: Push Docker Image
-        run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:${{ github.run_number }}
-
-      # 📡 5. Deployment: SSH auf Server & Container neustarten
-      - name: Deploy to Server
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
-            docker stop pckonfigurator-backend || true
-            docker rm pckonfigurator-backend || true
-            docker run -d -p 80:8080 --name pckonfigurator-backend ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+        if: success()
