@@ -1,1 +1,1 @@
-[![Docker Image CI](https://github.com/FourByteAGS/PC-Konfigurator_Backend/actions/workflows/docker-image.yml/badge.svg)](https://github.com/FourByteAGS/PC-Konfigurator_Backend/actions/workflows/docker-image.yml)
+
