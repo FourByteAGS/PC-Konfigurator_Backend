@@ -23,8 +23,8 @@ jobs:
 
       # 🔨 3. Docker-Image bauen (angepasst für dein Projekt)
       - name: Build Docker Image
-        run: |
-          docker build -t my-backend:latest -f PCKonfiguratorBackend/Dockerfile PCKonfiguratorBackend
+        run: docker build -t my-backend:latest -f PCKonfiguratorBackend/Dockerfile .
+
 
       # ✅ 4. Überprüfung, ob das Image erfolgreich gebaut wurde
       - name: Verify Docker Image
