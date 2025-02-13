@@ -6,7 +6,7 @@ namespace PCKonfiguratorBackend.Models
     {
         [Key]
         public Guid id {  get; set; }
-        public decimal maxCpuCoolerHeight { get; set; }
-        public decimal maxGpuLenght { get; set; }
+        public float maxCpuCoolerHeight { get; set; }
+        public float maxGpuLenght { get; set; }
     }
 }

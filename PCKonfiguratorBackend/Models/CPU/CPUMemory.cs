@@ -8,6 +8,6 @@ namespace PCKonfiguratorBackend.Models
         public Guid id { get; set; }
         public MemoryType memoryType { get; set; }
         public int maxCapacity { get; set; }
-        public decimal maxSpeed { get; set; }
+        public float maxSpeed { get; set; }
     }
 }

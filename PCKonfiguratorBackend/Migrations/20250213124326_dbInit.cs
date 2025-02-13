@@ -6,53 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PCKonfiguratorBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class blaupause : Migration
+    public partial class dbInit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<Guid>(
-                name: "selectedCPUFanid",
-                table: "ProductCollection",
-                type: "uniqueidentifier",
-                nullable: true);
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "selectedFanid",
-                table: "ProductCollection",
-                type: "uniqueidentifier",
-                nullable: true);
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "selectedGPUid",
-                table: "ProductCollection",
-                type: "uniqueidentifier",
-                nullable: true);
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "selectedMainboardid",
-                table: "ProductCollection",
-                type: "uniqueidentifier",
-                nullable: true);
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "selectedPSUid",
-                table: "ProductCollection",
-                type: "uniqueidentifier",
-                nullable: true);
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "selectedRAMid",
-                table: "ProductCollection",
-                type: "uniqueidentifier",
-                nullable: true);
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "selectedStorageid",
-                table: "ProductCollection",
-                type: "uniqueidentifier",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "CpuFanSpecifications",
                 columns: table => new
@@ -65,6 +23,34 @@ namespace PCKonfiguratorBackend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CpuFanSpecifications", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CPUMemory",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    memoryType = table.Column<int>(type: "int", nullable: false),
+                    maxCapacity = table.Column<int>(type: "int", nullable: false),
+                    maxSpeed = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CPUMemory", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Dimensions",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    width = table.Column<float>(type: "real", nullable: false),
+                    height = table.Column<float>(type: "real", nullable: false),
+                    depth = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dimensions", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,7 +74,7 @@ namespace PCKonfiguratorBackend.Migrations
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     memory = table.Column<int>(type: "int", nullable: false),
-                    speed = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    speed = table.Column<float>(type: "real", nullable: false),
                     boostclock = table.Column<int>(type: "int", nullable: false),
                     coreclock = table.Column<int>(type: "int", nullable: false),
                     power = table.Column<int>(type: "int", nullable: false)
@@ -139,7 +125,7 @@ namespace PCKonfiguratorBackend.Migrations
                     MemoryType = table.Column<int>(type: "int", nullable: false),
                     speed = table.Column<int>(type: "int", nullable: false),
                     capacity = table.Column<int>(type: "int", nullable: false),
-                    voltage = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    voltage = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,13 +148,52 @@ namespace PCKonfiguratorBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TowerCompatibility",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    maxCpuCoolerHeight = table.Column<float>(type: "real", nullable: false),
+                    maxGpuLenght = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TowerCompatibility", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CPUSpecification",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    l2Cache = table.Column<int>(type: "int", nullable: false),
+                    l3Cache = table.Column<int>(type: "int", nullable: false),
+                    maxTemp = table.Column<int>(type: "int", nullable: false),
+                    threads = table.Column<int>(type: "int", nullable: false),
+                    core = table.Column<int>(type: "int", nullable: false),
+                    baseClock = table.Column<double>(type: "float", nullable: false),
+                    boostClock = table.Column<double>(type: "float", nullable: false),
+                    socket = table.Column<int>(type: "int", nullable: false),
+                    cpuMemoryid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CPUSpecification", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_CPUSpecification_CPUMemory_cpuMemoryid",
+                        column: x => x.cpuMemoryid,
+                        principalTable: "CPUMemory",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CPUFan",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    price = table.Column<float>(type: "real", nullable: false),
                     image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     cpufanSpecificationsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     dimensionsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -197,7 +222,7 @@ namespace PCKonfiguratorBackend.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    price = table.Column<float>(type: "real", nullable: false),
                     image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     fanSpecificationsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     dimensionsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -226,7 +251,7 @@ namespace PCKonfiguratorBackend.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    price = table.Column<float>(type: "real", nullable: false),
                     image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     gpuSpecificationsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     dimensionsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -255,7 +280,7 @@ namespace PCKonfiguratorBackend.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    price = table.Column<float>(type: "real", nullable: false),
                     image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     mainboardSpecificationsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     dimensionsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -284,7 +309,7 @@ namespace PCKonfiguratorBackend.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    price = table.Column<float>(type: "real", nullable: false),
                     image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     psuSpecificationid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     dimensionsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -313,7 +338,7 @@ namespace PCKonfiguratorBackend.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    price = table.Column<float>(type: "real", nullable: false),
                     image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ramSpecificationsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -335,7 +360,7 @@ namespace PCKonfiguratorBackend.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    price = table.Column<float>(type: "real", nullable: false),
                     image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     storageSpecificationsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -350,40 +375,129 @@ namespace PCKonfiguratorBackend.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductCollection_selectedCPUFanid",
-                table: "ProductCollection",
-                column: "selectedCPUFanid");
+            migrationBuilder.CreateTable(
+                name: "Tower",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    price = table.Column<float>(type: "real", nullable: false),
+                    image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    towerType = table.Column<int>(type: "int", nullable: false),
+                    dimensionsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    towerCompatibilityid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tower", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Tower_Dimensions_dimensionsid",
+                        column: x => x.dimensionsid,
+                        principalTable: "Dimensions",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tower_TowerCompatibility_towerCompatibilityid",
+                        column: x => x.towerCompatibilityid,
+                        principalTable: "TowerCompatibility",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CPU",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    price = table.Column<float>(type: "real", nullable: false),
+                    image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    cpuSpecificationid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CPU", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_CPU_CPUSpecification_cpuSpecificationid",
+                        column: x => x.cpuSpecificationid,
+                        principalTable: "CPUSpecification",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductCollection",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    token = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    selectedCPUid = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    selectedTowerid = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    selectedCPUFanid = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    selectedMainboardid = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    selectedRAMid = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    selectedFanid = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    selectedStorageid = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    selectedPSUid = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    selectedGPUid = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductCollection", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_ProductCollection_CPUFan_selectedCPUFanid",
+                        column: x => x.selectedCPUFanid,
+                        principalTable: "CPUFan",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_ProductCollection_CPU_selectedCPUid",
+                        column: x => x.selectedCPUid,
+                        principalTable: "CPU",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_ProductCollection_Fan_selectedFanid",
+                        column: x => x.selectedFanid,
+                        principalTable: "Fan",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_ProductCollection_GPU_selectedGPUid",
+                        column: x => x.selectedGPUid,
+                        principalTable: "GPU",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_ProductCollection_Mainboard_selectedMainboardid",
+                        column: x => x.selectedMainboardid,
+                        principalTable: "Mainboard",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_ProductCollection_PSU_selectedPSUid",
+                        column: x => x.selectedPSUid,
+                        principalTable: "PSU",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_ProductCollection_RAM_selectedRAMid",
+                        column: x => x.selectedRAMid,
+                        principalTable: "RAM",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_ProductCollection_Storage_selectedStorageid",
+                        column: x => x.selectedStorageid,
+                        principalTable: "Storage",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_ProductCollection_Tower_selectedTowerid",
+                        column: x => x.selectedTowerid,
+                        principalTable: "Tower",
+                        principalColumn: "id");
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductCollection_selectedFanid",
-                table: "ProductCollection",
-                column: "selectedFanid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductCollection_selectedGPUid",
-                table: "ProductCollection",
-                column: "selectedGPUid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductCollection_selectedMainboardid",
-                table: "ProductCollection",
-                column: "selectedMainboardid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductCollection_selectedPSUid",
-                table: "ProductCollection",
-                column: "selectedPSUid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductCollection_selectedRAMid",
-                table: "ProductCollection",
-                column: "selectedRAMid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductCollection_selectedStorageid",
-                table: "ProductCollection",
-                column: "selectedStorageid");
+                name: "IX_CPU_cpuSpecificationid",
+                table: "CPU",
+                column: "cpuSpecificationid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CPUFan_cpufanSpecificationsid",
@@ -394,6 +508,11 @@ namespace PCKonfiguratorBackend.Migrations
                 name: "IX_CPUFan_dimensionsid",
                 table: "CPUFan",
                 column: "dimensionsid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CPUSpecification_cpuMemoryid",
+                table: "CPUSpecification",
+                column: "cpuMemoryid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Fan_dimensionsid",
@@ -426,6 +545,51 @@ namespace PCKonfiguratorBackend.Migrations
                 column: "mainboardSpecificationsid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductCollection_selectedCPUFanid",
+                table: "ProductCollection",
+                column: "selectedCPUFanid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCollection_selectedCPUid",
+                table: "ProductCollection",
+                column: "selectedCPUid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCollection_selectedFanid",
+                table: "ProductCollection",
+                column: "selectedFanid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCollection_selectedGPUid",
+                table: "ProductCollection",
+                column: "selectedGPUid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCollection_selectedMainboardid",
+                table: "ProductCollection",
+                column: "selectedMainboardid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCollection_selectedPSUid",
+                table: "ProductCollection",
+                column: "selectedPSUid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCollection_selectedRAMid",
+                table: "ProductCollection",
+                column: "selectedRAMid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCollection_selectedStorageid",
+                table: "ProductCollection",
+                column: "selectedStorageid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCollection_selectedTowerid",
+                table: "ProductCollection",
+                column: "selectedTowerid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PSU_dimensionsid",
                 table: "PSU",
                 column: "dimensionsid");
@@ -445,89 +609,28 @@ namespace PCKonfiguratorBackend.Migrations
                 table: "Storage",
                 column: "storageSpecificationsid");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_ProductCollection_CPUFan_selectedCPUFanid",
-                table: "ProductCollection",
-                column: "selectedCPUFanid",
-                principalTable: "CPUFan",
-                principalColumn: "id");
+            migrationBuilder.CreateIndex(
+                name: "IX_Tower_dimensionsid",
+                table: "Tower",
+                column: "dimensionsid");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_ProductCollection_Fan_selectedFanid",
-                table: "ProductCollection",
-                column: "selectedFanid",
-                principalTable: "Fan",
-                principalColumn: "id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ProductCollection_GPU_selectedGPUid",
-                table: "ProductCollection",
-                column: "selectedGPUid",
-                principalTable: "GPU",
-                principalColumn: "id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ProductCollection_Mainboard_selectedMainboardid",
-                table: "ProductCollection",
-                column: "selectedMainboardid",
-                principalTable: "Mainboard",
-                principalColumn: "id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ProductCollection_PSU_selectedPSUid",
-                table: "ProductCollection",
-                column: "selectedPSUid",
-                principalTable: "PSU",
-                principalColumn: "id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ProductCollection_RAM_selectedRAMid",
-                table: "ProductCollection",
-                column: "selectedRAMid",
-                principalTable: "RAM",
-                principalColumn: "id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ProductCollection_Storage_selectedStorageid",
-                table: "ProductCollection",
-                column: "selectedStorageid",
-                principalTable: "Storage",
-                principalColumn: "id");
+            migrationBuilder.CreateIndex(
+                name: "IX_Tower_towerCompatibilityid",
+                table: "Tower",
+                column: "towerCompatibilityid");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_ProductCollection_CPUFan_selectedCPUFanid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_ProductCollection_Fan_selectedFanid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_ProductCollection_GPU_selectedGPUid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_ProductCollection_Mainboard_selectedMainboardid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_ProductCollection_PSU_selectedPSUid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_ProductCollection_RAM_selectedRAMid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_ProductCollection_Storage_selectedStorageid",
-                table: "ProductCollection");
+            migrationBuilder.DropTable(
+                name: "ProductCollection");
 
             migrationBuilder.DropTable(
                 name: "CPUFan");
+
+            migrationBuilder.DropTable(
+                name: "CPU");
 
             migrationBuilder.DropTable(
                 name: "Fan");
@@ -548,7 +651,13 @@ namespace PCKonfiguratorBackend.Migrations
                 name: "Storage");
 
             migrationBuilder.DropTable(
+                name: "Tower");
+
+            migrationBuilder.DropTable(
                 name: "CpuFanSpecifications");
+
+            migrationBuilder.DropTable(
+                name: "CPUSpecification");
 
             migrationBuilder.DropTable(
                 name: "FanSpecifications");
@@ -568,61 +677,14 @@ namespace PCKonfiguratorBackend.Migrations
             migrationBuilder.DropTable(
                 name: "StorageSpecifications");
 
-            migrationBuilder.DropIndex(
-                name: "IX_ProductCollection_selectedCPUFanid",
-                table: "ProductCollection");
+            migrationBuilder.DropTable(
+                name: "Dimensions");
 
-            migrationBuilder.DropIndex(
-                name: "IX_ProductCollection_selectedFanid",
-                table: "ProductCollection");
+            migrationBuilder.DropTable(
+                name: "TowerCompatibility");
 
-            migrationBuilder.DropIndex(
-                name: "IX_ProductCollection_selectedGPUid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropIndex(
-                name: "IX_ProductCollection_selectedMainboardid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropIndex(
-                name: "IX_ProductCollection_selectedPSUid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropIndex(
-                name: "IX_ProductCollection_selectedRAMid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropIndex(
-                name: "IX_ProductCollection_selectedStorageid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropColumn(
-                name: "selectedCPUFanid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropColumn(
-                name: "selectedFanid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropColumn(
-                name: "selectedGPUid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropColumn(
-                name: "selectedMainboardid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropColumn(
-                name: "selectedPSUid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropColumn(
-                name: "selectedRAMid",
-                table: "ProductCollection");
-
-            migrationBuilder.DropColumn(
-                name: "selectedStorageid",
-                table: "ProductCollection");
+            migrationBuilder.DropTable(
+                name: "CPUMemory");
         }
     }
 }

@@ -6,8 +6,8 @@ namespace PCKonfiguratorBackend.Models
     {
         [Key]
         public Guid id { get; set; }
-        public decimal width { get; set; }
-        public decimal height { get; set; }
-        public decimal depth { get; set; }
+        public float width { get; set; }
+        public float height { get; set; }
+        public float depth { get; set; }
     }
 }

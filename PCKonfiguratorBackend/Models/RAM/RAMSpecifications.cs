@@ -9,6 +9,6 @@ namespace PCKonfiguratorBackend.Models
         public MemoryType MemoryType { get; set; }
         public int speed { get; set; }
         public int capacity { get; set; }
-        public decimal voltage { get; set; }
+        public float voltage { get; set; }
     }
 }

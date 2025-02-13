@@ -43,8 +43,8 @@ namespace PCKonfiguratorBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("price")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -77,8 +77,8 @@ namespace PCKonfiguratorBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("price")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -98,8 +98,8 @@ namespace PCKonfiguratorBackend.Migrations
                     b.Property<int>("maxCapacity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("maxSpeed")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("maxSpeed")
+                        .HasColumnType("real");
 
                     b.Property<int>("memoryType")
                         .HasColumnType("int");
@@ -177,14 +177,14 @@ namespace PCKonfiguratorBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("depth")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("depth")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("height")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("height")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("width")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("width")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -215,8 +215,8 @@ namespace PCKonfiguratorBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("price")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -276,8 +276,8 @@ namespace PCKonfiguratorBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("price")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -306,8 +306,8 @@ namespace PCKonfiguratorBackend.Migrations
                     b.Property<int>("power")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("speed")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("speed")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -338,8 +338,8 @@ namespace PCKonfiguratorBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("price")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -401,8 +401,8 @@ namespace PCKonfiguratorBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("price")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("psuSpecificationid")
                         .HasColumnType("uniqueidentifier");
@@ -522,8 +522,8 @@ namespace PCKonfiguratorBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("price")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("ramSpecificationsid")
                         .HasColumnType("uniqueidentifier");
@@ -550,8 +550,8 @@ namespace PCKonfiguratorBackend.Migrations
                     b.Property<int>("speed")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("voltage")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("voltage")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
@@ -576,8 +576,8 @@ namespace PCKonfiguratorBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("price")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("storageSpecificationsid")
                         .HasColumnType("uniqueidentifier");
@@ -638,8 +638,8 @@ namespace PCKonfiguratorBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("price")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("towerCompatibilityid")
                         .HasColumnType("uniqueidentifier");
@@ -662,11 +662,11 @@ namespace PCKonfiguratorBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("maxCpuCoolerHeight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("maxCpuCoolerHeight")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("maxGpuLenght")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("maxGpuLenght")
+                        .HasColumnType("real");
 
                     b.HasKey("id");
 
