@@ -6,10 +6,10 @@ namespace PCKonfiguratorBackend.Models
     {
         [Key]
         public Guid id { get; set; }
-        public string name { get; set; }
-        public string manufacturer { get; set; }
-        public float price { get; set; }
-        public string image { get; set; }
-        public StorageSpecifications storageSpecifications { get; set; }
+        public string? name { get; set; }
+        public string? manufacturer { get; set; }
+        public float? price { get; set; }
+        public string? image { get; set; }
+        public StorageSpecifications storageSpecifications { get; set; } = new StorageSpecifications();
     }
 }

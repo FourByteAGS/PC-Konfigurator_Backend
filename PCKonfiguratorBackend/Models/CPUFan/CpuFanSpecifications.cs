@@ -6,8 +6,8 @@ namespace PCKonfiguratorBackend.Models
     {
         [Key]
         public Guid id { get; set; }
-        public Socket socket { get; set; }
-        public string connector { get; set; }
-        public string heatpipes { get; set; }
+        public Socket? socket { get; set; }
+        public string? connector { get; set; }
+        public string? heatpipes { get; set; }
     }
 }
