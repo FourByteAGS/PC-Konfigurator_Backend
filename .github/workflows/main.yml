@@ -65,4 +65,4 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
             docker stop pckonfigurator-backend || true
             docker rm pckonfigurator-backend || true
-            docker run -d -p 80:8080 --name pckonfigurator-backend ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+            docker run -d -p 110:8080 --name pckonfigurator-backend ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
