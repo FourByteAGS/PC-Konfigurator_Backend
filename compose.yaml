@@ -1,11 +1,17 @@
-﻿services:
+﻿version: '3.8'
+
+services:
   pckonfiguratorbackend:
     image: pckonfiguratorbackend
     build:
       context: .
       dockerfile: PCKonfiguratorBackend/Dockerfile
     depends_on:
-      - mssql
+      - wait-for-mssql
+
+  wait-for-mssql:
+    image: busybox
+    command: ["sleep", "30"]
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
