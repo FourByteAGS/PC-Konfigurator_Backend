@@ -14,3 +14,6 @@
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
+    volumes:
+      - ./init-db.sh:/init-db.sh
+    entrypoint: [ "/bin/bash", "/init-db.sh" ]
