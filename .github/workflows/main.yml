@@ -51,9 +51,25 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            echo "🚀 Deployment starten..."
-            
-            cd /opt/pckonfigurator
+            echo "🚀 Starte Deployment..."
+
+            # Verzeichnis für die Anwendung setzen
+            APP_DIR="/opt/pckonfigurator"
+
+            # Falls Verzeichnis nicht existiert -> erstellen und Repository clonen
+            if [ ! -d "$APP_DIR" ]; then
+              echo "📁 Erstelle Verzeichnis und clone Repository..."
+              mkdir -p $APP_DIR
+              git clone https://github.com/${{ github.repository }}.git $APP_DIR
+            else
+              echo "✅ Repository existiert bereits, aktualisiere Code..."
+              cd $APP_DIR
+              git reset --hard HEAD
+              git pull origin main
+            fi
+
+            # Stelle sicher, dass Docker Compose im Verzeichnis läuft
+            cd $APP_DIR
 
             echo "📦 Pulling latest images..."
             docker-compose pull
