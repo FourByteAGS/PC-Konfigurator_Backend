@@ -12,6 +12,8 @@ services:
       dockerfile: PCKonfiguratorBackend/Dockerfile
     networks:
       - app-network
+    ports:
+      - "8080:8080"
     depends_on:
       - mssql
     environment:

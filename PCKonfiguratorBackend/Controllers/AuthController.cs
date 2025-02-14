@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PCKonfiguratorBackend.Interface;
+using PCKonfiguratorBackend.Models;
 
 namespace PCKonfiguratorBackend.Controllers
 {
@@ -8,10 +9,12 @@ namespace PCKonfiguratorBackend.Controllers
     public class AuthController : ControllerBase
     {
         public readonly IAuthService _authService;
+        public readonly List<ProductCollection> _productCollection;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService,List<ProductCollection> productCollection)
         {
             _authService = authService;
+            _productCollection = productCollection;
         }
 
         [HttpGet("GetToken")]

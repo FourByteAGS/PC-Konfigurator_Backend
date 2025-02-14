@@ -47,7 +47,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("cpuSpecificationid");
 
-                    b.ToTable("CPU");
+                    b.ToTable("Cpus");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.CPUFan", b =>
@@ -80,7 +80,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("dimensionsid");
 
-                    b.ToTable("CPUFan");
+                    b.ToTable("CPUFans");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.CPUMemory", b =>
@@ -213,7 +213,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("fanSpecificationsid");
 
-                    b.ToTable("Fan");
+                    b.ToTable("Fans");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.FanSpecifications", b =>
@@ -269,7 +269,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("gpuSpecificationsid");
 
-                    b.ToTable("GPU");
+                    b.ToTable("GPUs");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.GPUSpecifications", b =>
@@ -328,7 +328,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("mainboardSpecificationsid");
 
-                    b.ToTable("Mainboard");
+                    b.ToTable("Mainboards");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.MainboardSpecifications", b =>
@@ -390,7 +390,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("psuSpecificationid");
 
-                    b.ToTable("PSU");
+                    b.ToTable("PSUs");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.PSUSpecification", b =>
@@ -419,65 +419,6 @@ namespace PCKonfiguratorBackend.Migrations
                     b.ToTable("PSUSpecification");
                 });
 
-            modelBuilder.Entity("PCKonfiguratorBackend.Models.ProductCollection", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedCPUFanid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedCPUid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedFanid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedGPUid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedMainboardid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedPSUid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedRAMid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedStorageid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedTowerid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("token")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("selectedCPUFanid");
-
-                    b.HasIndex("selectedCPUid");
-
-                    b.HasIndex("selectedFanid");
-
-                    b.HasIndex("selectedGPUid");
-
-                    b.HasIndex("selectedMainboardid");
-
-                    b.HasIndex("selectedPSUid");
-
-                    b.HasIndex("selectedRAMid");
-
-                    b.HasIndex("selectedStorageid");
-
-                    b.HasIndex("selectedTowerid");
-
-                    b.ToTable("ProductCollection");
-                });
-
             modelBuilder.Entity("PCKonfiguratorBackend.Models.RAM", b =>
                 {
                     b.Property<Guid>("id")
@@ -503,7 +444,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("ramSpecificationsid");
 
-                    b.ToTable("RAM");
+                    b.ToTable("RAMs");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.RAMSpecifications", b =>
@@ -554,7 +495,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("storageSpecificationsid");
 
-                    b.ToTable("Storage");
+                    b.ToTable("Storages");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.StorageSpecifications", b =>
@@ -616,7 +557,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("towerCompatibilityid");
 
-                    b.ToTable("Tower");
+                    b.ToTable("Towers");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.TowerCompatibility", b =>
@@ -751,63 +692,6 @@ namespace PCKonfiguratorBackend.Migrations
                     b.Navigation("dimensions");
 
                     b.Navigation("psuSpecification");
-                });
-
-            modelBuilder.Entity("PCKonfiguratorBackend.Models.ProductCollection", b =>
-                {
-                    b.HasOne("PCKonfiguratorBackend.Models.CPUFan", "selectedCPUFan")
-                        .WithMany()
-                        .HasForeignKey("selectedCPUFanid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.CPU", "selectedCPU")
-                        .WithMany()
-                        .HasForeignKey("selectedCPUid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.Fan", "selectedFan")
-                        .WithMany()
-                        .HasForeignKey("selectedFanid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.GPU", "selectedGPU")
-                        .WithMany()
-                        .HasForeignKey("selectedGPUid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.Mainboard", "selectedMainboard")
-                        .WithMany()
-                        .HasForeignKey("selectedMainboardid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.PSU", "selectedPSU")
-                        .WithMany()
-                        .HasForeignKey("selectedPSUid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.RAM", "selectedRAM")
-                        .WithMany()
-                        .HasForeignKey("selectedRAMid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.Storage", "selectedStorage")
-                        .WithMany()
-                        .HasForeignKey("selectedStorageid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.Tower", "selectedTower")
-                        .WithMany()
-                        .HasForeignKey("selectedTowerid");
-
-                    b.Navigation("selectedCPU");
-
-                    b.Navigation("selectedCPUFan");
-
-                    b.Navigation("selectedFan");
-
-                    b.Navigation("selectedGPU");
-
-                    b.Navigation("selectedMainboard");
-
-                    b.Navigation("selectedPSU");
-
-                    b.Navigation("selectedRAM");
-
-                    b.Navigation("selectedStorage");
-
-                    b.Navigation("selectedTower");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.RAM", b =>

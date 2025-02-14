@@ -7,6 +7,7 @@ namespace PCKonfiguratorBackend.Models
         [Key]
         public Guid id { get; set; }
         public Guid token { get; set; }
+        public FormFactor? formFactor { get; set; }
         public CPU? selectedCPU { get; set; }
         public Tower? selectedTower { get; set; }
         public CPUFan? selectedCPUFan { get; set; }
