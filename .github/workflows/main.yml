@@ -9,48 +9,8 @@ on:
       - main
 
 jobs:
-  start-database:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Start MSSQL Database on Server
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          script: |
-            echo "🚀 Erstelle und starte MSSQL-Datenbank"
-
-            # Prüfen, ob das Netzwerk existiert, falls nicht -> erstellen
-            if [ ! "$(docker network ls | grep pckonfigurator-network)" ]; then
-              echo "🔧 Erstelle Docker-Netzwerk für MSSQL..."
-              docker network create pckonfigurator-network
-            else
-              echo "✅ Docker-Netzwerk existiert bereits."
-            fi
-
-            # Prüfen, ob MSSQL bereits läuft
-            if [ ! "$(docker ps -q -f name=mssql)" ]; then
-              if [ "$(docker ps -aq -f status=exited -f name=mssql)" ]; then
-                echo "🔄 MSSQL existiert, aber ist gestoppt. Starte neu..."
-                docker start mssql
-              else
-                echo "🚀 MSSQL läuft nicht, erstelle neuen MSSQL-Container..."
-                docker run -d --name mssql \
-                  --network pckonfigurator-network \
-                  -e "SA_PASSWORD=YourStrong!Passw0rd" \
-                  -e "ACCEPT_EULA=Y" \
-                  -p 1433:1433 \
-                  --restart always \
-                  mcr.microsoft.com/mssql/server:2022-latest
-              fi
-            else
-              echo "✅ MSSQL läuft bereits!"
-            fi
-
   build-and-deploy:
     runs-on: ubuntu-latest
-    needs: start-database
 
     steps:
       - name: Checkout Repository
@@ -75,16 +35,11 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
         if: success()
 
-      - name: Build Docker Image
+      - name: Build and Push Docker Images
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest -f PCKonfiguratorBackend/Dockerfile .
-          docker tag ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:${{ github.run_number }}
-
-      - name: Push Docker Image
-        run: |
+          docker-compose build
+          docker tag pckonfiguratorbackend ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:${{ github.run_number }}
-        if: success()
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.10
@@ -93,28 +48,17 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            echo "🚀 Deployment auf Server starten..."
+            echo "🚀 Deployment starten..."
+            
+            cd /opt/pckonfigurator
 
-            # Prüfen, ob das Netzwerk existiert, falls nicht -> erstellen
-            if [ ! "$(docker network ls | grep pckonfigurator-network)" ]; then
-              echo "🔧 Erstelle Docker-Netzwerk für Backend..."
-              docker network create pckonfigurator-network
-            else
-              echo "✅ Docker-Netzwerk existiert bereits."
-            fi
+            echo "📦 Pulling latest images..."
+            docker-compose pull
 
-            echo "📦 Docker-Image ziehen..."
-            docker pull ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+            echo "🛑 Stoppe vorherige Container..."
+            docker-compose down
 
-            echo "🛑 Stoppe vorherige Instanz..."
-            docker stop pckonfigurator-backend || true
-            docker rm pckonfigurator-backend || true
+            echo "🚀 Starte neue Container..."
+            docker-compose up -d
 
-            echo "🚀 Starte neuen Backend-Container..."
-            docker run -d \
-              -p 110:8080 \
-              --name pckonfigurator-backend \
-              --network pckonfigurator-network \
-              ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
-              
             echo "✅ Deployment abgeschlossen!"
