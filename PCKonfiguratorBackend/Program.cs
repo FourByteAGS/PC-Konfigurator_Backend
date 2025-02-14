@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PCKonfiguratorBackend;
+using PCKonfiguratorBackend.Interface;
+using PCKonfiguratorBackend.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddSingleton<IAuthService,AuthService>();
 
 var app = builder.Build();
 
