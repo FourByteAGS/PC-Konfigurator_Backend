@@ -12,20 +12,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    services:
-      mssql:
-        image: mcr.microsoft.com/mssql/server:2022-latest
-        env:
-          SA_PASSWORD: "YourStrong!Passw0rd"
-          ACCEPT_EULA: "Y"
-        ports:
-          - 1433:1433
-        options: >-
-          --health-cmd "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd' -Q 'SELECT 1' || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       # 📥 1. Repository auschecken
       - name: Checkout Repository
@@ -76,27 +62,29 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            # 🛑 9.1. Stoppe und entferne alte Container
+            # 🛑 9.1. Stoppe und entferne altes Backend (falls vorhanden)
             docker stop pckonfigurator-backend || true
             docker rm pckonfigurator-backend || true
-            docker stop mssql-server || true
-            docker rm mssql-server || true
 
-            # 🐳 9.2. Starte MSSQL-Server
-            docker run -d \
-              --name mssql-server \
-              -e 'ACCEPT_EULA=Y' \
-              -e 'SA_PASSWORD=YourStrong!Passw0rd' \
-              -p 1433:1433 \
-              mcr.microsoft.com/mssql/server:2022-latest
+            # ✅ 9.2. Prüfe, ob MSSQL bereits läuft
+            if [ "$(docker ps -q -f name=mssql-server)" ]; then
+              echo "✅ MSSQL läuft bereits. Kein Neustart nötig."
+            else
+              echo "⚠️ MSSQL ist nicht aktiv. Starte den Container..."
+              docker start mssql-server || docker run -d \
+                --name mssql-server \
+                -e 'ACCEPT_EULA=Y' \
+                -e 'SA_PASSWORD=YourStrong!Passw0rd' \
+                -p 1433:1433 \
+                --restart always \
+                mcr.microsoft.com/mssql/server:2022-latest
+              sleep 15  # Warte auf vollständigen Start
+            fi
 
-            # ⏳ 9.3. Warte auf MSSQL
-            sleep 15
-
-            # 🚀 9.4. Ziehe das aktuelle Backend-Image
+            # 🚀 9.3. Ziehe das aktuelle Backend-Image
             docker pull ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
 
-            # 🚀 9.5. Starte das Backend mit MSSQL-Server-Verbindung
+            # 🚀 9.4. Starte das Backend mit Verbindung zur MSSQL-Datenbank
             docker run -d \
               -p 110:8080 \
               --name pckonfigurator-backend \
