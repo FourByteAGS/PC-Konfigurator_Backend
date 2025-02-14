@@ -54,7 +54,7 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:${{ github.run_number }}
         if: success()
 
-      # 📡 9. Deployment auf den Server
+      # 📡 9. Deployment auf den Server mit docker-compose
       - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.10
         with:
@@ -62,40 +62,23 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            # 🛑 9.1. Stelle sicher, dass das Docker-Netzwerk existiert
-            docker network ls | grep mynetwork || docker network create mynetwork
-
-            # ✅ 9.2. Prüfe, ob MSSQL bereits läuft
-            if [ "$(docker ps -q -f name=mssql-server)" ]; then
-              echo "✅ MSSQL läuft bereits. Kein Neustart nötig."
+            # 🏡 9.1. Stelle sicher, dass das Repo im Home-Verzeichnis liegt
+            cd $HOME
+            if [ -d "$HOME/PC-Konfigurator_Backend" ]; then
+              echo "🚀 Repository-Update: Pulling latest changes..."
+              cd $HOME/PC-Konfigurator_Backend
+              git reset --hard
+              git pull origin main
             else
-              echo "⚠️ MSSQL ist nicht aktiv. Starte den Container..."
-              docker start mssql-server || docker run -d \
-                --name mssql-server \
-                -e 'ACCEPT_EULA=Y' \
-                -e 'SA_PASSWORD=YourStrong!Passw0rd' \
-                -p 1433:1433 \
-                --network mynetwork \
-                --restart always \
-                mcr.microsoft.com/mssql/server:2022-latest
-              sleep 15  # Warte auf vollständigen Start
+              echo "📥 Repository nicht vorhanden. Klone neues Repo..."
+              git clone https://github.com/FourByteAGS/PC-Konfigurator_Backend.git $HOME/PC-Konfigurator_Backend
             fi
 
-            # 🛑 9.3. Stoppe und entferne altes Backend (falls vorhanden)
-            docker stop pckonfigurator-backend || true
-            docker rm pckonfigurator-backend || true
+            # 📂 9.2. Gehe in das Repository
+            cd $HOME/PC-Konfigurator_Backend
 
-            # 🚀 9.4. Ziehe das aktuelle Backend-Image
-            docker pull ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+            # 🛑 9.3. Stoppe alte Container, falls sie laufen
+            docker-compose down || true
 
-            # 🐳 9.5. Stelle sicher, dass MSSQL und Backend im selben Netzwerk sind
-            docker network connect mynetwork mssql-server || true
-
-            # 🚀 9.6. Starte das Backend mit der richtigen MSSQL-Verbindung
-            docker run -d \
-              -p 110:8080 \
-              --name pckonfigurator-backend \
-              --network mynetwork \
-              -e "DB_CONNECTION_STRING=Server=mssql-server,1433;Database=YourDatabase;User Id=sa;Password=YourStrong!Passw0rd;" \
-              --restart always \
-              ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
+            # 🚀 9.4. Starte alle Container mit docker-compose
+            docker-compose up -d --build
