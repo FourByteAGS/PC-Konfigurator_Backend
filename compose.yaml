@@ -1,4 +1,6 @@
-﻿networks:
+﻿version: '3.8'
+
+networks:
   app-network:
     driver: bridge
 
@@ -12,6 +14,8 @@ services:
       - app-network
     depends_on:
       - mssql
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=your_db;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;"
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
