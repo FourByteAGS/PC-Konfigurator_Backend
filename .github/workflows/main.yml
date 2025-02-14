@@ -60,7 +60,7 @@ jobs:
             if [ ! -d "$APP_DIR" ]; then
               echo "📁 Erstelle Verzeichnis und clone Repository..."
               mkdir -p $APP_DIR
-              git clone https://github.com/${{ github.repository }}.git $APP_DIR
+              git clone https://github.com/FourByteAGS/PC-Konfigurator_Backend $APP_DIR
             else
               echo "✅ Repository existiert bereits, aktualisiere Code..."
               cd $APP_DIR
