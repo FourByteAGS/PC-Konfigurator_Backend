@@ -9,8 +9,37 @@ on:
       - main
 
 jobs:
+  start-database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start MSSQL Database on Server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            # Prüfen, ob MSSQL bereits läuft
+            if [ ! "$(docker ps -q -f name=mssql)" ]; then
+              if [ "$(docker ps -aq -f status=exited -f name=mssql)" ]; then
+                echo "🔄 MSSQL existiert, aber ist gestoppt. Starte neu..."
+                docker start mssql
+              else
+                echo "🚀 MSSQL läuft nicht, erstelle neuen MSSQL-Container auf localhost:1433..."
+                docker run -d --name mssql \
+                  -e "SA_PASSWORD=YourStrong!Passw0rd" \
+                  -e "ACCEPT_EULA=Y" \
+                  -p 1433:1433 \
+                  --restart always \
+                  mcr.microsoft.com/mssql/server:2022-latest
+              fi
+            else
+              echo "✅ MSSQL läuft bereits auf localhost:1433!"
+            fi
+            
   build-and-deploy:
     runs-on: ubuntu-latest
+    needs: start-database
 
     steps:
       # 📥 1. Repository auschecken
