@@ -12,8 +12,8 @@ using PCKonfiguratorBackend;
 namespace PCKonfiguratorBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250213124326_dbInit")]
-    partial class dbInit
+    [Migration("20250214101644_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,25 +35,22 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("manufacturer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("price")
+                    b.Property<float?>("price")
                         .HasColumnType("real");
 
                     b.HasKey("id");
 
                     b.HasIndex("cpuSpecificationid");
 
-                    b.ToTable("CPU");
+                    b.ToTable("Cpus");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.CPUFan", b =>
@@ -69,18 +66,15 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("manufacturer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("price")
+                    b.Property<float?>("price")
                         .HasColumnType("real");
 
                     b.HasKey("id");
@@ -89,7 +83,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("dimensionsid");
 
-                    b.ToTable("CPUFan");
+                    b.ToTable("CPUFans");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.CPUMemory", b =>
@@ -98,13 +92,13 @@ namespace PCKonfiguratorBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("maxCapacity")
+                    b.Property<int?>("maxCapacity")
                         .HasColumnType("int");
 
-                    b.Property<float>("maxSpeed")
+                    b.Property<float?>("maxSpeed")
                         .HasColumnType("real");
 
-                    b.Property<int>("memoryType")
+                    b.Property<int?>("memoryType")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -118,31 +112,31 @@ namespace PCKonfiguratorBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("baseClock")
+                    b.Property<double?>("baseClock")
                         .HasColumnType("float");
 
-                    b.Property<double>("boostClock")
+                    b.Property<double?>("boostClock")
                         .HasColumnType("float");
 
-                    b.Property<int>("core")
+                    b.Property<int?>("core")
                         .HasColumnType("int");
 
                     b.Property<Guid>("cpuMemoryid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("l2Cache")
+                    b.Property<int?>("l2Cache")
                         .HasColumnType("int");
 
-                    b.Property<int>("l3Cache")
+                    b.Property<int?>("l3Cache")
                         .HasColumnType("int");
 
-                    b.Property<int>("maxTemp")
+                    b.Property<int?>("maxTemp")
                         .HasColumnType("int");
 
-                    b.Property<int>("socket")
+                    b.Property<int?>("socket")
                         .HasColumnType("int");
 
-                    b.Property<int>("threads")
+                    b.Property<int?>("threads")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -159,14 +153,12 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("connector")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("heatpipes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("socket")
+                    b.Property<int?>("socket")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -180,13 +172,13 @@ namespace PCKonfiguratorBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("depth")
+                    b.Property<float?>("depth")
                         .HasColumnType("real");
 
-                    b.Property<float>("height")
+                    b.Property<float?>("height")
                         .HasColumnType("real");
 
-                    b.Property<float>("width")
+                    b.Property<float?>("width")
                         .HasColumnType("real");
 
                     b.HasKey("id");
@@ -207,18 +199,15 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("manufacturer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("price")
+                    b.Property<float?>("price")
                         .HasColumnType("real");
 
                     b.HasKey("id");
@@ -227,7 +216,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("fanSpecificationsid");
 
-                    b.ToTable("Fan");
+                    b.ToTable("Fans");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.FanSpecifications", b =>
@@ -237,17 +226,15 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("besonderheit")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("noiseLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("power")
+                    b.Property<int?>("power")
                         .HasColumnType("int");
 
-                    b.Property<int>("rpm")
+                    b.Property<int?>("rpm")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -268,18 +255,15 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("manufacturer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("price")
+                    b.Property<float?>("price")
                         .HasColumnType("real");
 
                     b.HasKey("id");
@@ -288,7 +272,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("gpuSpecificationsid");
 
-                    b.ToTable("GPU");
+                    b.ToTable("GPUs");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.GPUSpecifications", b =>
@@ -297,19 +281,19 @@ namespace PCKonfiguratorBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("boostclock")
+                    b.Property<int?>("boostclock")
                         .HasColumnType("int");
 
-                    b.Property<int>("coreclock")
+                    b.Property<int?>("coreclock")
                         .HasColumnType("int");
 
-                    b.Property<int>("memory")
+                    b.Property<int?>("memory")
                         .HasColumnType("int");
 
-                    b.Property<int>("power")
+                    b.Property<int?>("power")
                         .HasColumnType("int");
 
-                    b.Property<float>("speed")
+                    b.Property<float?>("speed")
                         .HasColumnType("real");
 
                     b.HasKey("id");
@@ -327,21 +311,18 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("mainboardSpecificationsid")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("manufacturer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("price")
+                    b.Property<float?>("price")
                         .HasColumnType("real");
 
                     b.HasKey("id");
@@ -350,7 +331,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("mainboardSpecificationsid");
 
-                    b.ToTable("Mainboard");
+                    b.ToTable("Mainboards");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.MainboardSpecifications", b =>
@@ -360,22 +341,21 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("chipset")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("formFactor")
+                    b.Property<int?>("formFactor")
                         .HasColumnType("int");
 
-                    b.Property<int>("m2Slot")
+                    b.Property<int?>("m2Slot")
                         .HasColumnType("int");
 
-                    b.Property<int>("memoryType")
+                    b.Property<int?>("memoryType")
                         .HasColumnType("int");
 
-                    b.Property<int>("sataPorts")
+                    b.Property<int?>("sataPorts")
                         .HasColumnType("int");
 
-                    b.Property<int>("socket")
+                    b.Property<int?>("socket")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -393,18 +373,15 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("manufacturer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("price")
+                    b.Property<float?>("price")
                         .HasColumnType("real");
 
                     b.Property<Guid>("psuSpecificationid")
@@ -416,7 +393,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("psuSpecificationid");
 
-                    b.ToTable("PSU");
+                    b.ToTable("PSUs");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.PSUSpecification", b =>
@@ -426,85 +403,23 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("certifications")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("connectors")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("noiseLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("power")
+                    b.Property<int?>("power")
                         .HasColumnType("int");
 
-                    b.Property<int>("rpm")
+                    b.Property<int?>("rpm")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
                     b.ToTable("PSUSpecification");
-                });
-
-            modelBuilder.Entity("PCKonfiguratorBackend.Models.ProductCollection", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedCPUFanid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedCPUid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedFanid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedGPUid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedMainboardid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedPSUid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedRAMid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedStorageid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("selectedTowerid")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("token")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("selectedCPUFanid");
-
-                    b.HasIndex("selectedCPUid");
-
-                    b.HasIndex("selectedFanid");
-
-                    b.HasIndex("selectedGPUid");
-
-                    b.HasIndex("selectedMainboardid");
-
-                    b.HasIndex("selectedPSUid");
-
-                    b.HasIndex("selectedRAMid");
-
-                    b.HasIndex("selectedStorageid");
-
-                    b.HasIndex("selectedTowerid");
-
-                    b.ToTable("ProductCollection");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.RAM", b =>
@@ -514,18 +429,15 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("manufacturer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("price")
+                    b.Property<float?>("price")
                         .HasColumnType("real");
 
                     b.Property<Guid>("ramSpecificationsid")
@@ -535,7 +447,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("ramSpecificationsid");
 
-                    b.ToTable("RAM");
+                    b.ToTable("RAMs");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.RAMSpecifications", b =>
@@ -544,16 +456,16 @@ namespace PCKonfiguratorBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("MemoryType")
+                    b.Property<int?>("MemoryType")
                         .HasColumnType("int");
 
-                    b.Property<int>("capacity")
+                    b.Property<int?>("capacity")
                         .HasColumnType("int");
 
-                    b.Property<int>("speed")
+                    b.Property<int?>("speed")
                         .HasColumnType("int");
 
-                    b.Property<float>("voltage")
+                    b.Property<float?>("voltage")
                         .HasColumnType("real");
 
                     b.HasKey("id");
@@ -568,18 +480,15 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("manufacturer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("price")
+                    b.Property<float?>("price")
                         .HasColumnType("real");
 
                     b.Property<Guid>("storageSpecificationsid")
@@ -589,7 +498,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("storageSpecificationsid");
 
-                    b.ToTable("Storage");
+                    b.ToTable("Storages");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.StorageSpecifications", b =>
@@ -598,17 +507,16 @@ namespace PCKonfiguratorBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("capacity")
+                    b.Property<int?>("capacity")
                         .HasColumnType("int");
 
-                    b.Property<int>("readSpeeed")
+                    b.Property<int?>("readSpeeed")
                         .HasColumnType("int");
 
                     b.Property<string>("schnittstelle")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("writeSpeeed")
+                    b.Property<int?>("writeSpeeed")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -623,31 +531,27 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("color")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("dimensionsid")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("manufacturer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("price")
+                    b.Property<float?>("price")
                         .HasColumnType("real");
 
                     b.Property<Guid>("towerCompatibilityid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("towerType")
+                    b.Property<int?>("towerType")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -656,7 +560,7 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.HasIndex("towerCompatibilityid");
 
-                    b.ToTable("Tower");
+                    b.ToTable("Towers");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.TowerCompatibility", b =>
@@ -665,10 +569,10 @@ namespace PCKonfiguratorBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("maxCpuCoolerHeight")
+                    b.Property<float?>("maxCpuCoolerHeight")
                         .HasColumnType("real");
 
-                    b.Property<float>("maxGpuLenght")
+                    b.Property<float?>("maxGpuLenght")
                         .HasColumnType("real");
 
                     b.HasKey("id");
@@ -791,63 +695,6 @@ namespace PCKonfiguratorBackend.Migrations
                     b.Navigation("dimensions");
 
                     b.Navigation("psuSpecification");
-                });
-
-            modelBuilder.Entity("PCKonfiguratorBackend.Models.ProductCollection", b =>
-                {
-                    b.HasOne("PCKonfiguratorBackend.Models.CPUFan", "selectedCPUFan")
-                        .WithMany()
-                        .HasForeignKey("selectedCPUFanid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.CPU", "selectedCPU")
-                        .WithMany()
-                        .HasForeignKey("selectedCPUid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.Fan", "selectedFan")
-                        .WithMany()
-                        .HasForeignKey("selectedFanid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.GPU", "selectedGPU")
-                        .WithMany()
-                        .HasForeignKey("selectedGPUid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.Mainboard", "selectedMainboard")
-                        .WithMany()
-                        .HasForeignKey("selectedMainboardid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.PSU", "selectedPSU")
-                        .WithMany()
-                        .HasForeignKey("selectedPSUid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.RAM", "selectedRAM")
-                        .WithMany()
-                        .HasForeignKey("selectedRAMid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.Storage", "selectedStorage")
-                        .WithMany()
-                        .HasForeignKey("selectedStorageid");
-
-                    b.HasOne("PCKonfiguratorBackend.Models.Tower", "selectedTower")
-                        .WithMany()
-                        .HasForeignKey("selectedTowerid");
-
-                    b.Navigation("selectedCPU");
-
-                    b.Navigation("selectedCPUFan");
-
-                    b.Navigation("selectedFan");
-
-                    b.Navigation("selectedGPU");
-
-                    b.Navigation("selectedMainboard");
-
-                    b.Navigation("selectedPSU");
-
-                    b.Navigation("selectedRAM");
-
-                    b.Navigation("selectedStorage");
-
-                    b.Navigation("selectedTower");
                 });
 
             modelBuilder.Entity("PCKonfiguratorBackend.Models.RAM", b =>
