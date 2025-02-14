@@ -62,9 +62,8 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            # 🛑 9.1. Stoppe und entferne altes Backend (falls vorhanden)
-            docker stop pckonfigurator-backend || true
-            docker rm pckonfigurator-backend || true
+            # 🛑 9.1. Stelle sicher, dass das Docker-Netzwerk existiert
+            docker network ls | grep mynetwork || docker network create mynetwork
 
             # ✅ 9.2. Prüfe, ob MSSQL bereits läuft
             if [ "$(docker ps -q -f name=mssql-server)" ]; then
@@ -76,18 +75,27 @@ jobs:
                 -e 'ACCEPT_EULA=Y' \
                 -e 'SA_PASSWORD=YourStrong!Passw0rd' \
                 -p 1433:1433 \
+                --network mynetwork \
                 --restart always \
                 mcr.microsoft.com/mssql/server:2022-latest
               sleep 15  # Warte auf vollständigen Start
             fi
 
-            # 🚀 9.3. Ziehe das aktuelle Backend-Image
+            # 🛑 9.3. Stoppe und entferne altes Backend (falls vorhanden)
+            docker stop pckonfigurator-backend || true
+            docker rm pckonfigurator-backend || true
+
+            # 🚀 9.4. Ziehe das aktuelle Backend-Image
             docker pull ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
 
-            # 🚀 9.4. Starte das Backend mit Verbindung zur MSSQL-Datenbank
+            # 🐳 9.5. Stelle sicher, dass MSSQL und Backend im selben Netzwerk sind
+            docker network connect mynetwork mssql-server || true
+
+            # 🚀 9.6. Starte das Backend mit der richtigen MSSQL-Verbindung
             docker run -d \
               -p 110:8080 \
               --name pckonfigurator-backend \
+              --network mynetwork \
               -e "DB_CONNECTION_STRING=Server=mssql-server,1433;Database=YourDatabase;User Id=sa;Password=YourStrong!Passw0rd;" \
               --restart always \
               ${{ secrets.DOCKER_USERNAME }}/pckonfigurator-backend:latest
