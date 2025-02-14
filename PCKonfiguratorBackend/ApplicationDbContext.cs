@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PCKonfiguratorBackend.Models;
 
 namespace PCKonfiguratorBackend
 {
@@ -10,6 +11,6 @@ namespace PCKonfiguratorBackend
         }
 
         // DB-Sets definieren
-        //public DbSet<User> Users { get; set; }
+        public DbSet<ProductCollection> ProductCollection { get; set; }
     }
 }
