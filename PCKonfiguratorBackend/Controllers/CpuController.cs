@@ -6,12 +6,12 @@ namespace PCKonfiguratorBackend.Controllers
 {
     [ApiController]
     [Route("api/cpu")]
-    public class CpuRepository : ControllerBase, IComponentRepository
+    public class CpuController : ControllerBase, IComponentRepository
     {
         public readonly IAuthRepository AuthRepository;
         public readonly ApplicationDbContext _db;
 
-        public CpuRepository(IAuthRepository authRepository, ApplicationDbContext db)
+        public CpuController(IAuthRepository authRepository, ApplicationDbContext db)
         {
             AuthRepository = authRepository;
             _db = db;

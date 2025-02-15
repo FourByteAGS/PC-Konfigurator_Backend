@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddSingleton<IAuthRepository, AuthRepository>();
+builder.Services.AddSingleton<IAuthRepository, AuthService>();
 builder.Services.AddSingleton<List<ProductCollection>>();
 
 builder.Services.AddCors(options =>

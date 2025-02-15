@@ -8,22 +8,22 @@ namespace PCKonfiguratorBackend.Controllers
     [Route("api/auth")]
     public class AuthController : ControllerBase
     {
-        public readonly IAuthRepository AuthRepository;
+        public readonly IAuthRepository authRepository;
         public readonly List<ProductCollection> _productCollection;
 
         public AuthController(IAuthRepository authRepository,List<ProductCollection> productCollection)
         {
-            AuthRepository = authRepository;
+            this.authRepository = authRepository;
             _productCollection = productCollection;
         }
 
         [HttpGet("GetToken")]
-        public IActionResult GetToken() => Ok(AuthRepository.GetNewToken());
+        public IActionResult GetToken() => Ok(authRepository.GetNewToken());
 
         [HttpGet("ValidateToken")]
         public IActionResult ValidateToken(Guid token)
         {
-            if (AuthRepository.ValidateToken(token))
+            if (authRepository.ValidateToken(token))
             {
                 return Ok();
             }

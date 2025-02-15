@@ -5,13 +5,13 @@ using PCKonfiguratorBackend.Interface;
 namespace PCKonfiguratorBackend.Controllers;
 
 [ApiController]
-[Route("api/fan")]
-public class FanRepository : ControllerBase, IComponentRepository
+[Route("api/gpu")]
+public class GpuController : ControllerBase, IComponentRepository
 {
     public readonly IAuthRepository AuthRepository;
     public readonly ApplicationDbContext _db;
 
-    public FanRepository(IAuthRepository authRepository, ApplicationDbContext db)
+    public GpuController(IAuthRepository authRepository, ApplicationDbContext db)
     {
         AuthRepository = authRepository;
         _db = db;
@@ -20,6 +20,6 @@ public class FanRepository : ControllerBase, IComponentRepository
     [HttpGet("GetAll")]
     public IActionResult GetAll(Guid token)
     {
-        return Ok(_db.Fans.Include(i => i.fanSpecifications).Include(i => i.dimensions).ToJson());
+        return Ok(_db.GPUs.Include(i => i.gpuSpecifications).Include(i => i.dimensions).ToJson());
     }
 } 

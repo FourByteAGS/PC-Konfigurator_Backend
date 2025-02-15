@@ -6,12 +6,12 @@ namespace PCKonfiguratorBackend.Controllers;
 
 [ApiController]
 [Route("api/storage")]
-public class StorageRepository : ControllerBase, IComponentRepository
+public class StorageController : ControllerBase, IComponentRepository
 {
     public readonly IAuthRepository AuthRepository;
     public readonly ApplicationDbContext _db;
 
-    public StorageRepository(IAuthRepository authRepository, ApplicationDbContext db)
+    public StorageController(IAuthRepository authRepository, ApplicationDbContext db)
     {
         AuthRepository = authRepository;
         _db = db;

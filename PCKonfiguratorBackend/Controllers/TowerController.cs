@@ -9,12 +9,12 @@ namespace PCKonfiguratorBackend.Controllers
 
     [ApiController]
     [Route("api/tower")]
-    public class TowerRepository:ControllerBase,IComponentRepository
+    public class TowerController:ControllerBase,IComponentRepository
     {
         public readonly IAuthRepository AuthRepository;
         public readonly ApplicationDbContext _db;
 
-        public TowerRepository(IAuthRepository authRepository, ApplicationDbContext db)
+        public TowerController(IAuthRepository authRepository, ApplicationDbContext db)
         {
             AuthRepository = authRepository;
             _db = db;

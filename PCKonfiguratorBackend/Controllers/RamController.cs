@@ -6,12 +6,12 @@ namespace PCKonfiguratorBackend.Controllers;
 
 [ApiController]
 [Route("api/ram")]
-public class RamRepository : ControllerBase, IComponentRepository
+public class RamController : ControllerBase, IComponentRepository
 {
     public readonly IAuthRepository AuthRepository;
     public readonly ApplicationDbContext _db;
 
-    public RamRepository(IAuthRepository authRepository, ApplicationDbContext db)
+    public RamController(IAuthRepository authRepository, ApplicationDbContext db)
     {
         AuthRepository = authRepository;
         _db = db;
