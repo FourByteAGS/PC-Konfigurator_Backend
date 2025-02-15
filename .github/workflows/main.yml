@@ -77,8 +77,8 @@ jobs:
             # 📂 9.2. Gehe in das Repository
             cd $HOME/PC-Konfigurator_Backend
 
-            # 🛑 9.3. Stoppe alte Container, falls sie laufen
-            docker-compose down || true
+            # 🛑 9.3. Stoppe alte Container, falls sie laufen und löscht alle images
+            docker-compose down -v || true
 
             # 🚀 9.4. Starte alle Container mit docker-compose
             docker-compose up -d --build
