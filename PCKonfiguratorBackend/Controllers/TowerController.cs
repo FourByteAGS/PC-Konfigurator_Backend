@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PCKonfiguratorBackend.Interface;
-using PCKonfiguratorBackend.Models;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace PCKonfiguratorBackend.Controllers
 {
@@ -26,8 +23,5 @@ namespace PCKonfiguratorBackend.Controllers
         {           
             return Ok(_db.Towers.Include(i => i.towerCompatibility).Include(i => i.dimensions).ToJson());
         }
-
-        //public Get
-
     }
 }
