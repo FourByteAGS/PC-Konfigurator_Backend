@@ -6,14 +6,14 @@ namespace PCKonfiguratorBackend.Controllers;
 
 [ApiController]
 [Route("api/mainboard")]
-public class MainboardController : ControllerBase, IComponentController
+public class MainboardRepository : ControllerBase, IComponentRepository
 {
-    public readonly IAuthService _authService;
+    public readonly IAuthRepository AuthRepository;
     public readonly ApplicationDbContext _db;
 
-    public MainboardController(IAuthService authService, ApplicationDbContext db)
+    public MainboardRepository(IAuthRepository authRepository, ApplicationDbContext db)
     {
-        _authService = authService;
+        AuthRepository = authRepository;
         _db = db;
     }
 

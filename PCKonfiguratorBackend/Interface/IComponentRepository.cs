@@ -2,8 +2,10 @@
 
 namespace PCKonfiguratorBackend.Interface
 {
-    public interface IComponentController
+    public interface IComponentRepository
     {
         public IActionResult GetAll(Guid token);
+        
+        
     }
 }

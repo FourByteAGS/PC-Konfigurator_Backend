@@ -6,14 +6,14 @@ namespace PCKonfiguratorBackend.Controllers;
 
 [ApiController]
 [Route("api/fan")]
-public class FanController : ControllerBase, IComponentController
+public class FanRepository : ControllerBase, IComponentRepository
 {
-    public readonly IAuthService _authService;
+    public readonly IAuthRepository AuthRepository;
     public readonly ApplicationDbContext _db;
 
-    public FanController(IAuthService authService, ApplicationDbContext db)
+    public FanRepository(IAuthRepository authRepository, ApplicationDbContext db)
     {
-        _authService = authService;
+        AuthRepository = authRepository;
         _db = db;
     }
 

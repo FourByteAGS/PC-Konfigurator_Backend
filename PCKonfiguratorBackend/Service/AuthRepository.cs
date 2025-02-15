@@ -3,7 +3,7 @@ using PCKonfiguratorBackend.Models;
 
 namespace PCKonfiguratorBackend.Service
 {
-    public class AuthService : IAuthService
+    public class AuthRepository : IAuthRepository
     {
 
         public static List<Token> Tokens = new List<Token>();

@@ -6,14 +6,14 @@ namespace PCKonfiguratorBackend.Controllers;
 
 [ApiController]
 [Route("api/psu")]
-public class PSUController : ControllerBase, IComponentController
+public class PsuRepository : ControllerBase, IComponentRepository
 {
-    public readonly IAuthService _authService;
+    public readonly IAuthRepository AuthRepository;
     public readonly ApplicationDbContext _db;
 
-    public PSUController(IAuthService authService, ApplicationDbContext db)
+    public PsuRepository(IAuthRepository authRepository, ApplicationDbContext db)
     {
-        _authService = authService;
+        AuthRepository = authRepository;
         _db = db;
     }
 

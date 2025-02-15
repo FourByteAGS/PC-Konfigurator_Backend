@@ -1,6 +1,6 @@
 ﻿namespace PCKonfiguratorBackend.Interface
 {
-    public interface IAuthService
+    public interface IAuthRepository
     {
         public Guid GetNewToken();
 

@@ -6,14 +6,14 @@ namespace PCKonfiguratorBackend.Controllers;
 
     [ApiController]
     [Route("api/cpuFan")]
-    public class CPUFanController : ControllerBase, IComponentController
+    public class CpuFanRepository : ControllerBase, IComponentRepository
     {
-        public readonly IAuthService _authService;
+        public readonly IAuthRepository AuthRepository;
         public readonly ApplicationDbContext _db;
 
-        public CPUFanController(IAuthService authService, ApplicationDbContext db)
+        public CpuFanRepository(IAuthRepository authRepository, ApplicationDbContext db)
         {
-            _authService = authService;
+            AuthRepository = authRepository;
             _db = db;
         }
 
