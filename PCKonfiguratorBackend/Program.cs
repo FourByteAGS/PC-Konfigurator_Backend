@@ -6,8 +6,6 @@ using PCKonfiguratorBackend.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -15,16 +13,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddSingleton<List<ProductCollection>>();
-
-var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<ApplicationDbContext>();
-
-    context.Database.Migrate();
-}
 
 builder.Services.AddCors(options =>
 {
@@ -37,12 +25,20 @@ builder.Services.AddCors(options =>
         });
 });
 
+var app = builder.Build();
+
+// Migrationen ausführen
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ApplicationDbContext>();
+
+    context.Database.Migrate();
+}
+
 app.UseCors("AllowAll");
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
