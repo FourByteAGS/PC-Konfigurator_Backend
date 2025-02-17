@@ -14,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddSingleton<IAuthRepository, AuthService>();
 builder.Services.AddSingleton<List<ProductCollection>>();
 
+// CORS aktivieren
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
@@ -38,11 +39,11 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<ApplicationDbContext>();
-
     context.Database.Migrate();
 }
 
 app.UseCors("AllowAll");
+
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
