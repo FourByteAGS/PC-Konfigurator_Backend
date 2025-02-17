@@ -17,7 +17,7 @@ public class PsuController : ControllerBase, IComponentRepository
         _db = db;
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet("getall")]
     public IActionResult GetAll(Guid token)
     {
         return Ok(_db.PSUs.Include(i => i.psuSpecification).Include(i => i.dimensions).ToJson());
