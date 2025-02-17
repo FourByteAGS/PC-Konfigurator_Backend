@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using PCKonfiguratorBackend.Interface;
 using PCKonfiguratorBackend.Models;
-using PCKonfiguratorBackend.Service;
 
 namespace PCKonfiguratorBackend.Controllers
 {
@@ -14,7 +13,7 @@ namespace PCKonfiguratorBackend.Controllers
         public readonly ApplicationDbContext _db;
         public readonly List<ProductCollection> _productCollections;
 
-        public CpuController(IAuthRepository authRepository, ApplicationDbContext db,List<ProductCollection> productCollections)
+        public CpuController(IAuthRepository authRepository, ApplicationDbContext db, List<ProductCollection> productCollections)
         {
             _authService = authRepository;
             _db = db;
@@ -43,7 +42,9 @@ namespace PCKonfiguratorBackend.Controllers
         [HttpGet("getselected")]
         public IActionResult GetSelected(Guid token)
         {
-           var t = _productCollections.Where(x=>x.token==token).First().selectedCPU;
+            var t = _productCollections.Where(x => x.token == token).First().selectedCPU;
+            if (t == null)
+                return NotFound();
             return Ok(new Sitebar(t.id, t.name, t.price).ToJson());
         }
     }

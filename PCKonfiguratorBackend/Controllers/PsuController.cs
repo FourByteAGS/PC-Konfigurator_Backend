@@ -45,6 +45,8 @@ public class PsuController : ControllerBase, IComponentRepository
     public IActionResult GetSelected(Guid token)
     {
         var t = _productCollections.Where(x => x.token == token).First().selectedPSU;
+        if (t == null)
+            return NotFound();
         return Ok(new Sitebar(t.id, t.name, t.price).ToJson());
     }
 }

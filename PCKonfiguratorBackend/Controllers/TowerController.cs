@@ -37,6 +37,8 @@ namespace PCKonfiguratorBackend.Controllers
             }
 
             var tower = _db.Towers.Include(i=>i.towerCompatibility).Include(i=>i.dimensions).FirstOrDefault(i => i.id == componentId);
+            
+            if(!_productCollections.Any()|| _productCollections.Where(x => x.token == token).Any())
             _productCollections.Add(new ProductCollection(token));
             _productCollections.Where(x => x.token == token).FirstOrDefault().selectedTower = tower;
             return Ok();
@@ -57,6 +59,8 @@ namespace PCKonfiguratorBackend.Controllers
         public IActionResult GetSelected(Guid token)
         {
             var t = _productCollections.Where(x => x.token == token).First().selectedTower;
+            if (t == null)
+                return NotFound();
             return Ok(new Sitebar(t.id, t.name, t.price).ToJson());
         }
     }
