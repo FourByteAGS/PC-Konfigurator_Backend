@@ -32,15 +32,15 @@ namespace PCKonfiguratorBackend.Controllers
 
             var componentMappings = new Dictionary<string, string>
 {
-                { "Tower","1"},
-                { "CPU","2" },
-                { "Mainboard", "3" },
-                { "CPUFan", "4" },
-                { "RAM", "5" },
-                { "GPU", "6" },
-                { "Storage", "7" },
-                { "Fan", "8" },
-                { "PSU", "9" }
+                { "Tower","Gehäuse"},
+                { "CPU","Prozessor" },
+                { "Mainboard", "Mainboard" },
+                { "CPUFan", "Prozessorkühler" },
+                { "RAM", "Arbeitsspeicher" },
+                { "GPU", "Grafikkarte" },
+                { "Storage", "Datenträger" },
+                { "Fan", "Gehäuselüfter" },
+                { "PSU", "Netzteil" }
 };
 
             var result = componentMappings.ToDictionary(
