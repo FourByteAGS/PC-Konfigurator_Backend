@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using PCKonfiguratorBackend.Interface;
 using PCKonfiguratorBackend.Models;
@@ -22,10 +25,17 @@ namespace PCKonfiguratorBackend.Controllers
         public IActionResult GetAllSelected(Guid token)
         {
             var product = _productCollection.FirstOrDefault(x => x.token == token);
+
+            // Prüfen, ob das Produkt existiert
+            if (product == null)
+            {
+                return NotFound(new { message = "Produkt nicht gefunden" });
+            }
+
             var componentMappings = new Dictionary<string, string>
             {
-                { "Tower","Gehäuse"},
-                { "CPU","Prozessor" },
+                { "Tower", "Gehäuse" },
+                { "CPU", "Prozessor" },
                 { "Mainboard", "Mainboard" },
                 { "CPUFan", "Prozessorkühler" },
                 { "RAM", "Arbeitsspeicher" },
@@ -34,11 +44,13 @@ namespace PCKonfiguratorBackend.Controllers
                 { "Fan", "Gehäuselüfter" },
                 { "PSU", "Netzteil" }
             };
-            
+
             var result = componentMappings.Select(kvp =>
             {
                 var propInfo = product.GetType().GetProperty($"selected{kvp.Key}");
-                if (propInfo == null)
+                
+                // Falls die Eigenschaft nicht existiert oder null ist, Dummy-Werte zurückgeben
+                if (propInfo == null || propInfo.GetValue(product) == null)
                 {
                     return new
                     {
@@ -50,6 +62,7 @@ namespace PCKonfiguratorBackend.Controllers
                 }
 
                 var prop = propInfo.GetValue(product);
+
                 return new
                 {
                     category = kvp.Value,
@@ -60,13 +73,6 @@ namespace PCKonfiguratorBackend.Controllers
             }).ToArray();
 
             return Ok(result);
-
-            // return Ok(JsonSerializer.Serialize(result, new JsonSerializerOptions
-            // {
-            //     WriteIndented = true,
-            //     Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            // }));
-
         }
     }
 }
