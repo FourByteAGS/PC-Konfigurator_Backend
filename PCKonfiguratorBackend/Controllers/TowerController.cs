@@ -11,13 +11,16 @@ namespace PCKonfiguratorBackend.Controllers
     [Route("api/tower")]
     public class TowerController:ControllerBase,IComponentRepository
     {
-        public readonly IAuthRepository authRepository;
-        public readonly ApplicationDbContext _db;
+        private readonly IAuthRepository _authService;
+        private readonly ApplicationDbContext _db;
+        private List<ProductCollection> _productCollections;
 
-        public TowerController(IAuthRepository authRepository, ApplicationDbContext db)
+        public TowerController(IAuthRepository authRepository, ApplicationDbContext db, List<ProductCollection> productCollections)
         {
-            this.authRepository = authRepository;
+            _authService = authRepository;
             _db = db;
+            _productCollections = productCollections;
+            
         }
 
         [HttpGet("GetAll")]
@@ -25,29 +28,27 @@ namespace PCKonfiguratorBackend.Controllers
         {           
             return Ok(_db.Towers.Include(i => i.towerCompatibility).Include(i => i.dimensions).ToJson());
         }
+        
+        [HttpGet("SetComponentAsSelected")]
+        public IActionResult SetComponentAsSelected(Guid token, Guid componentId)
+        {
+            if (!_authService.ValidateToken(token))
+            {
+                return Unauthorized();
+            }
+            
+            var tower = _db.Towers.FirstOrDefault(i => i.id == componentId);
+        }
 
         [HttpGet("GetTowerByFormFactor")]
         public IActionResult GetTowerByTowerType(Guid token, [FromQuery] FormFactor formFactor)
         {
-            if (authRepository.ValidateToken(token))
+            if (_authService.ValidateToken(token))
             {
                 return Ok(_db.Towers.Include(i => i.towerCompatibility).Include(i => i.dimensions).Where(i => i.formFactor.Value == formFactor).ToJson());
             }
 
             return Unauthorized();
-        }
-        
-        public IActionResult SetTowerAsSelected(Guid token, Guid towerId)
-        {
-            // if (!_authService.ValidateToken(token))
-            // {
-            //     return Unauthorized();
-            // }
-
-            var tower = _db.Towers.FirstOrDefault(i => i.id == towerId);
-            //save tower in SelectedProducts but we need a singelton for that ????
-            
-            return Ok();
         }
     }
 }
