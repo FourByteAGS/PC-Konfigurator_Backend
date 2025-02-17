@@ -20,16 +20,7 @@ namespace PCKonfiguratorBackend.Controllers
         [HttpGet("getallselected")]
         public IActionResult GetAllSelected(Guid token)
         {
-
-
-            var components = new[] { "Tower", "CPU", "Mainboard", "CPUFan", "RAM", "GPU", "Storage", "Fan", "PSU" };
-
-
-
             var product = _productCollection.FirstOrDefault(x => x.token == token);
-            if (product == null)
-                return NotFound();
-
             var componentMappings = new Dictionary<string, string>
 {
                 { "Tower","Gehäuse"},
