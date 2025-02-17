@@ -37,13 +37,25 @@ namespace PCKonfiguratorBackend.Controllers
             
             var result = componentMappings.Select(kvp =>
             {
-                var prop = product.GetType().GetProperty($"selected{kvp.Key}")?.GetValue(product);
+                var propInfo = product.GetType().GetProperty($"selected{kvp.Key}");
+                if (propInfo == null)
+                {
+                    return new
+                    {
+                        category = kvp.Value,
+                        id = "",
+                        name = "",
+                        price = 0m
+                    };
+                }
+
+                var prop = propInfo.GetValue(product);
                 return new
                 {
                     category = kvp.Value,
-                    id = prop?.GetType().GetProperty("id")?.GetValue(prop) as string ?? "",
-                    name = prop?.GetType().GetProperty("name")?.GetValue(prop) as string ?? "",
-                    price = prop?.GetType().GetProperty("price")?.GetValue(prop) as string ?? ""
+                    id = prop.GetType().GetProperty("id")?.GetValue(prop) as string ?? "",
+                    name = prop.GetType().GetProperty("name")?.GetValue(prop) as string ?? "",
+                    price = prop.GetType().GetProperty("price")?.GetValue(prop) as decimal? ?? 0m
                 };
             }).ToArray();
 
