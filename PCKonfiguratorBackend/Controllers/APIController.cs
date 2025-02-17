@@ -26,12 +26,6 @@ namespace PCKonfiguratorBackend.Controllers
         {
             var product = _productCollection.FirstOrDefault(x => x.token == token);
 
-            // Prüfen, ob das Produkt existiert
-            if (product == null)
-            {
-                return NotFound(new { message = "Produkt nicht gefunden" });
-            }
-
             var componentMappings = new Dictionary<string, string>
             {
                 { "Tower", "Gehäuse" },
@@ -47,9 +41,19 @@ namespace PCKonfiguratorBackend.Controllers
 
             var result = componentMappings.Select(kvp =>
             {
+                // Falls kein Produkt existiert oder die Eigenschaft nicht vorhanden ist → Dummy-Werte zurückgeben
+                if (product == null)
+                {
+                    return new
+                    {
+                        category = kvp.Value,
+                        id = "",
+                        name = "",
+                        price = ""
+                    };
+                }
+
                 var propInfo = product.GetType().GetProperty($"selected{kvp.Key}");
-                
-                // Falls die Eigenschaft nicht existiert oder null ist, Dummy-Werte zurückgeben
                 if (propInfo == null || propInfo.GetValue(product) == null)
                 {
                     return new
@@ -68,7 +72,7 @@ namespace PCKonfiguratorBackend.Controllers
                     category = kvp.Value,
                     id = prop.GetType().GetProperty("id")?.GetValue(prop) as string ?? "",
                     name = prop.GetType().GetProperty("name")?.GetValue(prop) as string ?? "",
-                    price = prop.GetType().GetProperty("price")?.GetValue(prop) as string ?? ""
+                    price = prop.GetType().GetProperty("price")?.GetValue(prop)?.ToString() ?? ""
                 };
             }).ToArray();
 
