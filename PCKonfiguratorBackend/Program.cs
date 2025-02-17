@@ -14,16 +14,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddSingleton<IAuthRepository, AuthService>();
 builder.Services.AddSingleton<List<ProductCollection>>();
 
-// CORS aktivieren
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend",
+    options.AddPolicy("AllowAll",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000") 
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials(); 
+            policy.AllowAnyOrigin()  // 🔥 Erlaubt ALLE Ursprünge (nicht sicher für Auth-geschützte APIs)
+                .AllowAnyMethod()  // 🔥 Erlaubt ALLE HTTP-Methoden (GET, POST, PUT, DELETE, usw.)
+                .AllowAnyHeader(); // 🔥 Erlaubt ALLE Header
         });
 });
 
@@ -35,7 +33,11 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// Migrationen ausführen
+app.UseCors("AllowAll");
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -43,10 +45,5 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 }
 
-app.UseCors("AllowAll");
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-
+// 📌 Anwendung starten
 app.Run();
