@@ -46,15 +46,15 @@ public class MainboardController : ControllerBase, IComponentRepository
         {
             var selectedProduct = _productCollections.FirstOrDefault(x => x.token == token);
 
-            if (selectedProduct?.selectedTower == null)
+            if (selectedProduct?.selectedTower == null|| selectedProduct?.selectedCPU == null)
             {
-                return BadRequest("Kein passender Tower für das Token gefunden.");
+                return BadRequest("Kein passender Tower,CPU für das Token gefunden.");
             }
 
             var compatibleMainboards = _db.Mainboards
                 .Include(i => i.mainboardSpecifications)
                 .Include(i => i.dimensions)
-                .Where(i => i.mainboardSpecifications.formFactor == selectedProduct.selectedTower.formFactor)
+                .Where(i => i.mainboardSpecifications.formFactor == selectedProduct.selectedTower.formFactor&&i.mainboardSpecifications.socket == selectedProduct.selectedCPU.cpuSpecification.socket)
                 .ToList();
 
             if (compatibleMainboards == null || !compatibleMainboards.Any())

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PCKonfiguratorBackend.Interface;
+using PCKonfiguratorBackend.Models;
+using PCKonfiguratorBackend.Service;
 
 namespace PCKonfiguratorBackend.Controllers
 {
@@ -8,13 +10,15 @@ namespace PCKonfiguratorBackend.Controllers
     [Route("api/cpu")]
     public class CpuController : ControllerBase, IComponentRepository
     {
-        public readonly IAuthRepository AuthRepository;
+        public readonly IAuthRepository _authService;
         public readonly ApplicationDbContext _db;
+        public readonly List<ProductCollection> _productCollections;
 
-        public CpuController(IAuthRepository authRepository, ApplicationDbContext db)
+        public CpuController(IAuthRepository authRepository, ApplicationDbContext db,List<ProductCollection> productCollections)
         {
-            AuthRepository = authRepository;
+            _authService = authRepository;
             _db = db;
+            _productCollections = productCollections;
         }
 
         [HttpGet("getall")]
@@ -23,13 +27,17 @@ namespace PCKonfiguratorBackend.Controllers
             return Ok(_db.Cpus.Include(i => i.cpuSpecification).ThenInclude(i => i.cpuMemory).ToJson());
         }
 
-        //[HttpGet("SetFormat")]
-        //public IActionResult SetFormat(Guid token,int type)
-        //{
+        [HttpGet("setcomponent")]
+        public IActionResult SetComponent(Guid token, Guid componentId)
+        {
+            if (!_authService.ValidateToken(token))
+            {
+                return Unauthorized();
+            }
 
-        //}
-
-        //public 
-
+            var cpu = _db.Cpus.Include(i => i.cpuSpecification).ThenInclude(i => i.cpuMemory).FirstOrDefault(i => i.id == componentId);
+            _productCollections.Where(x => x.token == token).FirstOrDefault().selectedCPU = cpu;
+            return Ok();
+        }
     }
 }

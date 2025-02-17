@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PCKonfiguratorBackend.Interface;
+using PCKonfiguratorBackend.Models;
 
 namespace PCKonfiguratorBackend.Controllers;
 
@@ -8,12 +9,13 @@ namespace PCKonfiguratorBackend.Controllers;
 [Route("api/storage")]
 public class StorageController : ControllerBase, IComponentRepository
 {
-    public readonly IAuthRepository AuthRepository;
+    public readonly IAuthRepository _authService;
     public readonly ApplicationDbContext _db;
+    public readonly List<ProductCollection> _productCollections;
 
     public StorageController(IAuthRepository authRepository, ApplicationDbContext db)
     {
-        AuthRepository = authRepository;
+        _authService = authRepository;
         _db = db;
     }
 
@@ -26,6 +28,8 @@ public class StorageController : ControllerBase, IComponentRepository
     [HttpGet("setcomponent")]
     public IActionResult setcomponent(Guid token, Guid componentId)
     {
-        throw new NotImplementedException();
+        _productCollections.Where(x => x.token == token).FirstOrDefault().selectedStorage = _db.Storages.Include(i => i.storageSpecifications).Where(x => x.id == componentId).FirstOrDefault();
+
+        return Ok();
     }
 } 
