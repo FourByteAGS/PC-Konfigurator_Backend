@@ -13,11 +13,11 @@ public class RamController : ControllerBase, IComponentRepository
     public readonly ApplicationDbContext _db;
     public readonly List<ProductCollection> _productCollections;
 
-    public RamController(IAuthRepository authRepository, ApplicationDbContext db,List<ProductCollection> productCollections)
+    public RamController(IAuthRepository authRepository, ApplicationDbContext db, List<ProductCollection> productCollections)
     {
         _authRepository = authRepository;
         _db = db;
-      _productCollections = productCollections;
+        _productCollections = productCollections;
     }
 
     [HttpGet("GetAll")]
@@ -26,21 +26,39 @@ public class RamController : ControllerBase, IComponentRepository
         return Ok(_db.RAMs.Include(i => i.ramSpecifications).ToJson());
     }
 
-    [HttpGet("GetRAMByType")]    
-    public IActionResult GetTowerByTowerType(Guid token)
+    [HttpGet("GetRAMByType")]
+    public IActionResult GetRAMByType(Guid token)
     {
         if (_authRepository.ValidateToken(token))
         {
-            if()
-            return Ok(_db.RAMs.Include(i => i.ramSpecifications).Where(i => i.ramSpecifications.MemoryType.Value == MemoryType.DDR5).ToJson());
+            var selectedProduct = _productCollections.FirstOrDefault(x => x.token == token);
+
+            if (selectedProduct?.selectedMainboard == null)
+            {
+                return BadRequest("Kein passender Mainboard für das Token gefunden.");
+            }
+
+            var compatibleRAMs = _db.RAMs
+                .Include(i => i.ramSpecifications)
+                .Where(i => i.ramSpecifications.MemoryType == selectedProduct.selectedMainboard.mainboardSpecifications.memoryType)
+                .ToList();
+
+            if (compatibleRAMs == null || !compatibleRAMs.Any())
+            {
+                return NotFound("Keine passenden RAM gefunden.");
+            }
+
+            return Ok(compatibleRAMs.ToJson());
         }
 
         return Unauthorized();
     }
 
+    [HttpGet("SetComponentAsSelected")]
     public IActionResult SetComponentAsSelected(Guid token, Guid componentId)
     {
-        var t =_productCollections.Select(x => x.token == token).First();
-        t.selectedRAM
+        _productCollections.Where(x => x.token == token).FirstOrDefault().selectedRAM = _db.RAMs.Include(i => i.ramSpecifications).Where(x => x.id == componentId).FirstOrDefault();
+
+        return Ok();
     }
-} 
+}

@@ -6,6 +6,6 @@ namespace PCKonfiguratorBackend.Interface
     {
         public IActionResult GetAll(Guid token);
         
-        public IActionResult SetComponentAsSelected(Guid token, Guid componentId);
+        //public IActionResult SetComponentAsSelected(Guid token, Guid componentId);
     }
 }
