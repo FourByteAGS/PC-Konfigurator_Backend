@@ -22,7 +22,7 @@ namespace PCKonfiguratorBackend.Controllers
         {
             var product = _productCollection.FirstOrDefault(x => x.token == token);
             var componentMappings = new Dictionary<string, string>
-{
+            {
                 { "Tower","Gehäuse"},
                 { "CPU","Prozessor" },
                 { "Mainboard", "Mainboard" },
@@ -32,21 +32,25 @@ namespace PCKonfiguratorBackend.Controllers
                 { "Storage", "Datenträger" },
                 { "Fan", "Gehäuselüfter" },
                 { "PSU", "Netzteil" }
-};
+            };
+            
+            
 
             var result = componentMappings.ToDictionary(
                 kvp => kvp.Value,
                 kvp =>
                 {
                     var prop = product.GetType().GetProperty($"selected{kvp.Key}")?.GetValue(product);
-                    return prop != null ? new
-                    {
-                        id = prop.GetType().GetProperty("id")?.GetValue(prop),
-                        name = prop.GetType().GetProperty("name")?.GetValue(prop),
-                        price = prop.GetType().GetProperty("price")?.GetValue(prop)
-                    } : null;
+                    return prop != null
+                        ? new { 
+                            id = (prop.GetType().GetProperty("id")?.GetValue(prop) as string) ?? "", 
+                            name = (prop.GetType().GetProperty("name")?.GetValue(prop) as string) ?? "", 
+                            price = (prop.GetType().GetProperty("price")?.GetValue(prop) as string) ?? "", 
+                        }
+                        : new { id = "", name = "", price = "" };
                 }
             );
+
 
 
             return Ok(result.ToJson());
