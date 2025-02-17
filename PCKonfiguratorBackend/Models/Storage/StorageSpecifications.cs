@@ -10,5 +10,6 @@ namespace PCKonfiguratorBackend.Models
         public string? schnittstelle { get; set; } 
         public int? readSpeeed { get; set; }
         public int? writeSpeeed { get; set; }
+        public int? power { get; set; }
     }
 }

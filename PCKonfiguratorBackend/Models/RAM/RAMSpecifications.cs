@@ -10,5 +10,6 @@ namespace PCKonfiguratorBackend.Models
         public int? speed { get; set; }
         public int? capacity { get; set; }
         public float? voltage { get; set; }
+        public int? power { get; set; }
     }
 }

@@ -6,6 +6,7 @@ namespace PCKonfiguratorBackend.Models
     {
         [Key]
         public Guid id { get; set; }
+        public int? power { get; set; }
         public int? l2Cache { get; set; }
         public int? l3Cache { get; set; }
         public int? maxTemp { get; set; }
@@ -15,6 +16,6 @@ namespace PCKonfiguratorBackend.Models
         public double? boostClock { get; set; }
         public Socket? socket { get; set; }
         public CPUMemory cpuMemory { get; set; } = new CPUMemory();
-        
+
     }
 }

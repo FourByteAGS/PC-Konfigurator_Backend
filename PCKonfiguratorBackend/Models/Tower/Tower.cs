@@ -12,6 +12,7 @@ namespace PCKonfiguratorBackend.Models
         public string? image { get; set; }
         public string? color { get; set; }
         public TowerType? towerType { get; set; }
+        public FormFactor? formFactor { get; set; }
         public Dimensions dimensions { get; set; } = new Dimensions();
         public TowerCompatibility towerCompatibility { get; set; } = new TowerCompatibility();
     }

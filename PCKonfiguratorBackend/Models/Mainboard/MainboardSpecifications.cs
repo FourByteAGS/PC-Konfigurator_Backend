@@ -10,7 +10,9 @@ namespace PCKonfiguratorBackend.Models
         public string? chipset { get; set; }
         public int? m2Slot { get; set; }
         public int? sataPorts { get; set; }
+        public int? power { get; set; }
         public FormFactor? formFactor { get; set; }
         public MemoryType? memoryType { get; set; }
+      
     }
 }
