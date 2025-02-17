@@ -93,6 +93,7 @@ namespace PCKonfiguratorBackend.Migrations
                     chipset = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     m2Slot = table.Column<int>(type: "int", nullable: true),
                     sataPorts = table.Column<int>(type: "int", nullable: true),
+                    power = table.Column<int>(type: "int", nullable: true),
                     formFactor = table.Column<int>(type: "int", nullable: true),
                     memoryType = table.Column<int>(type: "int", nullable: true)
                 },
@@ -125,7 +126,8 @@ namespace PCKonfiguratorBackend.Migrations
                     MemoryType = table.Column<int>(type: "int", nullable: true),
                     speed = table.Column<int>(type: "int", nullable: true),
                     capacity = table.Column<int>(type: "int", nullable: true),
-                    voltage = table.Column<float>(type: "real", nullable: true)
+                    voltage = table.Column<float>(type: "real", nullable: true),
+                    power = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -140,7 +142,8 @@ namespace PCKonfiguratorBackend.Migrations
                     capacity = table.Column<int>(type: "int", nullable: true),
                     schnittstelle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     readSpeeed = table.Column<int>(type: "int", nullable: true),
-                    writeSpeeed = table.Column<int>(type: "int", nullable: true)
+                    writeSpeeed = table.Column<int>(type: "int", nullable: true),
+                    power = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -165,6 +168,7 @@ namespace PCKonfiguratorBackend.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    power = table.Column<int>(type: "int", nullable: true),
                     l2Cache = table.Column<int>(type: "int", nullable: true),
                     l3Cache = table.Column<int>(type: "int", nullable: true),
                     maxTemp = table.Column<int>(type: "int", nullable: true),
@@ -386,6 +390,7 @@ namespace PCKonfiguratorBackend.Migrations
                     image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     color = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     towerType = table.Column<int>(type: "int", nullable: true),
+                    formFactor = table.Column<int>(type: "int", nullable: true),
                     dimensionsid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     towerCompatibilityid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },

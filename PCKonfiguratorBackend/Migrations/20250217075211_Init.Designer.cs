@@ -12,8 +12,8 @@ using PCKonfiguratorBackend;
 namespace PCKonfiguratorBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250215161235_SeedData")]
-    partial class SeedData
+    [Migration("20250217075211_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,6 +131,9 @@ namespace PCKonfiguratorBackend.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("maxTemp")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("power")
                         .HasColumnType("int");
 
                     b.Property<int?>("socket")
@@ -352,6 +355,9 @@ namespace PCKonfiguratorBackend.Migrations
                     b.Property<int?>("memoryType")
                         .HasColumnType("int");
 
+                    b.Property<int?>("power")
+                        .HasColumnType("int");
+
                     b.Property<int?>("sataPorts")
                         .HasColumnType("int");
 
@@ -462,6 +468,9 @@ namespace PCKonfiguratorBackend.Migrations
                     b.Property<int?>("capacity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("power")
+                        .HasColumnType("int");
+
                     b.Property<int?>("speed")
                         .HasColumnType("int");
 
@@ -510,6 +519,9 @@ namespace PCKonfiguratorBackend.Migrations
                     b.Property<int?>("capacity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("power")
+                        .HasColumnType("int");
+
                     b.Property<int?>("readSpeeed")
                         .HasColumnType("int");
 
@@ -535,6 +547,9 @@ namespace PCKonfiguratorBackend.Migrations
 
                     b.Property<Guid>("dimensionsid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("formFactor")
+                        .HasColumnType("int");
 
                     b.Property<string>("image")
                         .HasColumnType("nvarchar(max)");

@@ -12,8 +12,8 @@ using PCKonfiguratorBackend;
 namespace PCKonfiguratorBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250217074339_PowerAndFormFactor")]
-    partial class PowerAndFormFactor
+    [Migration("20250217075230_SeedData")]
+    partial class SeedData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

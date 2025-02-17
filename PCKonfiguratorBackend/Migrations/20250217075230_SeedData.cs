@@ -45,9 +45,9 @@ INSERT INTO CPUMemory (id, memoryType, maxCapacity, maxSpeed) VALUES
 ('6e2d3f9a-7c5b-49cd-9b98-45a7f8e6f222', 1, 192, 6400.0);
 
 -- Einfügen der CPU-Spezifikationen
-INSERT INTO CPUSpecification (id, l2Cache, l3Cache, maxTemp, threads, core, baseClock, boostClock, socket, cpuMemoryId) VALUES
-('f2b3c59a-6d2a-4e7d-892d-1a6f5d3f1c56', 28, 33, 100, 28, 20, 3.40, 5.60, 1, '5e1d1f89-2b6b-48cd-9d98-23a6f7e5e111'),
-('c3d4e69b-5f7a-48cd-8c78-12a3d9f7e567', 36, 30, 105, 24, 24, 3.70, 5.70, 1, '6e2d3f9a-7c5b-49cd-9b98-45a7f8e6f222');
+INSERT INTO CPUSpecification (id, power, l2Cache, l3Cache, maxTemp, threads, core, baseClock, boostClock, socket, cpuMemoryId) VALUES
+('f2b3c59a-6d2a-4e7d-892d-1a6f5d3f1c56',250, 28, 33, 100, 28, 20, 3.40, 5.60, 1, '5e1d1f89-2b6b-48cd-9d98-23a6f7e5e111'),
+('c3d4e69b-5f7a-48cd-8c78-12a3d9f7e567',253, 36, 30, 105, 24, 24, 3.70, 5.70, 1, '6e2d3f9a-7c5b-49cd-9b98-45a7f8e6f222');
 
 -- Einfügen der CPU-Daten
 INSERT INTO Cpus(id, name, manufacturer, price, image, cpuSpecificationId) VALUES
@@ -64,12 +64,12 @@ VALUES
 ('a3e7d6c8-9012-528e-0f9d-7b6a5c4d3e2f', 30.5, 24.4, NULL), 
 ('b4f8e9d7-3456-639f-1f0e-6c5a4d3e2b1f', 30.5, 24.4, NULL);
 
-INSERT INTO MainboardSpecifications (id, socket, chipset, m2Slot, sataPorts, formFactor, memoryType)
+INSERT INTO MainboardSpecifications (id, socket, chipset, m2Slot, sataPorts,power ,formFactor, memoryType)
 VALUES 
-('c5a9d3e7-7890-7d8e-9f0a-1b2c3d4e5f6a', 1, 'B650E', 3, 4, 1, 1),
-('d6b8c4e7-8901-8f9a-0a1b-2c3d4e5f6b7a', 1, 'B650', 3, 4, 1, 1),
-('e7c9d5b3-9012-9a0b-1b2c-3d4e5f6c7d8a', 1, 'X870E', 4, 4, 1, 1),
-('f8d7e9c6-2345-0b1c-2c3d-4e5f6d7e8f9a', 1, 'X870', 4, 4, 1, 1);
+('c5a9d3e7-7890-7d8e-9f0a-1b2c3d4e5f6a', 1, 'B650E', 3, 4,30 ,1, 1),
+('d6b8c4e7-8901-8f9a-0a1b-2c3d4e5f6b7a', 1, 'B650', 3, 4,30 ,1, 1),
+('e7c9d5b3-9012-9a0b-1b2c-3d4e5f6c7d8a', 1, 'X870E', 4, 4,30 ,1, 1),
+('f8d7e9c6-2345-0b1c-2c3d-4e5f6d7e8f9a', 1, 'X870', 4, 4,30, 1, 1);
 
 INSERT INTO Mainboards (id, name, manufacturer, price, image, mainboardSpecificationsId, dimensionsId)
 VALUES 
@@ -109,13 +109,13 @@ VALUES
 
 
 -- Einfügen von RAMSpecifications
-INSERT INTO RAMSpecifications (id, MemoryType, speed, capacity, voltage)
+INSERT INTO RAMSpecifications (id, MemoryType, speed, capacity, voltage,power)
 VALUES 
-('ca69c915-3665-45e1-86eb-af32d2b51c06', 1, 6000, 32, 1.4),  -- Kingston FURY Beast DDR5-6000
-('ceecb009-ead0-4209-b237-fed8b01b1797', 1, 6000, 64, 1.4),  -- Kingston FURY Beast 64GB DDR5-6000
-('bbfa7fb4-9845-4d5d-84f9-a91fcde51643', 1, 6000, 32, 1.35), -- G.Skill Trident Z5 NEO DDR5-6000
-('3c6b504e-678e-471b-b553-eede006101e7', 2, 3200, 32, 1.35), -- G.Skill Aegis DDR4-3200
-('f37f3c32-bd8c-4056-91ec-5a8692ab745b', 2, 3200, 16, 1.2);  -- Crucial SO-DIMM DDR4-3200
+('ca69c915-3665-45e1-86eb-af32d2b51c06', 1, 6000, 32, 1.4,5),  -- Kingston FURY Beast DDR5-6000
+('ceecb009-ead0-4209-b237-fed8b01b1797', 1, 6000, 64, 1.4,5),  -- Kingston FURY Beast 64GB DDR5-6000
+('bbfa7fb4-9845-4d5d-84f9-a91fcde51643', 1, 6000, 32, 1.35,5), -- G.Skill Trident Z5 NEO DDR5-6000
+('3c6b504e-678e-471b-b553-eede006101e7', 2, 3200, 32, 1.35,5), -- G.Skill Aegis DDR4-3200
+('f37f3c32-bd8c-4056-91ec-5a8692ab745b', 2, 3200, 16, 1.2,5);  -- Crucial SO-DIMM DDR4-3200
 
 -- Einfügen von RAM
 INSERT INTO RAMs (id, name, manufacturer, price, image, ramSpecificationsId)
@@ -163,18 +163,18 @@ VALUES
 
 
 -- Einfügen von StorageSpecifications mit zufälligen GUIDs
-INSERT INTO StorageSpecifications (id, capacity, schnittstelle, readSpeeed, writeSpeeed)
+INSERT INTO StorageSpecifications (id, capacity, schnittstelle, readSpeeed, writeSpeeed,power)
 VALUES 
-('e3b1c9f7-4d6b-43e7-b65d-2e68a59e7c01', 2000, 'M.2/​M-Key (PCIe 4.0 x4)', 7450, 6900),  -- Samsung SSD 990 PRO 2TB
-('bd8b2cf8-94c2-49bb-8f84-7f7a869d3e02', 2000, 'M.2/​M-Key (PCIe 4.0 x4) oder (PCIe 5.0 x2)', 7250, 6300),  -- Samsung SSD 990 EVO Plus 2TB
-('ff57a3a1-2c49-42f7-bc57-d3d923cfa103', 4000, 'M.2/​M-Key (PCIe 4.0 x4)', 7450, 6900),  -- Samsung SSD 990 PRO 4TB
-('c48e2e74-8df5-4d6b-ae7a-d8a3a576f504', 2000, 'M.2/​M-Key (PCIe 4.0 x4)', 5000, 4200),  -- Crucial P3 Plus SSD 2TB
-('a672bf14-f2c3-41d1-bc6e-dcba759c2105', 2048, 'M.2/​M-Key (PCIe 4.0 x4)', 7000, 7000),  -- Kingston KC3000 PCIe 4.0 NVMe SSD 2TB
-('e89d5db9-69ac-45bf-80c4-f7b832d5c806', 2000, 'M.2/​M-Key (PCIe 4.0 x4)', 7300, 6600),  -- WD_BLACK SN850X NVMe SSD 2TB
-('b5399ad6-4bb7-4c64-9f95-2171bcba7707', 1000, 'M.2/​M-Key (PCIe 4.0 x4)', 6000, 4000),  -- Kingston NV3 NVMe PCIe 4.0 SSD 1TB
-('df4a7e16-36bf-4a4d-ae2c-59b37d189908', 2000, 'M.2/​M-Key (PCIe 4.0 x4)', 7400, 6500),  -- Lexar NM790 2TB
-('f2d8197d-68ba-419c-9b1c-2f0c8cfbfa09', 4000, 'M.2/​M-Key (PCIe 4.0 x4)', 7400, 6500),  -- Lexar NM790 4TB
-('adc16e83-81b1-4cd6-8b97-b4bfc314cc10', 1000, 'M.2/​M-Key (PCIe 4.0 x4)', 3500, 2200);  -- ADATA XPG Gammix S50 Core 1TB
+('e3b1c9f7-4d6b-43e7-b65d-2e68a59e7c01', 2000, 'M.2/​M-Key (PCIe 4.0 x4)', 7450, 6900,9),  -- Samsung SSD 990 PRO 2TB
+('bd8b2cf8-94c2-49bb-8f84-7f7a869d3e02', 2000, 'M.2/​M-Key (PCIe 4.0 x4) oder (PCIe 5.0 x2)', 7250, 6300,8),  -- Samsung SSD 990 EVO Plus 2TB
+('ff57a3a1-2c49-42f7-bc57-d3d923cfa103', 4000, 'M.2/​M-Key (PCIe 4.0 x4)', 7450, 6900,7),  -- Samsung SSD 990 PRO 4TB
+('c48e2e74-8df5-4d6b-ae7a-d8a3a576f504', 2000, 'M.2/​M-Key (PCIe 4.0 x4)', 5000, 4200,9),  -- Crucial P3 Plus SSD 2TB
+('a672bf14-f2c3-41d1-bc6e-dcba759c2105', 2048, 'M.2/​M-Key (PCIe 4.0 x4)', 7000, 7000,8),  -- Kingston KC3000 PCIe 4.0 NVMe SSD 2TB
+('e89d5db9-69ac-45bf-80c4-f7b832d5c806', 2000, 'M.2/​M-Key (PCIe 4.0 x4)', 7300, 6600,8),  -- WD_BLACK SN850X NVMe SSD 2TB
+('b5399ad6-4bb7-4c64-9f95-2171bcba7707', 1000, 'M.2/​M-Key (PCIe 4.0 x4)', 6000, 4000,7),  -- Kingston NV3 NVMe PCIe 4.0 SSD 1TB
+('df4a7e16-36bf-4a4d-ae2c-59b37d189908', 2000, 'M.2/​M-Key (PCIe 4.0 x4)', 7400, 6500,9),  -- Lexar NM790 2TB
+('f2d8197d-68ba-419c-9b1c-2f0c8cfbfa09', 4000, 'M.2/​M-Key (PCIe 4.0 x4)', 7400, 6500,8),  -- Lexar NM790 4TB
+('adc16e83-81b1-4cd6-8b97-b4bfc314cc10', 1000, 'M.2/​M-Key (PCIe 4.0 x4)', 3500, 2200,9);  -- ADATA XPG Gammix S50 Core 1TB
 
 -- Einfügen von Storage mit zufälligen GUIDs und Referenz auf StorageSpecifications
 INSERT INTO Storages (id, name, manufacturer, price, image, storageSpecificationsId)
