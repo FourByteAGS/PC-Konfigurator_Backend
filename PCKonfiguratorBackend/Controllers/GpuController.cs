@@ -68,4 +68,12 @@ public class GpuController : ControllerBase, IComponentRepository
 
         return Unauthorized();
     }
+
+
+    [HttpGet("getselected")]
+    public IActionResult GetSelected(Guid token)
+    {
+        var t = _productCollections.Where(x => x.token == token).First().selectedGPU;
+        return Ok(new Sitebar(t.id, t.name, t.price).ToJson());
+    }
 } 
