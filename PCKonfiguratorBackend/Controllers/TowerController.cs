@@ -11,12 +11,12 @@ namespace PCKonfiguratorBackend.Controllers
     [Route("api/tower")]
     public class TowerController:ControllerBase,IComponentRepository
     {
-        public readonly IAuthRepository AuthRepository;
+        public readonly IAuthRepository authRepository;
         public readonly ApplicationDbContext _db;
 
         public TowerController(IAuthRepository authRepository, ApplicationDbContext db)
         {
-            AuthRepository = authRepository;
+            this.authRepository = authRepository;
             _db = db;
         }
 
@@ -26,10 +26,15 @@ namespace PCKonfiguratorBackend.Controllers
             return Ok(_db.Towers.Include(i => i.towerCompatibility).Include(i => i.dimensions).ToJson());
         }
 
-        [HttpGet("GetTowerByTowerType")]
-        public IActionResult GetTowerByTowerType(Guid token, [FromQuery] TowerType towerType)
+        [HttpGet("GetTowerByFormFactor")]
+        public IActionResult GetTowerByTowerType(Guid token, [FromQuery] FormFactor formFactor)
         {
-            return Ok(_db.Towers.Include(i => i.towerCompatibility).Include(i => i.dimensions).Where(i => i.towerType.Value == towerType).ToJson());
+            if (authRepository.ValidateToken(token))
+            {
+                return Ok(_db.Towers.Include(i => i.towerCompatibility).Include(i => i.dimensions).Where(i => i.formFactor.Value == formFactor).ToJson());
+            }
+
+            return Unauthorized();
         }
         
         public IActionResult SetTowerAsSelected(Guid token, Guid towerId)
