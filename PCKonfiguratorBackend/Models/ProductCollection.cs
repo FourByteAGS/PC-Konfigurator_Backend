@@ -4,6 +4,11 @@ namespace PCKonfiguratorBackend.Models
 {
     public class ProductCollection
     {
+        public ProductCollection(Guid token)
+        {
+            this.token = token;
+        }
+        
         [Key]
         public Guid id { get; set; }
         public Guid token { get; set; }
