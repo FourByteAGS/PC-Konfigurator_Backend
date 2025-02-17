@@ -36,13 +36,30 @@ namespace PCKonfiguratorBackend.Controllers
                 return Unauthorized();
             }
 
-            var tower = _db.Towers.Include(i=>i.towerCompatibility).Include(i=>i.dimensions).FirstOrDefault(i => i.id == componentId);
+            // 🔍 Tower suchen
+            var tower = _db.Towers
+                .Include(i => i.towerCompatibility)
+                .Include(i => i.dimensions)
+                .FirstOrDefault(i => i.id == componentId);
+
+            if (tower == null)
+            {
+                return NotFound(new { message = "Tower mit dieser ID wurde nicht gefunden." });
+            }
             
-            if(!_productCollections.Any()|| _productCollections.Where(x => x.token == token).Any())
-            _productCollections.Add(new ProductCollection(token));
-            _productCollections.Where(x => x.token == token).FirstOrDefault().selectedTower = tower;
-            return Ok();
+            var productCollection = _productCollections.FirstOrDefault(x => x.token == token);
+            
+            if (productCollection == null)
+            {
+                productCollection = new ProductCollection(token);
+                _productCollections.Add(productCollection);
+            }
+
+            productCollection.selectedTower = tower;
+
+            return Ok(new { message = "Komponente erfolgreich gesetzt." });
         }
+
 
         [HttpGet("gettowerbyformfactor")]
         public IActionResult GetTowerByformfactor(Guid token, [FromQuery] FormFactor formFactor)
