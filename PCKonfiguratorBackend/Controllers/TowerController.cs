@@ -38,6 +38,7 @@ namespace PCKonfiguratorBackend.Controllers
             }
             
             var tower = _db.Towers.FirstOrDefault(i => i.id == componentId);
+            _productCollections.Add(new ProductCollection(token));
         }
 
         [HttpGet("GetTowerByFormFactor")]
