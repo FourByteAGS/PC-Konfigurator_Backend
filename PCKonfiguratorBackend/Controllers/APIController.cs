@@ -45,7 +45,7 @@ namespace PCKonfiguratorBackend.Controllers
                         category = kvp.Value,
                         id = "",
                         name = "",
-                        price = 0m
+                        price = ""
                     };
                 }
 
@@ -55,7 +55,7 @@ namespace PCKonfiguratorBackend.Controllers
                     category = kvp.Value,
                     id = prop.GetType().GetProperty("id")?.GetValue(prop) as string ?? "",
                     name = prop.GetType().GetProperty("name")?.GetValue(prop) as string ?? "",
-                    price = prop.GetType().GetProperty("price")?.GetValue(prop) as decimal? ?? 0m
+                    price = prop.GetType().GetProperty("price")?.GetValue(prop) as string ?? ""
                 };
             }).ToArray();
 
