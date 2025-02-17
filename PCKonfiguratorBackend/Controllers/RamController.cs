@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PCKonfiguratorBackend.Interface;
+using PCKonfiguratorBackend.Models;
 
 namespace PCKonfiguratorBackend.Controllers;
 
@@ -8,12 +9,12 @@ namespace PCKonfiguratorBackend.Controllers;
 [Route("api/ram")]
 public class RamController : ControllerBase, IComponentRepository
 {
-    public readonly IAuthRepository AuthRepository;
+    public readonly IAuthRepository _authRepository;
     public readonly ApplicationDbContext _db;
 
     public RamController(IAuthRepository authRepository, ApplicationDbContext db)
     {
-        AuthRepository = authRepository;
+        _authRepository = authRepository;
         _db = db;
     }
 
@@ -21,5 +22,17 @@ public class RamController : ControllerBase, IComponentRepository
     public IActionResult GetAll(Guid token)
     {
         return Ok(_db.RAMs.Include(i => i.ramSpecifications).ToJson());
+    }
+
+    [HttpGet("GetRAMByType")]
+    ++
+    public IActionResult GetTowerByTowerType(Guid token)
+    {
+        if (_authRepository.ValidateToken(token))
+        {
+            return Ok(_db.RAMs.Include(i => i.ramSpecifications).Where(i => i.ramSpecifications.MemoryType.Value == MemoryType.DDR5).ToJson());
+        }
+
+        return Unauthorized();
     }
 } 

@@ -13,11 +13,13 @@ namespace PCKonfiguratorBackend.Controllers
     {
         public readonly IAuthRepository authRepository;
         public readonly ApplicationDbContext _db;
+        public readonly List<ProductCollection> productCollections;
 
-        public TowerController(IAuthRepository authRepository, ApplicationDbContext db)
+        public TowerController(IAuthRepository authRepository, ApplicationDbContext db, List<ProductCollection> productCollections)
         {
             this.authRepository = authRepository;
             _db = db;
+            this.productCollections = productCollections;
         }
 
         [HttpGet("GetAll")]
