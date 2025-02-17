@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using PCKonfiguratorBackend.Interface;
 using PCKonfiguratorBackend.Models;
-using PCKonfiguratorBackend.Service;
 
 namespace PCKonfiguratorBackend.Controllers;
 
@@ -21,27 +20,27 @@ public class MainboardController : ControllerBase, IComponentRepository
         _productCollections = productCollections;
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet("getall")]
     public IActionResult GetAll(Guid token)
     {
         return Ok(_db.Mainboards.Include(i => i.mainboardSpecifications).Include(i => i.dimensions).ToJson());
     }
 
-    [HttpGet("SetComponentAsSelected")]
-    public IActionResult SetComponentAsSelected(Guid token, Guid componentId)
+    [HttpGet("setcomponent")]
+    public IActionResult SetComponent(Guid token, Guid componentId)
     {
         if (!_authService.ValidateToken(token))
         {
             return Unauthorized();
         }
 
-        var mainboard = _db.Mainboards.Include(i=>i.mainboardSpecifications).Include(i=>i.dimensions).FirstOrDefault(i => i.id == componentId);
+        var mainboard = _db.Mainboards.Include(i => i.mainboardSpecifications).Include(i => i.dimensions).FirstOrDefault(i => i.id == componentId);
         _productCollections.Where(x => x.token == token).FirstOrDefault().selectedMainboard = mainboard;
         return Ok();
     }
 
-    [HttpGet("GetMainboardByTower")]
-    public IActionResult GetMainboardByTower(Guid token)
+    [HttpGet("getcompatible")]
+    public IActionResult GetCompatible(Guid token)
     {
         if (_authService.ValidateToken(token))
         {
@@ -68,4 +67,4 @@ public class MainboardController : ControllerBase, IComponentRepository
 
         return Unauthorized();
     }
-} 
+}

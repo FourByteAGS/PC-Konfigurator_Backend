@@ -17,7 +17,7 @@ public class FanController : ControllerBase, IComponentRepository
         _db = db;
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet("getall")]
     public IActionResult GetAll(Guid token)
     {
         return Ok(_db.Fans.Include(i => i.fanSpecifications).Include(i => i.dimensions).ToJson());

@@ -17,10 +17,10 @@ namespace PCKonfiguratorBackend.Controllers
             _productCollection = productCollection;
         }
 
-        [HttpGet("GetToken")]
+        [HttpGet("gettoken")]
         public IActionResult GetToken() => Ok(authRepository.GetNewToken());
 
-        [HttpGet("ValidateToken")]
+        [HttpGet("validatetoken")]
         public IActionResult ValidateToken(Guid token)
         {
             if (authRepository.ValidateToken(token))

@@ -20,14 +20,14 @@ public class RamController : ControllerBase, IComponentRepository
         _productCollections = productCollections;
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet("getall")]
     public IActionResult GetAll(Guid token)
     {
         return Ok(_db.RAMs.Include(i => i.ramSpecifications).ToJson());
     }
 
-    [HttpGet("GetRAMByType")]
-    public IActionResult GetRAMByType(Guid token)
+    [HttpGet("getcompatible")]
+    public IActionResult GetCompatible(Guid token)
     {
         if (_authRepository.ValidateToken(token))
         {
@@ -54,7 +54,7 @@ public class RamController : ControllerBase, IComponentRepository
         return Unauthorized();
     }
 
-    [HttpGet("SetComponentAsSelected")]
+    [HttpGet("setcomponent")]
     public IActionResult SetComponentAsSelected(Guid token, Guid componentId)
     {
         _productCollections.Where(x => x.token == token).FirstOrDefault().selectedRAM = _db.RAMs.Include(i => i.ramSpecifications).Where(x => x.id == componentId).FirstOrDefault();

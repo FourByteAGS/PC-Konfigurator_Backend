@@ -22,14 +22,14 @@ namespace PCKonfiguratorBackend.Controllers
 
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("getall")]
         public IActionResult GetAll(Guid token)
         {
             return Ok(_db.Towers.Include(i => i.towerCompatibility).Include(i => i.dimensions).ToJson());
         }
 
-        [HttpGet("SetComponentAsSelected")]
-        public IActionResult SetComponentAsSelected(Guid token, Guid componentId)
+        [HttpGet("setcomponent")]
+        public IActionResult SetComponent(Guid token, Guid componentId)
         {
             if (!_authService.ValidateToken(token))
             {
@@ -42,8 +42,8 @@ namespace PCKonfiguratorBackend.Controllers
             return Ok();
         }
 
-        [HttpGet("GetTowerByFormFactor")]
-        public IActionResult GetTowerByTowerType(Guid token, [FromQuery] FormFactor formFactor)
+        [HttpGet("getcompatible")]
+        public IActionResult GetCompatible(Guid token, [FromQuery] FormFactor formFactor)
         {
             if (_authService.ValidateToken(token))
             {

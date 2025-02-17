@@ -17,13 +17,14 @@ public class StorageController : ControllerBase, IComponentRepository
         _db = db;
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet("getall")]
     public IActionResult GetAll(Guid token)
     {
         return Ok(_db.Storages.Include(i => i.storageSpecifications).ToJson());
     }
 
-    public IActionResult SetComponentAsSelected(Guid token, Guid componentId)
+    [HttpGet("setcomponent")]
+    public IActionResult setcomponent(Guid token, Guid componentId)
     {
         throw new NotImplementedException();
     }

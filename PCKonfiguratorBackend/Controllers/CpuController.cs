@@ -17,7 +17,7 @@ namespace PCKonfiguratorBackend.Controllers
             _db = db;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("getall")]
         public IActionResult GetAll(Guid token)
         {
             return Ok(_db.Cpus.Include(i => i.cpuSpecification).ThenInclude(i => i.cpuMemory).ToJson());

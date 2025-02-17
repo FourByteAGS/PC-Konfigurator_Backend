@@ -5,7 +5,7 @@ using PCKonfiguratorBackend.Interface;
 namespace PCKonfiguratorBackend.Controllers;
 
     [ApiController]
-    [Route("api/cpuFan")]
+    [Route("api/cpufan")]
     public class CpuFanController : ControllerBase, IComponentRepository
     {
         public readonly IAuthRepository AuthRepository;
@@ -17,8 +17,8 @@ namespace PCKonfiguratorBackend.Controllers;
             _db = db;
         }
 
-        [HttpGet("GetAll")]
-        public IActionResult GetAll(Guid token)
+    [HttpGet("getall")]
+    public IActionResult GetAll(Guid token)
         {
             return Ok(_db.CPUFans.Include(i => i.cpufanSpecifications).Include(i => i.dimensions).ToJson());
         }
