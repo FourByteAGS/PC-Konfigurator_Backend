@@ -22,4 +22,9 @@ public class StorageController : ControllerBase, IComponentRepository
     {
         return Ok(_db.Storages.Include(i => i.storageSpecifications).ToJson());
     }
+
+    public IActionResult SetComponentAsSelected(Guid token, Guid componentId)
+    {
+        throw new NotImplementedException();
+    }
 } 
