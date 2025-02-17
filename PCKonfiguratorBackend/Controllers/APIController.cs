@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 using PCKonfiguratorBackend.Interface;
 using PCKonfiguratorBackend.Models;
 
@@ -34,26 +35,23 @@ namespace PCKonfiguratorBackend.Controllers
                 { "PSU", "Netzteil" }
             };
             
-            
-
-            var result = componentMappings.ToDictionary(
-                kvp => kvp.Value,
-                kvp =>
+            var result = componentMappings.Select(kvp =>
+            {
+                var prop = product.GetType().GetProperty($"selected{kvp.Key}")?.GetValue(product);
+                return new
                 {
-                    var prop = product.GetType().GetProperty($"selected{kvp.Key}")?.GetValue(product);
-                    return prop != null
-                        ? new { 
-                            id = (prop.GetType().GetProperty("id")?.GetValue(prop) as string) ?? "", 
-                            name = (prop.GetType().GetProperty("name")?.GetValue(prop) as string) ?? "", 
-                            price = (prop.GetType().GetProperty("price")?.GetValue(prop) as string) ?? "", 
-                        }
-                        : new { id = "", name = "", price = "" };
-                }
-            );
-
-
-
-            return Ok(result.ToJson());
+                    category = kvp.Value,
+                    id = prop?.GetType().GetProperty("id")?.GetValue(prop) as string ?? "",
+                    name = prop?.GetType().GetProperty("name")?.GetValue(prop) as string ?? "",
+                    price = prop?.GetType().GetProperty("price")?.GetValue(prop) as decimal? ?? 0m
+                };
+            }).ToArray();
+            
+            return Ok(JsonSerializer.Serialize(result, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            }));
 
         }
     }
