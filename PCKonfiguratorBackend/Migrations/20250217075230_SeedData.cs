@@ -33,7 +33,7 @@ INSERT INTO Towers (id, name, manufacturer, price, image, color, towerType, form
 VALUES 
 ('715e5758-8c2a-447e-bc31-b959bdcc5c8e', 'Lian Li DAN Cases A3-mATX Black Wood Edition (A3-mATX-WD Black)', 'Lian Li', 80.26, 'https://gzhls.at/i/60/05/3326005-n0.jpg', 'Black', 0, 1, '45fd4ca1-ebe2-4adc-aad7-13d97596b21e', 'fb5e6660-9f69-4646-994d-70617fda14bb'),
 ('cbe79af7-9175-4cfb-ba9b-83bd36e5d188', 'be quiet! Pure Base 501 Airflow Black, schallgedämmt (BG074)', 'be quiet!', 79.34, 'https://gzhls.at/i/07/12/3340712-n0.jpg', 'Black', 1, 1, '83380117-8816-487c-bcc4-c19fec2fd0eb', '49feed9c-99e6-4fdc-8906-8a9896dd7797'),
-('5a23d9fb-bae6-4f8a-805b-84744b1f27ea', 'Lian Li O11 Dynamic / O11D EVO RGB, schwarz, Glasfenster (O11DERGBX)', 'Lian Li', 171.9, 'https://gzhls.at/i/45/18/3094518-n0.jpg', 'Black', 1, 3, '6c1a7a55-95c5-4a6a-96b3-7de5d8988b51', 'd4e58cd2-5e8f-44d8-84cb-4f1d67d999c4'),
+('5a23d9fb-bae6-4f8a-805b-84744b1f27ea', 'Lian Li O11 Dynamic / O11D EVO RGB, schwarz, Glasfenster (O11DERGBX)', 'Lian Li', 171.9, 'https://gzhls.at/i/45/18/3094518-n0.jpg', 'Black', 1, 0, '6c1a7a55-95c5-4a6a-96b3-7de5d8988b51', 'd4e58cd2-5e8f-44d8-84cb-4f1d67d999c4'),
 ('8c69d8aa-25b2-4c1e-bd04-97a8b9898e72', 'Phanteks XT Pro Ultra Satin Black, schwarz, Glasfenster (PH-XT523P1_DBK01)', 'Phanteks', 80.57, 'https://gzhls.at/i/72/61/3147261-n0.jpg', 'Black', 1, 1, 'a63db671-49ff-4e91-bb9b-92de7883d334', 'aa320654-38f7-4e67-bdf3-5e6f2cd8bdfb'),
 ('f2b65862-29c7-47db-89c7-e936f68e843c', 'Fractal Design North Charcoal Black TG Dark, Glasfenster (FD-C-NOR1C-02)', 'Fractal Design', 157.08, 'https://gzhls.at/i/16/82/2861682-n0.jpg', 'Black', 1, 2, '1b3d6402-58e5-4e02-99c9-cf86a9f0d97b', 'b794f5cf-4e78-4e6f-928f-493542ba10bf');
 
