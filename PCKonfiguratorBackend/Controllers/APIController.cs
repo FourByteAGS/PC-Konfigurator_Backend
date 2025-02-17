@@ -46,12 +46,14 @@ namespace PCKonfiguratorBackend.Controllers
                     price = prop?.GetType().GetProperty("price")?.GetValue(prop) as string ?? ""
                 };
             }).ToArray();
-            
-            return Ok(JsonSerializer.Serialize(result, new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            }));
+
+            return Ok(result);
+
+            // return Ok(JsonSerializer.Serialize(result, new JsonSerializerOptions
+            // {
+            //     WriteIndented = true,
+            //     Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            // }));
 
         }
     }
