@@ -122,22 +122,51 @@ VALUES
 ('e1c9a3b4-1234-4f6b-8c9d-9f8e7d6a5b2c', 30.5, 24.4, NULL), 
 ('f2d8b4c5-5678-427d-9e8c-8a7b6c5d4e3f', 30.5, 24.4, NULL), 
 ('a3e7d6c8-9012-528e-0f9d-7b6a5c4d3e2f', 30.5, 24.4, NULL), 
-('b4f8e9d7-3456-639f-1f0e-6c5a4d3e2b1f', 30.5, 24.4, NULL);
+('b4f8e9d7-3456-639f-1f0e-6c5a4d3e2b1f', 30.5, 24.4, NULL),
+('ca25976b-9700-4dac-b2ed-4e361da62d7a', 24.4, 24.4, 3.0),
+('51ee4569-9938-4d2e-9f7c-bbb19002c116', 24.4, 24.4, 2.0),
+('4324fdba-ec89-4568-b5c1-30b6c29bf372', 24.4, 24.4, 3.2),
+('b29b945d-c7cb-4cc3-aa01-f81a22507966', 24.4, 24.4, 3.5),
+('8565f2eb-5cae-4d7e-9c33-0989f9b37e39', 24.4, 24.4, 2.5),
+('d76581ca-041e-4092-bf0d-dc34ba529677', 24.4, 24.4, 2.0),
+('560f0601-1834-4c7c-949c-549c5551db6c', 24.4, 24.4, 3.0),
+('dc2851d8-5ea9-4bbf-8e69-65188c4acb3e', 24.4, 24.4, 3.5),
+('0cda0f5c-cef2-4291-8d78-80d8cfc4f049', 24.4, 24.4, 2.0),
+('c213946d-a245-49f5-b948-e883d07f9fdc', 24.4, 24.4, 3.2);
 
 INSERT INTO MainboardSpecifications (id, socket, chipset, m2Slot, sataPorts,power ,formFactor, memoryType)
 VALUES 
 ('c5a9d3e7-7890-7d8e-9f0a-1b2c3d4e5f6a', 1, 'B650E', 3, 4,30 ,1, 1),
 ('d6b8c4e7-8901-8f9a-0a1b-2c3d4e5f6b7a', 1, 'B650', 3, 4,30 ,1, 1),
 ('e7c9d5b3-9012-9a0b-1b2c-3d4e5f6c7d8a', 1, 'X870E', 4, 4,30 ,1, 1),
-('f8d7e9c6-2345-0b1c-2c3d-4e5f6d7e8f9a', 1, 'X870', 4, 4,30, 1, 1);
+('f8d7e9c6-2345-0b1c-2c3d-4e5f6d7e8f9a', 1, 'X870', 4, 4,30, 1, 1),
+('6b39cbb1-8846-4b73-bcca-f8f589dcef65', 0, 'B650', 2, 4, 30, 0, 0),
+('dcd3417c-a1b6-40c6-bc76-5ee9c9975ba0', 0, 'B650E', 3, 4, 30, 0, 0),
+('db73f071-5ef4-4f73-bc0a-2a442991c9f0', 0, 'X670', 3, 4, 30, 0, 0),
+('758f8249-5334-49b0-9eec-05feff6898ea', 0, 'X670E', 4, 4, 30, 0, 0),
+('8d621978-66bf-46c5-9928-c0662c785d9c', 1, 'B550', 2, 4, 30, 0, 1),
+('2e629734-5871-456b-9f92-8e967efa3bcf', 2, 'Z690', 2, 4, 30, 0, 0),
+('1dd55d79-cac2-4476-b357-3bbf21013b30', 2, 'Z790', 3, 6, 30, 0, 0),
+('cc79e718-e38f-426c-a076-716fe0016353', 2, 'B660', 2, 4, 30, 1, 1),
+('ec36276b-91a1-4c28-9dc9-251984c4a027', 3, 'H570', 2, 4, 30, 1, 1),
+('46434c26-f8b4-401e-a5c6-89f1fe6bad18', 5, 'X299', 2, 8, 30, 0, 0);
 
 INSERT INTO Mainboards (id, name, manufacturer, price, image, mainboardSpecificationsId, dimensionsId)
 VALUES 
 ('a9c3d5e7-5678-7a8b-9c0d-e1f2a3b4c5d6a', 'ASUS ROG Strix B650E-F Gaming WIFI', 'ASUS', 220.84, 'https://gzhls.at/i/43/07/2824307-n0.jpg', 'c5a9d3e7-7890-7d8e-9f0a-1b2c3d4e5f6a', 'e1c9a3b4-1234-4f6b-8c9d-9f8e7d6a5b2c'),
 ('b8d4e7c6-6789-8b9c-0d1e-2f3a4b5c6d7a', 'ASUS TUF Gaming B650-E WIFI', 'ASUS', 152.88, 'https://gzhls.at/i/07/86/3120786-n0.webp', 'd6b8c4e7-8901-8f9a-0a1b-2c3d4e5f6b7a', 'f2d8b4c5-5678-427d-9e8c-8a7b6c5d4e3f'),
 ('c7e9d5b3-7890-9c0d-1e2f-3a4b5c6d7e8a', 'GIGABYTE X870E AORUS Elite WIFI7', 'GIGABYTE', 317.00, 'https://gzhls.at/i/65/89/3286589-n0.webp', 'e7c9d5b3-9012-9a0b-1b2c-3d4e5f6c7d8a', 'a3e7d6c8-9012-528e-0f9d-7b6a5c4d3e2f'),
-('d8f7e9c6-8901-0d1e-2f3a-4b5c6d7e8f9a', 'MSI MAG X870 Tomahawk WIFI', 'MSI', 314.62, 'https://gzhls.at/i/51/82/3295182-n0.webp', 'f8d7e9c6-2345-0b1c-2c3d-4e5f6d7e8f9a', 'b4f8e9d7-3456-639f-1f0e-6c5a4d3e2b1f');
-
+('d8f7e9c6-8901-0d1e-2f3a-4b5c6d7e8f9a', 'MSI MAG X870 Tomahawk WIFI', 'MSI', 314.62, 'https://gzhls.at/i/51/82/3295182-n0.webp', 'f8d7e9c6-2345-0b1c-2c3d-4e5f6d7e8f9a', 'b4f8e9d7-3456-639f-1f0e-6c5a4d3e2b1f'),
+('75d3a8bc-274e-4f9e-88ac-c3e807b13b06', 'MSI MAG B650 TOMAHAWK WIFI', 'MSI', 199.90, 'https://gzhls.at/i/43/00/2824300-l0.webp', '6b39cbb1-8846-4b73-bcca-f8f589dcef65', 'ca25976b-9700-4dac-b2ed-4e361da62d7a'),
+('e94aebf3-bb51-4c5d-9f06-85ba0cb328bd', 'ASUS ROG Strix B650E-F Gaming', 'ASUS', 249.90, 'https://gzhls.at/i/43/07/2824307-l0.jpg', 'dcd3417c-a1b6-40c6-bc76-5ee9c9975ba0', '51ee4569-9938-4d2e-9f7c-bbb19002c116'),
+('0adbe418-b7da-49e6-bb50-776fbecc6fbd', 'GIGABYTE X670 AORUS ELITE AX', 'GIGABYTE', 279.90, 'https://gzhls.at/i/13/45/2791345-l0.jpg', 'db73f071-5ef4-4f73-bc0a-2a442991c9f0', '4324fdba-ec89-4568-b5c1-30b6c29bf372'),
+('ecc7c2a4-540f-449c-bac7-a2b03dd7560f', 'ASRock X670E Taichi', 'ASRock', 389.90, 'https://gzhls.at/i/17/23/2791723-l0.jpg', '758f8249-5334-49b0-9eec-05feff6898ea', 'b29b945d-c7cb-4cc3-aa01-f81a22507966'),
+('d8bd9edf-8c36-4dde-99c9-4036dc9ac5c1', 'MSI MAG B550 TOMAHAWK', 'MSI', 129.90, 'https://gzhls.at/i/49/74/2774974-l0.jpg', '8d621978-66bf-46c5-9928-c0662c785d9c', '8565f2eb-5cae-4d7e-9c33-0989f9b37e39'),
+('a745ca34-260f-4be6-83d5-b2741c3429a7', 'ASUS PRIME Z690-P', 'ASUS', 189.90, 'https://gzhls.at/i/55/74/2625574-l0.jpg', '2e629734-5871-456b-9f92-8e967efa3bcf', 'd76581ca-041e-4092-bf0d-dc34ba529677'),
+('ab9bd46f-24ec-495a-bce5-a3b96adee559', 'GIGABYTE Z790 AORUS MASTER', 'GIGABYTE', 399.90, 'https://gzhls.at/i/98/86/2819886-l0.jpg', '1dd55d79-cac2-4476-b357-3bbf21013b30', '560f0601-1834-4c7c-949c-549c5551db6c'),
+('69d29876-72fb-4e2b-b23c-83b37b3f6028', 'ASRock B660M Pro RS', 'ASRock', 99.90, 'https://gzhls.at/i/10/37/2661037-l0.jpg', 'cc79e718-e38f-426c-a076-716fe0016353', 'dc2851d8-5ea9-4bbf-8e69-65188c4acb3e'),
+('4164cf3b-1a82-43ce-b090-5d0bd92a3798', 'MSI H570M PRO', 'MSI', 89.90, 'https://gzhls.at/i/98/66/2479866-l0.jpg', 'ec36276b-91a1-4c28-9dc9-251984c4a027', '0cda0f5c-cef2-4291-8d78-80d8cfc4f049'),
+('eb35b78b-a726-47fa-a214-39266d147ea2', 'ASUS PRIME X299-A II', 'ASUS', 449.90, 'https://gzhls.at/i/58/15/2155815-l0.jpg', '46434c26-f8b4-401e-a5c6-89f1fe6bad18', 'c213946d-a245-49f5-b948-e883d07f9fdc');
 
 
 
