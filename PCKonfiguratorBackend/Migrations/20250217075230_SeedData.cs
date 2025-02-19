@@ -29,7 +29,10 @@ VALUES
 ('4b504bb5-5862-47ea-853c-57959859c524', 300.0, 630.0, 600.0),
 ('b3e9b578-1638-404a-bbe6-395c43db2176', 230.0, 500.0, 490.0),
 ('c5032095-a4f7-400d-a583-6ca0566db052', 190.0, 420.0, 400.0),
-('487a3ee6-a3b9-4e47-88b0-70a72a5158fa', 250.0, 560.0, 460.0);
+('487a3ee6-a3b9-4e47-88b0-70a72a5158fa', 250.0, 560.0, 460.0),
+('f3d4cb49-7923-4905-8237-6e4bea841703', 160.0, 300.0, 310.0),
+('cbbd3d0e-3b0f-42ab-a258-543c758427bb', 170.0, 330.0, 350.0),
+('84d21d96-3c41-4c34-a54f-5233718259f7', 200.0, 200.0, 300.0);
 
 INSERT INTO TowerCompatibility (id, maxCpuCoolerHeight, maxGpuLenght) 
 VALUES 
@@ -47,7 +50,10 @@ VALUES
 ('bfec306f-0bc4-4052-a9e8-6c6abe1abc82', 190.0, 450.0),
 ('df430e5d-c729-4415-a9e5-84a7b497e277', 180.0, 400.0),
 ('3cda042e-c222-46f2-a23e-580ac7ffc13f', 175.0, 410.0),
-('061c7d31-71f1-4b81-9f51-b098c9d1f324', 200.0, 480.0);
+('061c7d31-71f1-4b81-9f51-b098c9d1f324', 200.0, 480.0),
+('f4b39623-eb7a-4aec-9d39-de102fb7cb8c', 140.0, 270.0),
+('af612055-6b8c-4a9c-9f25-4cd062a3d363', 148.0, 280.0),
+('c99c02eb-1caa-4971-86f3-6ed09c66af11', 120.0, 250.0);
 
 INSERT INTO Towers (id, name, manufacturer, price, image, color, towerType, formFactor, dimensionsid, towerCompatibilityid) 
 VALUES 
@@ -65,8 +71,10 @@ VALUES
 ('eb2781ce-f3f3-48a7-8f24-96c9a76bbe8f', 'Cooler Master Cosmos C700P', 'Cooler Master', 279.99, 'https://gzhls.at/i/09/53/1700953-l0.jpg', 'Gray', 2, 0, '4b504bb5-5862-47ea-853c-57959859c524', 'bfec306f-0bc4-4052-a9e8-6c6abe1abc82'),
 ('63c22d34-63b8-49b6-b3d0-65d5ff1f23e4', 'Corsair Obsidian 750D', 'Corsair', 159.99, 'https://gzhls.at/i/15/12/1281512-l0.jpg', 'Black', 2, 0, 'b3e9b578-1638-404a-bbe6-395c43db2176', 'df430e5d-c729-4415-a9e5-84a7b497e277'),
 ('70aab270-839a-4eef-bfd3-a80cc861e8d1', 'be quiet! Dark Base Pro 900', 'be quiet!', 249.90, 'https://gzhls.at/i/37/79/1453779-l0.jpg', 'Black', 2, 0, 'c5032095-a4f7-400d-a583-6ca0566db052', '3cda042e-c222-46f2-a23e-580ac7ffc13f'),
-('be2afebd-6b25-4b1a-9cde-8e3b89fb8de4', 'Fractal Design Define 7 XL', 'Fractal Design', 199.00, 'https://gzhls.at/i/98/47/2239847-l0.jpg', 'Black', 2, 0, '487a3ee6-a3b9-4e47-88b0-70a72a5158fa', '061c7d31-71f1-4b81-9f51-b098c9d1f324');
-
+('be2afebd-6b25-4b1a-9cde-8e3b89fb8de4', 'Fractal Design Define 7 XL', 'Fractal Design', 199.00, 'https://gzhls.at/i/98/47/2239847-l0.jpg', 'Black', 2, 0, '487a3ee6-a3b9-4e47-88b0-70a72a5158fa', '061c7d31-71f1-4b81-9f51-b098c9d1f324'),
+('adeea1f4-2c2c-4948-a850-38c8fb3feaf7', 'SilverStone SUGO 14', 'SilverStone', 89.90, 'https://gzhls.at/i/44/03/2384403-l0.jpg', 'Black', 0, 2, 'f3d4cb49-7923-4905-8237-6e4bea841703', 'f4b39623-eb7a-4aec-9d39-de102fb7cb8c'),
+('de87fdfc-4ce8-45e7-a608-664c8682085c', 'Cooler Master Elite 110', 'Cooler Master', 42.50, 'https://gzhls.at/i/65/81/1566581-l0.jpg', 'Black', 0, 2, 'cbbd3d0e-3b0f-42ab-a258-543c758427bb', 'af612055-6b8c-4a9c-9f25-4cd062a3d363'),
+('03c4e45b-9ea5-494a-8a44-a79b5be40324', 'Thermaltake Core V1', 'Thermaltake', 34.99, 'https://gzhls.at/i/80/17/1148017-l0.jpg', 'Black', 0, 2, '84d21d96-3c41-4c34-a54f-5233718259f7', 'c99c02eb-1caa-4971-86f3-6ed09c66af11');
 
 
 INSERT INTO CPUMemory (id, memoryType, maxCapacity, maxSpeed) VALUES
@@ -186,7 +194,10 @@ VALUES
 ('0edf106d-3899-4278-9bcb-54de9858821e', 132, 160, 120),
 ('e2c6be1c-4b9b-4b6a-8606-d5b27db34829', 145, 171, 130),
 ('be5cdf0d-6bc5-43a0-b95d-b5706fa48f86', 125, 148, 73),
-('f76dde59-187b-4ea9-a83d-dea5f927ca33', 140, 158, 82);
+('f76dde59-187b-4ea9-a83d-dea5f927ca33', 140, 158, 82),
+('37c7c508-ef1e-4c97-a851-91e9e1b014a1', 120, 27, 277),
+('e57c363d-1cbf-4400-9044-2fc539fad0b8', 120, 27, 360),
+('ef08ccf5-4d1c-4966-8f21-9335dfd85d21', 143, 30, 323);
 
 -- Einfügen von CpuFanSpecifications
 INSERT INTO CpuFanSpecifications (id, socket, connector, heatpipes)
@@ -204,7 +215,10 @@ VALUES
 ('000b6de1-a4e9-4b72-87d1-23c751ec2299', 0, '4-Pin PWM', '6 Heatpipes'),
 ('2b448177-8103-4cf8-ae37-79c8fa190adc', 4, '4-Pin PWM', '5 Heatpipes'),
 ('12bc2a86-a828-492c-9e14-d480f3a259ec', 3, '4-Pin PWM', '4 Heatpipes (6mm)'),
-('cf93674c-d322-4284-a014-3a2f1a271173', 5, '4-Pin PWM', '8 Heatpipes (6mm)');
+('cf93674c-d322-4284-a014-3a2f1a271173', 5, '4-Pin PWM', '8 Heatpipes (6mm)'),
+('e225a5fd-1a4c-4482-a6c6-2a7033db3f91', 2, '4-Pin PWM', 'Liquid Radiator 240mm'),
+('1191a73d-6e2a-4a9d-baec-2ab7ddce7e4e', 0, '4-Pin PWM', 'Liquid Radiator 360mm'),
+('4c903736-38f4-4243-81c5-231642771fff', 1, '4-Pin PWM', 'Liquid Radiator 280mm');
 
 -- Einfügen von CPUFan
 INSERT INTO CPUFans (id, name, manufacturer, price, image, cpufanSpecificationsId, dimensionsId)
@@ -222,8 +236,10 @@ VALUES
 ('5d0bb95d-74e1-4fa8-a8d0-f90d2dada706', 'Thermaltake Toughair 310', 'Thermaltake', 39.90, 'https://gzhls.at/i/84/99/2518499-l0.jpg', '000b6de1-a4e9-4b72-87d1-23c751ec2299', '0edf106d-3899-4278-9bcb-54de9858821e'),
 ('4cbbf2a2-9700-4c1f-9687-0f05c05047e0', 'Noctua NH-U12S Redux', 'Noctua', 44.90, 'https://gzhls.at/i/97/85/2499785-l0.jpg', '2b448177-8103-4cf8-ae37-79c8fa190adc', 'e2c6be1c-4b9b-4b6a-8606-d5b27db34829'),
 ('dfd72bc7-c6c3-4460-9b2c-d88e44ccc324', 'Corsair A500', 'Corsair', 99.90, 'https://gzhls.at/i/41/72/2204172-l0.jpg', '12bc2a86-a828-492c-9e14-d480f3a259ec', 'be5cdf0d-6bc5-43a0-b95d-b5706fa48f86'),
-('ed050352-fbf1-48e5-8df9-ce42735ef79b', 'Cooler Master MasterAir MA620M', 'Cooler Master', 89.90, 'https://gzhls.at/i/80/81/2148081-l0.jpg', 'cf93674c-d322-4284-a014-3a2f1a271173', 'f76dde59-187b-4ea9-a83d-dea5f927ca33');
-
+('ed050352-fbf1-48e5-8df9-ce42735ef79b', 'Cooler Master MasterAir MA620M', 'Cooler Master', 89.90, 'https://gzhls.at/i/80/81/2148081-l0.jpg', 'cf93674c-d322-4284-a014-3a2f1a271173', 'f76dde59-187b-4ea9-a83d-dea5f927ca33'),
+('9892e62a-2778-49df-a957-2468c6fe76d7', 'Corsair iCUE H100i Elite Capellix', 'Corsair', 129.90, 'https://gzhls.at/i/76/29/2897629-l0.jpg', 'e225a5fd-1a4c-4482-a6c6-2a7033db3f91', '37c7c508-ef1e-4c97-a851-91e9e1b014a1'),
+('072fbd46-8c86-4b54-bb31-41e45d594950', 'ASUS ROG RYUO III 360', 'ASUS', 199.00, 'https://gzhls.at/i/72/18/2837218-l0.jpg', '1191a73d-6e2a-4a9d-baec-2ab7ddce7e4e', 'e57c363d-1cbf-4400-9044-2fc539fad0b8'),
+('ea6d39ce-6ce0-4a6d-a0c9-becab60b76da', 'NZXT Kraken X73', 'NZXT', 179.90, 'https://gzhls.at/i/77/06/2607706-l0.jpg', '4c903736-38f4-4243-81c5-231642771fff', 'ef08ccf5-4d1c-4966-8f21-9335dfd85d21');
 
 
 -- Einfügen von RAMSpecifications

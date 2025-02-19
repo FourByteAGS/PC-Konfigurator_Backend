@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PCKonfiguratorBackend.Interface;
 using PCKonfiguratorBackend.Models;
 using PCKonfiguratorBackend.Service;
+using System.Linq;
 
 namespace PCKonfiguratorBackend.Controllers;
 
@@ -25,6 +26,12 @@ public class CpuFanController : ControllerBase, IComponentRepository
     public IActionResult GetAll(Guid token)
     {
         return Ok(_db.CPUFans.Include(i => i.cpufanSpecifications).Include(i => i.dimensions).ToJson());
+    }
+
+    [HttpGet("getbyheatpipes")]
+    public IActionResult GetByHeatpipes(Guid token, bool isLiquid)
+    {
+        return Ok(_db.CPUFans.Include(i => i.cpufanSpecifications).Include(i => i.dimensions).Where(x=>(x.cpufanSpecifications.heatpipes.Contains("Liquid")&&isLiquid)||(!x.cpufanSpecifications.heatpipes.Contains("Liquid") && !isLiquid)).ToJson());
     }
 
     [HttpGet("setcomponent")]
