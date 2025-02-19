@@ -26,12 +26,29 @@ public class StorageController : ControllerBase, IComponentRepository
     }
 
     [HttpGet("setcomponent")]
-    public IActionResult setcomponent(Guid token, Guid componentId)
+    public IActionResult SetComponent(Guid token, Guid componentId)
     {
-        _productCollections.Where(x => x.token == token).FirstOrDefault().selectedStorage = _db.Storages.Include(i => i.storageSpecifications).Where(x => x.id == componentId).FirstOrDefault();
+        var productCollection = _productCollections?.FirstOrDefault(x => x.token == token);
+    
+        if (productCollection == null)
+        {
+            return NotFound("Product collection not found.");
+        }
 
-        return Ok();
+        var storage = _db.Storages
+            .Include(i => i.storageSpecifications)
+            .FirstOrDefault(x => x.id == componentId);
+
+        if (storage == null)
+        {
+            return NotFound("Storage not found.");
+        }
+
+        productCollection.selectedStorage = storage;
+
+        return Ok("Komponente erfolgreich gesetzt.");
     }
+
 
 
     [HttpGet("getselected")]
