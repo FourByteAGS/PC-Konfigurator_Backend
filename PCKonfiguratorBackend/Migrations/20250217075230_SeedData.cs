@@ -173,18 +173,38 @@ VALUES
 -- Einfügen von Dimensions
 INSERT INTO Dimensions (id, width, height, depth)
 VALUES 
-('ecb20d96-3a6f-4596-8fbf-1d37ba0f587e', 125, 155, 135),  -- Thermalright Peerless Assassin 120 SE
-('fff26ebf-f754-4fb4-bae4-e3d815b467a5', 136, 168, 145),  -- be quiet! Dark Rock Pro 5
-('c6f9b1e7-30ae-4a73-b4d7-112877c7613b', 126, 159, 104),  -- Arctic Freezer 36 Black
-('d37346b0-2150-4047-a3eb-014f8b6adfae', 150, 168, 152);  -- Noctua NH-D15 G2
+('ecb20d96-3a6f-4596-8fbf-1d37ba0f587e', 125, 155, 135),
+('fff26ebf-f754-4fb4-bae4-e3d815b467a5', 136, 168, 145),
+('c6f9b1e7-30ae-4a73-b4d7-112877c7613b', 126, 159, 104),
+('d37346b0-2150-4047-a3eb-014f8b6adfae', 150, 168, 152),
+('c3262be9-4f85-4dd5-b39d-3b803d52319f', 120, 158, 75),
+('7b5e1c46-274c-49ff-a3fc-863074b6b02d', 140, 165, 95),
+('b5942a55-3b54-4aa4-b04f-3b45a34c3ac1', 145, 158, 110),
+('5ba1bce7-4e56-4124-863a-8f97b5a39735', 120, 154, 84),
+('f1191f5d-99a9-493a-a4d2-e1a85e0d1b5e', 124, 157, 71),
+('dff54b94-4ad5-4701-90ee-42751e7deb73', 130, 158, 85),
+('0edf106d-3899-4278-9bcb-54de9858821e', 132, 160, 120),
+('e2c6be1c-4b9b-4b6a-8606-d5b27db34829', 145, 171, 130),
+('be5cdf0d-6bc5-43a0-b95d-b5706fa48f86', 125, 148, 73),
+('f76dde59-187b-4ea9-a83d-dea5f927ca33', 140, 158, 82);
 
 -- Einfügen von CpuFanSpecifications
 INSERT INTO CpuFanSpecifications (id, socket, connector, heatpipes)
 VALUES 
-('bab42c66-b206-468b-a834-d03c18c36b79', 1, '4-Pin PWM', '6 Heatpipes (6mm)'),  -- Thermalright Peerless Assassin 120 SE
-('1e8d6c55-07a2-462d-9557-3750d121b9bb', 2, '4-Pin PWM', '7 Heatpipes (6mm)'),  -- be quiet! Dark Rock Pro 5
-('e2fad52b-24d1-472d-a13c-607bc1786fc4', 3, '4-Pin PWM', '4 Heatpipes (6mm)'),  -- Arctic Freezer 36 Black
-('ab75bfaa-52be-4ea6-8e65-6199b9e86992', 4, '4-Pin PWM', '8 Heatpipes');        -- Noctua NH-D15 G2
+('bab42c66-b206-468b-a834-d03c18c36b79', 1, '4-Pin PWM', '6 Heatpipes (6mm)'),
+('1e8d6c55-07a2-462d-9557-3750d121b9bb', 2, '4-Pin PWM', '7 Heatpipes (6mm)'),
+('e2fad52b-24d1-472d-a13c-607bc1786fc4', 3, '4-Pin PWM', '4 Heatpipes (6mm)'),
+('ab75bfaa-52be-4ea6-8e65-6199b9e86992', 4, '4-Pin PWM', '8 Heatpipes'),
+('366d7613-87d4-4b8b-bcdd-4d2b2794c839', 0, '4-Pin PWM', '4 Heatpipes'),
+('6d1e56eb-cadc-48dd-b739-f2a5c17a7c5c', 0, '4-Pin PWM', '6 Heatpipes'),
+('4cb0cdfd-36bc-4869-985b-0e6a3aa3132f', 1, '4-Pin PWM', '4 Heatpipes (5mm)'),
+('bf99ef4b-714a-4de8-bc9c-6590f592b664', 5, '4-Pin PWM', '7 Heatpipes'),
+('7d42ed08-76b3-49fe-b462-f7415678c14d', 2, '4-Pin PWM', '5 Heatpipes (6mm)'),
+('d937c3c7-3833-4be5-8dae-ff46ae3a9499', 2, '4-Pin PWM', '6 Heatpipes (6mm)'),
+('000b6de1-a4e9-4b72-87d1-23c751ec2299', 0, '4-Pin PWM', '6 Heatpipes'),
+('2b448177-8103-4cf8-ae37-79c8fa190adc', 4, '4-Pin PWM', '5 Heatpipes'),
+('12bc2a86-a828-492c-9e14-d480f3a259ec', 3, '4-Pin PWM', '4 Heatpipes (6mm)'),
+('cf93674c-d322-4284-a014-3a2f1a271173', 5, '4-Pin PWM', '8 Heatpipes (6mm)');
 
 -- Einfügen von CPUFan
 INSERT INTO CPUFans (id, name, manufacturer, price, image, cpufanSpecificationsId, dimensionsId)
@@ -192,19 +212,38 @@ VALUES
 ('49b711b0-fa6c-4a0b-ae7e-e50b57b60674', 'Thermalright Peerless Assassin 120 SE', 'Thermalright', 36.90, 'https://gzhls.at/i/71/75/2647175-n0.jpg', 'bab42c66-b206-468b-a834-d03c18c36b79', 'ecb20d96-3a6f-4596-8fbf-1d37ba0f587e'),
 ('5f176fc2-fa6c-4b40-9844-77785b319435', 'be quiet! Dark Rock Pro 5', 'be quiet!', 86.62, 'https://gzhls.at/i/87/18/3038718-n0.jpg', '1e8d6c55-07a2-462d-9557-3750d121b9bb', 'fff26ebf-f754-4fb4-bae4-e3d815b467a5'),
 ('035dd0cf-6e9b-4276-b193-0cd0ee762a8b', 'Arctic Freezer 36 Black', 'Arctic', 26.00, 'https://gzhls.at/i/41/76/3144176-n0.webp', 'e2fad52b-24d1-472d-a13c-607bc1786fc4', 'c6f9b1e7-30ae-4a73-b4d7-112877c7613b'),
-('12962ade-224d-4bb8-915f-24b45887116a', 'Noctua NH-D15 G2', 'Noctua', 149.86, 'https://gzhls.at/i/16/74/3221674-n0.jpg', 'ab75bfaa-52be-4ea6-8e65-6199b9e86992', 'd37346b0-2150-4047-a3eb-014f8b6adfae');
-
+('12962ade-224d-4bb8-915f-24b45887116a', 'Noctua NH-D15 G2', 'Noctua', 149.86, 'https://gzhls.at/i/16/74/3221674-n0.jpg', 'ab75bfaa-52be-4ea6-8e65-6199b9e86992', 'd37346b0-2150-4047-a3eb-014f8b6adfae'),
+('fceb3c17-7fa5-488f-8a41-eb7829cb4c4e', 'Cooler Master Hyper 212 Evo V2', 'Cooler Master', 29.90, 'https://gzhls.at/i/34/88/2403488-l0.jpg', '366d7613-87d4-4b8b-bcdd-4d2b2794c839', 'c3262be9-4f85-4dd5-b39d-3b803d52319f'),
+('194599bc-150b-48f0-afc8-5b901bb9ad7e', 'DeepCool AK620', 'DeepCool', 64.90, 'https://gzhls.at/i/70/36/2997036-l0.webp', '6d1e56eb-cadc-48dd-b739-f2a5c17a7c5c', '7b5e1c46-274c-49ff-a3fc-863074b6b02d'),
+('086c5449-1724-4f5b-82a1-ecd2bdc1e3f0', 'Scythe Fuma 2 Rev.B', 'Scythe', 59.90, 'https://gzhls.at/i/04/60/2690460-l0.jpg', '4cb0cdfd-36bc-4869-985b-0e6a3aa3132f', 'b5942a55-3b54-4aa4-b04f-3b45a34c3ac1'),
+('7944371f-3c55-4ade-9696-e2428327e4c2', 'Enermax ETS-T50 AXE', 'Enermax', 47.90, 'https://gzhls.at/i/06/40/1960640-l0.jpg', 'bf99ef4b-714a-4de8-bc9c-6590f592b664', '5ba1bce7-4e56-4124-863a-8f97b5a39735'),
+('130fc3af-210c-498f-8fd4-b04ee3d243c9', 'Zalman CNPS10X Performa', 'Zalman', 34.90, 'https://gzhls.at/i/48/52/2564852-l0.jpg', '7d42ed08-76b3-49fe-b462-f7415678c14d', 'f1191f5d-99a9-493a-a4d2-e1a85e0d1b5e'),
+('29005e17-029c-4775-b03b-597a0ecb7965', 'Phanteks PH-TC14PE', 'Phanteks', 79.90, 'https://gzhls.at/i/79/82/757982-l0.jpg', 'd937c3c7-3833-4be5-8dae-ff46ae3a9499', 'dff54b94-4ad5-4701-90ee-42751e7deb73'),
+('5d0bb95d-74e1-4fa8-a8d0-f90d2dada706', 'Thermaltake Toughair 310', 'Thermaltake', 39.90, 'https://gzhls.at/i/84/99/2518499-l0.jpg', '000b6de1-a4e9-4b72-87d1-23c751ec2299', '0edf106d-3899-4278-9bcb-54de9858821e'),
+('4cbbf2a2-9700-4c1f-9687-0f05c05047e0', 'Noctua NH-U12S Redux', 'Noctua', 44.90, 'https://gzhls.at/i/97/85/2499785-l0.jpg', '2b448177-8103-4cf8-ae37-79c8fa190adc', 'e2c6be1c-4b9b-4b6a-8606-d5b27db34829'),
+('dfd72bc7-c6c3-4460-9b2c-d88e44ccc324', 'Corsair A500', 'Corsair', 99.90, 'https://gzhls.at/i/41/72/2204172-l0.jpg', '12bc2a86-a828-492c-9e14-d480f3a259ec', 'be5cdf0d-6bc5-43a0-b95d-b5706fa48f86'),
+('ed050352-fbf1-48e5-8df9-ce42735ef79b', 'Cooler Master MasterAir MA620M', 'Cooler Master', 89.90, 'https://gzhls.at/i/80/81/2148081-l0.jpg', 'cf93674c-d322-4284-a014-3a2f1a271173', 'f76dde59-187b-4ea9-a83d-dea5f927ca33');
 
 
 
 -- Einfügen von RAMSpecifications
 INSERT INTO RAMSpecifications (id, MemoryType, speed, capacity, voltage,power)
 VALUES 
-('ca69c915-3665-45e1-86eb-af32d2b51c06', 1, 6000, 32, 1.4,5),  -- Kingston FURY Beast DDR5-6000
-('ceecb009-ead0-4209-b237-fed8b01b1797', 1, 6000, 64, 1.4,5),  -- Kingston FURY Beast 64GB DDR5-6000
-('bbfa7fb4-9845-4d5d-84f9-a91fcde51643', 1, 6000, 32, 1.35,5), -- G.Skill Trident Z5 NEO DDR5-6000
-('3c6b504e-678e-471b-b553-eede006101e7', 2, 3200, 32, 1.35,5), -- G.Skill Aegis DDR4-3200
-('f37f3c32-bd8c-4056-91ec-5a8692ab745b', 2, 3200, 16, 1.2,5);  -- Crucial SO-DIMM DDR4-3200
+('ca69c915-3665-45e1-86eb-af32d2b51c06', 0, 6000, 32, 1.4, 5),
+('ceecb009-ead0-4209-b237-fed8b01b1797', 0, 6000, 64, 1.4, 5),
+('bbfa7fb4-9845-4d5d-84f9-a91fcde51643', 0, 6000, 32, 1.35, 5),
+('3c6b504e-678e-471b-b553-eede006101e7', 1, 3200, 32, 1.35, 5),
+('f37f3c32-bd8c-4056-91ec-5a8692ab745b', 1, 3200, 16, 1.2, 5),
+('08fed6c0-b1f1-4ea4-8dbe-867e9bd7be39', 0, 5600, 32, 1.25, 5),
+('29473ec6-aa64-4b28-a145-a354448f5b8e', 0, 6000, 32, 1.35, 5),
+('e346ebca-208e-4271-981f-714d32785698', 1, 3200, 16, 1.35, 5),
+('fc210043-0f08-4a1d-bc46-dd94abd3e2f8', 1, 3200, 32, 1.35, 5),
+('fe245f61-3767-40ec-a7cd-0f047918c012', 2, 1600, 8, 1.5, 3),
+('b3848d78-a3ff-4df5-b66c-f3f842b8ace6', 2, 1866, 16, 1.5, 5),
+('60a31a06-4936-4c51-8255-31e43ba8ba2e', 1, 2666, 16, 1.2, 5),
+('282ad483-8ac7-4390-a353-b73bdb492daf', 1, 3200, 16, 1.35, 5),
+('866c9311-8f4b-4d0a-9b7b-e391c282374a', 1, 2133, 8, 1.2, 3),
+('b36b05f9-59b2-48ec-bcbb-6b9f73e9dfad', 0, 6000, 64, 1.35, 5);
 
 -- Einfügen von RAM
 INSERT INTO RAMs (id, name, manufacturer, price, image, ramSpecificationsId)
@@ -213,7 +252,17 @@ VALUES
 ('bb713cfb-31fd-49ac-a71c-70f025c9dcc1', 'Kingston FURY Beast 64GB DDR5-6000', 'Kingston', 203.70, 'https://gzhls.at/i/49/13/3164913-n0.jpg', 'ceecb009-ead0-4209-b237-fed8b01b1797'),
 ('b11dc339-d7fb-4cc9-9465-efdc03602687', 'G.Skill Trident Z5 NEO DDR5-6000', 'G.Skill', 120.91, 'https://gzhls.at/i/58/24/2815824-n0.jpg', 'bbfa7fb4-9845-4d5d-84f9-a91fcde51643'),
 ('7be2e978-c8b9-401d-84e7-34553664e950', 'G.Skill Aegis DDR4-3200', 'G.Skill', 48.90, 'https://gzhls.at/i/16/24/2151624-n0.jpg', '3c6b504e-678e-471b-b553-eede006101e7'),
-('83646994-4ba8-4c70-b9cc-1cb8659b6af5', 'Crucial SO-DIMM DDR4-3200', 'Crucial', 26.85, 'https://gzhls.at/i/65/74/2326574-n0.jpg', 'f37f3c32-bd8c-4056-91ec-5a8692ab745b');
+('83646994-4ba8-4c70-b9cc-1cb8659b6af5', 'Crucial SO-DIMM DDR4-3200', 'Crucial', 26.85, 'https://gzhls.at/i/65/74/2326574-n0.jpg', 'f37f3c32-bd8c-4056-91ec-5a8692ab745b'),
+('b7a616f8-dbb5-4bcf-bca5-655bdc906c4a', 'Corsair Vengeance DDR5-5600', 'Corsair', 129.90, 'https://gzhls.at/i/05/83/2900583-l0.jpg', '08fed6c0-b1f1-4ea4-8dbe-867e9bd7be39'),
+('c9c54f56-6397-42a2-a66f-f6fb25af1684', 'G.Skill Ripjaws S5 DDR5-6000', 'G.Skill', 135.90, 'https://gzhls.at/i/20/30/2722030-l0.jpg', '29473ec6-aa64-4b28-a145-a354448f5b8e'),
+('0ea8a221-8348-4f28-a404-92e98bfb0de1', 'Patriot Viper Steel DDR4-3200', 'Patriot', 44.90, 'https://gzhls.at/i/66/14/2756614-l0.jpg', 'e346ebca-208e-4271-981f-714d32785698'),
+('db67f410-a49c-4b17-85e0-516539f6b925', 'Kingston HyperX Fury DDR4-3200', 'Kingston', 62.90, 'https://gzhls.at/i/47/96/2314796-l0.jpg', 'fc210043-0f08-4a1d-bc46-dd94abd3e2f8'),
+('a108ad94-6991-4f3f-91c5-b6747415bfae', 'Crucial DDR3-1600', 'Crucial', 18.90, 'https://gzhls.at/i/82/90/708290-l0.jpg', 'fe245f61-3767-40ec-a7cd-0f047918c012'),
+('6bace1d1-64ae-4e19-a1bc-62517a9e9a36', 'G.Skill Ripjaws X DDR3-1866', 'G.Skill', 28.90, 'https://gzhls.at/i/16/60/711660-l0.jpg', 'b3848d78-a3ff-4df5-b66c-f3f842b8ace6'),
+('4fc4c3f3-d22d-4e67-8f17-a94588bf2a5e', 'Corsair Vengeance LPX DDR4-2666', 'Corsair', 37.90, 'https://gzhls.at/i/56/38/1305638-l0.jpg', '60a31a06-4936-4c51-8255-31e43ba8ba2e'),
+('0d344935-efa9-4f97-b546-54eb665b7005', 'G.Skill TridentZ RGB DDR4-3200', 'G.Skill', 68.90, 'https://gzhls.at/i/76/09/1827609-l0.jpg', '282ad483-8ac7-4390-a353-b73bdb492daf'),
+('fc60936d-3de5-49a2-b1f0-de32ebd66058', 'Patriot Signature DDR4-2133', 'Patriot', 34.90, 'https://gzhls.at/i/83/17/1868317-l0.jpg', '866c9311-8f4b-4d0a-9b7b-e391c282374a'),
+('c4d0fb6b-8b6a-488f-a7af-df686fe50afe', 'TeamGroup Vulcan DDR5-6000', 'TeamGroup', 189.90, 'https://gzhls.at/i/69/71/2876971-l0.jpg', 'b36b05f9-59b2-48ec-bcbb-6b9f73e9dfad');
 
 
 
@@ -226,7 +275,17 @@ VALUES
 ('3f7c5b6d-2a4e-49d1-9c5a-1e37b4c8a6d2', 145.6, 69.9, 331.9),  -- Gainward GeForce RTX 5080 Phantom
 ('4a8e9d3c-5b6f-41d2-8c1a-5c37e4a8b6d2', 158.2, 72.6, 352.9),  -- ASUS TUF Gaming Radeon RX 7900 XTX OC
 ('5b9d6e3c-4a7f-49d1-8c2a-7e37b6a8d5c2', 136.0, 58.0, 330.0),  -- GIGABYTE GeForce RTX 4080 SUPER Windforce V2
-('6c8e5d4b-3a7f-49d2-9c1a-7e37b6a8d5c2', 126.0, 50.0, 261.0);  -- GIGABYTE GeForce RTX 4070 Ti SUPER Windforce OC
+('6c8e5d4b-3a7f-49d2-9c1a-7e37b6a8d5c2', 126.0, 50.0, 261.0),  -- GIGABYTE GeForce RTX 4070 Ti SUPER Windforce OC
+('7af86381-531e-4ecd-aa1a-f30551b94877', 140.0, 67.0, 310.0),
+('f16192e6-43cb-4ecc-9362-a5e05488cefe', 158.0, 70.0, 332.0),
+('d6b11ac9-fa8a-45a9-b4bc-e1c8f76e7ca4', 132.0, 54.0, 270.0),
+('edd88eda-991c-451e-8a3a-327e3b83f166', 145.0, 65.0, 325.0),
+('24df3771-cfa1-4cb1-9b09-2f690e52f053', 160.0, 75.0, 355.0),
+('ad948556-3863-4362-b2e3-913b778588b1', 135.0, 58.0, 305.0),
+('2c949d68-dfba-4a75-b9a4-2b49b333cd05', 155.0, 72.0, 345.0),
+('20e8bac7-bd54-44c4-a311-a3c00ebdf1bd', 148.0, 69.0, 332.0),
+('d5c9c7ce-aa52-4a74-bb7b-69af1fec18e0', 130.0, 46.0, 250.0),
+('7d2d7b09-4fcb-4d0c-bf76-8c7371e0dd53', 140.0, 66.0, 312.0);
 
 -- Einfügen von GPUSpecifications
 INSERT INTO GPUSpecifications (id, memory, speed, boostclock, coreclock, power)
@@ -236,7 +295,17 @@ VALUES
 ('a3df5b68-2b47-49dc-a4c3-4e6c8d073fa3', 16, 30, 2617, 2295, 360),  -- Gainward GeForce RTX 5080 Phantom
 ('ba4c6f91-1e37-4f3b-9c95-2e9d1fced3a4', 24, 20, 2565, 2395, 355),  -- ASUS TUF Gaming Radeon RX 7900 XTX OC
 ('c2b8d4e6-5f31-49a1-98fa-4d23e7c9a8b2', 16, 23, 2550, 2295, 320),  -- GIGABYTE GeForce RTX 4080 SUPER Windforce V2
-('d1e59f8a-62c7-4891-85f6-3b29d7e8a4c1', 16, 21, 2625, 2340, 285);  -- GIGABYTE GeForce RTX 4070 Ti SUPER Windforce OC
+('d1e59f8a-62c7-4891-85f6-3b29d7e8a4c1', 16, 21, 2625, 2340, 285),  -- GIGABYTE GeForce RTX 4070 Ti SUPER Windforce OC
+('31bacc20-3dab-4cfc-92e9-0574e1d3102b', 16, 22, 2490, 2100, 320),
+('46250ad6-4410-4de4-8221-eb5253af2fac', 12, 21, 2465, 2200, 285),
+('b880af19-6113-4ddc-9de9-a1968f54a08c', 20, 25, 2610, 2300, 340),
+('c1045d2a-82d0-41bf-bfe6-206258a82aec', 12, 19, 2385, 2025, 250),
+('a0c94b9a-c9be-4be2-b7d6-e0e4358e7c7f', 16, 27, 2625, 2250, 320),
+('5cc6c13e-c5df-42db-821d-a4173bc92631', 8, 16, 2200, 1900, 150),
+('ecc99eed-e865-4ce9-9ac8-444a77b660be', 24, 30, 2700, 2400, 350),
+('fe476801-420f-4ff7-9d1c-a5a1ec35fa12', 16, 20, 2485, 2180, 275),
+('d5c8c07e-b70d-4349-9040-12cd0b5655ec', 10, 17, 2230, 1850, 150),
+('bcf0b91c-dc06-4cff-bb16-44bd9f574ef3', 12, 18, 2350, 1950, 210);
 
 -- Einfügen von GPU
 INSERT INTO GPUs (id, name, manufacturer, price, image, gpuSpecificationsId, dimensionsId)
@@ -246,8 +315,17 @@ VALUES
 ('5c3d4e92-8f7a-4b6d-9c5a-1e37b4c8a6d2', 'Gainward GeForce RTX 5080 Phantom', 'Gainward', 1399.00, 'https://gzhls.at/i/26/23/3382623-n0.webp', 'a3df5b68-2b47-49dc-a4c3-4e6c8d073fa3', '3f7c5b6d-2a4e-49d1-9c5a-1e37b4c8a6d2'),
 ('6d2e7c5b-3a4f-4b9d-8f1a-5c37e4a8b6d2', 'ASUS TUF Gaming Radeon RX 7900 XTX OC', 'ASUS', 968.02, 'https://gzhls.at/i/17/83/2841783-n0.jpg', 'ba4c6f91-1e37-4f3b-9c95-2e9d1fced3a4', '4a8e9d3c-5b6f-41d2-8c1a-5c37e4a8b6d2'),
 ('7f6a8b5c-3d4e-49b1-92c7-5a19e7b4d6a2', 'GIGABYTE GeForce RTX 4080 SUPER Windforce V2', 'GIGABYTE', 1326.20, 'https://gzhls.at/i/72/20/3097220-n0.webp', 'c2b8d4e6-5f31-49a1-98fa-4d23e7c9a8b2', '5b9d6e3c-4a7f-49d1-8c2a-7e37b6a8d5c2'),
-('8b5c3d7e-4a6f-49d2-9c1a-7e37b6a8d5c2', 'GIGABYTE GeForce RTX 4070 Ti SUPER Windforce OC', 'GIGABYTE', 1030.10, 'https://gzhls.at/i/73/18/3097318-n0.webp', 'd1e59f8a-62c7-4891-85f6-3b29d7e8a4c1', '6c8e5d4b-3a7f-49d2-9c1a-7e37b6a8d5c2');
-
+('8b5c3d7e-4a6f-49d2-9c1a-7e37b6a8d5c2', 'GIGABYTE GeForce RTX 4070 Ti SUPER Windforce OC', 'GIGABYTE', 1030.10, 'https://gzhls.at/i/73/18/3097318-n0.webp', 'd1e59f8a-62c7-4891-85f6-3b29d7e8a4c1', '6c8e5d4b-3a7f-49d2-9c1a-7e37b6a8d5c2'),
+('709326bd-9042-45f7-a2f2-29bc14316e9f', 'EVGA GeForce RTX 4090 FTW3', 'EVGA', 1699.99, 'https://gzhls.at/i/04/86/2820486-l0.jpg', '31bacc20-3dab-4cfc-92e9-0574e1d3102b', '7af86381-531e-4ecd-aa1a-f30551b94877'),
+('d8427823-8776-4170-9126-50f3e01ab49a', 'ASUS Dual GeForce RTX 4060 Ti', 'ASUS', 459.90, 'https://gzhls.at/i/52/58/3115258-l0.webp', '46250ad6-4410-4de4-8221-eb5253af2fac', 'f16192e6-43cb-4ecc-9362-a5e05488cefe'),
+('3e9ad66d-eda0-46aa-9800-ce79bb95b618', 'ZOTAC Gaming GeForce RTX 4090 AMP Extreme', 'ZOTAC', 1899.00, 'https://gzhls.at/i/56/50/2815650-l0.jpg', 'b880af19-6113-4ddc-9de9-a1968f54a08c', 'd6b11ac9-fa8a-45a9-b4bc-e1c8f76e7ca4'),
+('f8ddf38c-256b-48ec-bc40-6ba5b312ad6a', 'MSI GeForce RTX 5070 Gaming X', 'MSI', 799.90, 'https://gzhls.at/i/21/57/3382157-l0.webp', 'c1045d2a-82d0-41bf-bfe6-206258a82aec', 'edd88eda-991c-451e-8a3a-327e3b83f166'),
+('a102435b-f89f-4fa9-9ce1-47f050e159ba', 'XFX Radeon RX 7800 Merc', 'XFX', 649.90, 'https://gzhls.at/i/23/95/3012395-l0.jpg', 'a0c94b9a-c9be-4be2-b7d6-e0e4358e7c7f', '24df3771-cfa1-4cb1-9b09-2f690e52f053'),
+('b0c92dcc-0950-40f0-b342-b3adee7190d0', 'ASRock Radeon RX 7600 Challenger', 'ASRock', 299.90, 'https://gzhls.at/i/51/85/2955185-l0.webp', '5cc6c13e-c5df-42db-821d-a4173bc92631', 'ad948556-3863-4362-b2e3-913b778588b1'),
+('7dd41eb6-c2c9-4ec6-9d6b-f8f642b96578', 'AMD Radeon RX 7900 XT', 'AMD', 849.00, 'https://gzhls.at/i/15/53/2841553-l0.jpg', 'ecc99eed-e865-4ce9-9ac8-444a77b660be', '2c949d68-dfba-4a75-b9a4-2b49b333cd05'),
+('9ceb1ea3-8bca-48cf-9bc9-6d591026655f', 'PNY GeForce RTX 4060 Ti', 'PNY', 449.00, 'https://gzhls.at/i/77/40/3057740-l0.jpg', 'fe476801-420f-4ff7-9d1c-a5a1ec35fa12', '20e8bac7-bd54-44c4-a311-a3c00ebdf1bd'),
+('a193f27b-4c91-4c62-83ea-33ac5df91676', 'Gigabyte GeForce RTX 4050 Eagle', 'GIGABYTE', 299.90, 'https://gzhls.at/i/16/15/2951615-l0.webp', 'd5c8c07e-b70d-4349-9040-12cd0b5655ec', 'd5c9c7ce-aa52-4a74-bb7b-69af1fec18e0'),
+('c01cdbbd-66e9-4592-b7cd-6f35e163f822', 'Sapphire Radeon RX 7800 XT Nitro+', 'Sapphire', 699.00, 'https://gzhls.at/i/04/30/3010430-l0.jpg', 'bcf0b91c-dc06-4cff-bb16-44bd9f574ef3', '7d2d7b09-4fcb-4d0c-bf76-8c7371e0dd53');
 
 
 
@@ -327,7 +405,17 @@ VALUES
 ('f8e7d6c5-4a3b-49d2-9c1a-7e37b6a8d5c2', 150, 86, 160),  -- be quiet! Pure Power 12 M 750W
 ('a4d8c3e7-5b6f-49d1-8c2a-7e37b6a8d5c2', 150, 86, 160),  -- be quiet! Pure Power 12 M 1000W
 ('b6e9d4f7-3c5a-41b7-8c6d-2f19e5a7b4c1', 150, 86, 160),  -- be quiet! Pure Power 12 M 550W
-('d8f2a6c9-48b7-42d1-8c1e-3a5f9b7d6e01', 150, 86, 200);  -- ASUS ROG Thor Titanium III 1600W (NEUE GUID)
+('d8f2a6c9-48b7-42d1-8c1e-3a5f9b7d6e01', 150, 86, 200),  -- ASUS ROG Thor Titanium III 1600W (NEUE GUID)
+('1af78522-80bf-403e-b673-1c5362093bd7', 150, 86, 160),
+('2be6cb3d-1ebb-492e-b6ea-2d7aeb1498b7', 150, 86, 180),
+('3cd7f94f-93b4-49ef-bf9c-674354f984d5', 150, 86, 140),
+('4ea1b88a-749e-4ec8-99d1-1f66fca2efd1', 125, 63, 100),
+('55910ef8-0503-47d5-82d6-f32eb181f733', 150, 86, 200),
+('60f2ac75-51ac-4b69-9e0e-2b4d7fdf0533', 130, 86, 125),
+('723bc559-316c-4710-8afc-56af5bafccdf', 150, 86, 160),
+('8836c54f-4a86-483a-bba9-1af85ae06462', 125, 63, 100),
+('9c7c698a-15b3-4ae1-a214-944395df5260', 150, 86, 170),
+('adfe3db9-b29a-4f35-9993-27cbf10bea28', 150, 86, 160);
 
 -- Einfügen von PSU-Spezifikationen mit neuen GUIDs
 INSERT INTO PSUSpecification (id, rpm, power, noiseLevel, certifications, connectors)
@@ -336,7 +424,19 @@ VALUES
 ('e3a9c7d5-4b8f-41d2-9c1a-7e37b6a8d5c2', 1800, 750, '24 dB(A)', '80 PLUS Gold', '1x 16-Pin PCIe 5.1, 2x 6/8-Pin PCIe, 5x SATA, 2x IDE'),
 ('b4e9d7c5-3a6f-49d1-8c2a-7e37b6a8d5c2', 2000, 1000, '30.91 dB(A)', '80 PLUS Gold, ETA-Platinum', '1x 16-Pin PCIe 5.1, 4x 6/8-Pin PCIe, 6x SATA, 2x IDE'),
 ('c9d7e5a1-62b4-4c3d-8d2e-f8a3d5c7e906', 1800, 550, '17.1 dB(A)', '80 PLUS Gold', '1x 20/24-Pin, 1x 4/8-Pin ATX12V, 2x 6/8-Pin PCIe, 5x SATA, 2x IDE'),
-('a8f7c9e4-5b6d-4a3f-8c2e-f5a3d7c4e907', 1350, 1600, '31.72 dB(A)', '80 PLUS Titanium, ETA-Platinum', '2x 16-Pin PCIe 5.1, 4x 6/8-Pin PCIe, 10x SATA, 9x IDE');
+('a8f7c9e4-5b6d-4a3f-8c2e-f5a3d7c4e907', 1350, 1600, '31.72 dB(A)', '80 PLUS Titanium, ETA-Platinum', '2x 16-Pin PCIe 5.1, 4x 6/8-Pin PCIe, 10x SATA, 9x IDE'),
+('88b7c2dd-7f89-4cf2-b01a-818bea72cd66', 1500, 650, '22 dB(A)', '80 PLUS Gold', '1x 16-Pin PCIe 5.0, 2x 6/8-Pin PCIe, 5x SATA'),
+('993e7061-2129-4ce1-ab39-4ba7fb73f226', 1350, 850, '25 dB(A)', '80 PLUS Platinum', '1x 16-Pin PCIe 5.0, 4x 6/8-Pin PCIe, 8x SATA, 2x IDE'),
+('a45fbc3a-a308-4a8b-a880-7fb97e8ba3b8', 1200, 750, '20 dB(A)', '80 PLUS Gold', '1x 16-Pin PCIe 5.0, 3x 6/8-Pin PCIe, 6x SATA, 2x IDE'),
+('b5f22c05-24e2-456e-bad8-92889c727003', 2000, 1000, '28 dB(A)', '80 PLUS Titanium', '2x 16-Pin PCIe 5.0, 4x 6/8-Pin PCIe, 10x SATA'),
+('c67bdc45-3f5f-46ec-bc15-8c40a0872ac1', 800, 450, '18 dB(A)', '80 PLUS Bronze', '1x 20/24-Pin, 1x 4/8-Pin ATX12V, 2x 6/8-Pin PCIe, 4x SATA'),
+('d7848853-9257-467a-9af5-fc051c97783f', 1600, 1200, '29.5 dB(A)', '80 PLUS Platinum', '1x 16-Pin PCIe 5.0, 6x 6/8-Pin PCIe, 10x SATA, 3x IDE'),
+('e8cd1cdf-ad88-43bb-8cc6-9f283c86e767', 1350, 600, '19 dB(A)', '80 PLUS Gold', '1x 16-Pin PCIe, 2x 6/8-Pin PCIe, 5x SATA'),
+('fa9f0713-47ee-4253-9945-d4ac31f91a4b', 1500, 850, '23 dB(A)', '80 PLUS Platinum', '1x 16-Pin PCIe 5.0, 4x 6/8-Pin PCIe, 8x SATA, 2x IDE'),
+('0a69af47-d35c-4b36-a2b9-5d555e45be19', 800, 550, '16 dB(A)', '80 PLUS Gold', '1x 20/24-Pin, 2x 6/8-Pin PCIe, 4x SATA, 2x IDE'),
+('19a04dca-adfd-4b81-8b9f-5bf8022ebff1', 1500, 750, '21 dB(A)', '80 PLUS Platinum', '1x 16-Pin PCIe 5.0, 3x 6/8-Pin PCIe, 6x SATA, 1x IDE');
+
+
 
 -- Einfügen von PSU-Daten mit neuen GUIDs
 INSERT INTO PSUs (id, name, manufacturer, price, image, psuSpecificationId, dimensionsId)
@@ -345,7 +445,17 @@ VALUES
 ('c8e7d6a5-4b3f-49d2-9c1a-7e37b6a8d5c2', 'be quiet! Pure Power 12 M 750W ATX 3.1', 'be quiet!', 109.93, 'https://gzhls.at/i/40/48/2884048-n0.jpg', 'e3a9c7d5-4b8f-41d2-9c1a-7e37b6a8d5c2', 'f8e7d6c5-4a3b-49d2-9c1a-7e37b6a8d5c2'),
 ('d4e9c7b5-3a6f-49d1-8c2a-7e37b6a8d5c2', 'be quiet! Pure Power 12 M 1000W ATX 3.1', 'be quiet!', 154.99, 'https://gzhls.at/i/40/16/2884016-n0.jpg', 'b4e9d7c5-3a6f-49d1-8c2a-7e37b6a8d5c2', 'a4d8c3e7-5b6f-49d1-8c2a-7e37b6a8d5c2'),
 ('e5c9d7a1-62b4-4c3d-8d2e-f8a3d5c7e906', 'be quiet! Pure Power 12 M 550W ATX 3.1', 'be quiet!', 85.88, 'https://gzhls.at/i/40/50/2884050-n0.jpg', 'c9d7e5a1-62b4-4c3d-8d2e-f8a3d5c7e906', 'b6e9d4f7-3c5a-41b7-8c6d-2f19e5a7b4c1'),
-('f7b8c9e4-6a3d-4c2b-8f1e-b5a9d2c7e915', 'ASUS ROG Thor Titanium III 1600W ATX 3.1', 'ASUS', 775.46, 'https://gzhls.at/i/62/02/3336202-n0.webp', 'a8f7c9e4-5b6d-4a3f-8c2e-f5a3d7c4e907', 'd8f2a6c9-48b7-42d1-8c1e-3a5f9b7d6e01');  -- NEUE GUID für Dimensions
+('f7b8c9e4-6a3d-4c2b-8f1e-b5a9d2c7e915', 'ASUS ROG Thor Titanium III 1600W ATX 3.1', 'ASUS', 775.46, 'https://gzhls.at/i/62/02/3336202-n0.webp', 'a8f7c9e4-5b6d-4a3f-8c2e-f5a3d7c4e907', 'd8f2a6c9-48b7-42d1-8c1e-3a5f9b7d6e01'),  -- NEUE GUID für Dimensions
+('187a5b23-8aa1-4277-98b2-76425f127dcf', 'Corsair RM650x Shift', 'Corsair', 94.90, 'https://gzhls.at/i/61/41/3386141-l0.webp', '88b7c2dd-7f89-4cf2-b01a-818bea72cd66', '1af78522-80bf-403e-b673-1c5362093bd7'),
+('254fb5c7-c6d9-44dd-b7f2-b9e52fbd72e3', 'Seasonic PRIME PX-850', 'Seasonic', 174.90, 'https://gzhls.at/i/38/50/2123850-l0.jpg', '993e7061-2129-4ce1-ab39-4ba7fb73f226', '2be6cb3d-1ebb-492e-b6ea-2d7aeb1498b7'),
+('3065c9ab-2ad1-4809-8647-f2d5402a1997', 'Fractal Design Ion+ 2 750W', 'Fractal Design', 124.90, 'https://gzhls.at/i/46/30/2584630-l0.jpg', 'a45fbc3a-a308-4a8b-a880-7fb97e8ba3b8', '3cd7f94f-93b4-49ef-bf9c-674354f984d5'),
+('4a15650e-f479-4b64-b66d-8c4bfd19b925', 'Cooler Master V1000 Platinum', 'Cooler Master', 199.90, 'https://gzhls.at/i/05/45/1990545-l0.jpg', 'b5f22c05-24e2-456e-bad8-92889c727003', '4ea1b88a-749e-4ec8-99d1-1f66fca2efd1'),
+('59d76184-d2be-4b76-97a9-aacafc2f8878', 'Thermaltake Smart BX1 450W', 'Thermaltake', 49.90, 'https://gzhls.at/i/89/06/2238906-l0.jpg', 'c67bdc45-3f5f-46ec-bc15-8c40a0872ac1', '55910ef8-0503-47d5-82d6-f32eb181f733'),
+('6ffdf108-5b53-4e42-942a-11550831bc43', 'Seasonic PRIME TX-1200', 'Seasonic', 299.90, 'https://gzhls.at/i/65/63/2986563-l0.webp', 'd7848853-9257-467a-9af5-fc051c97783f', '60f2ac75-51ac-4b69-9e0e-2b4d7fdf0533'),
+('7436f0f5-a9bc-4667-9a0d-6e7c48794276', 'SilverStone SX600-G', 'SilverStone', 109.90, 'https://gzhls.at/i/39/59/1133959-l0.jpg', 'e8cd1cdf-ad88-43bb-8cc6-9f283c86e767', '723bc559-316c-4710-8afc-56af5bafccdf'),
+('8acf35fc-93fd-4d66-98af-89acb89e2811', 'Be quiet! Dark Power 13 850W', 'be quiet!', 184.90, 'https://gzhls.at/i/65/83/2876583-l0.jpg', 'fa9f0713-47ee-4253-9945-d4ac31f91a4b', '8836c54f-4a86-483a-bba9-1af85ae06462'),
+('9bf27cdd-c264-4fe8-8a13-3d457bc7afba', 'Chieftec PowerUp GPB-550S', 'Chieftec', 59.90, 'https://gzhls.at/i/16/67/2431667-l0.jpg', '0a69af47-d35c-4b36-a2b9-5d555e45be19', '9c7c698a-15b3-4ae1-a214-944395df5260'),
+('ad7b1ff0-bbbb-4881-af89-20fa9218e74c', 'NZXT C750 Gold V2', 'NZXT', 119.90, 'https://gzhls.at/i/03/78/2740378-l0.jpg', '19a04dca-adfd-4b81-8b9f-5bf8022ebff1', 'adfe3db9-b29a-4f35-9993-27cbf10bea28');
 
 ");
         }
