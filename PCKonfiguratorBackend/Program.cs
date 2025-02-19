@@ -19,9 +19,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         policy =>
         {
-            policy.AllowAnyOrigin()  // 🔥 Erlaubt ALLE Ursprünge (nicht sicher für Auth-geschützte APIs)
-                .AllowAnyMethod()  // 🔥 Erlaubt ALLE HTTP-Methoden (GET, POST, PUT, DELETE, usw.)
-                .AllowAnyHeader(); // 🔥 Erlaubt ALLE Header
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()  
+                .AllowAnyHeader(); 
         });
 });
 
@@ -33,11 +33,28 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+// Middleware zur Fehlerbehandlung und Setzen der CORS-Header auch bei Fehlern
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Unhandled Exception: {ex}"); 
+        context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsync($"Server Error: {ex.Message}");
+    }
+});
+
 app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -45,5 +62,4 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 }
 
-// 📌 Anwendung starten
 app.Run();
