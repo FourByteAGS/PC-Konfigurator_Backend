@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using PCKonfiguratorBackend.Interface;
 using PCKonfiguratorBackend.Models;
-using PCKonfiguratorBackend.Service;
 
 namespace PCKonfiguratorBackend.Controllers;
 
@@ -48,5 +47,37 @@ public class PsuController : ControllerBase, IComponentRepository
         if (t == null)
             return NotFound();
         return Ok(new Sitebar(t.id, t.name, t.price).ToJson());
+    }
+
+    [HttpGet("getcompatible")]
+    public IActionResult GetCompatible(Guid token)
+    {
+        if (_authService.ValidateToken(token))
+        {
+            var selectedProduct = _productCollections.FirstOrDefault(x => x.token == token);
+
+            int MaxTotalPower = 0;
+            MaxTotalPower += (int)selectedProduct.selectedCPU.cpuSpecification.power;
+            MaxTotalPower += (int)selectedProduct.selectedMainboard.mainboardSpecifications.power;
+            MaxTotalPower += (int)selectedProduct.selectedRAM.ramSpecifications.power;
+            MaxTotalPower += (int)selectedProduct.selectedGPU.gpuSpecifications.power;
+            MaxTotalPower += (int)selectedProduct.selectedStorage.storageSpecifications.power;
+            MaxTotalPower += (int)selectedProduct.selectedFan.fanSpecifications.power;
+
+            var psu = _db.PSUs
+                .Include(i => i.psuSpecification)
+                .Include(i => i.dimensions)
+                .Where(i => (int)i.psuSpecification.power >= MaxTotalPower)
+                .ToList();
+
+            if (psu == null || !psu.Any())
+            {
+                return NotFound("Keine passenden PSU gefunden.");
+            }
+
+            return Ok(psu.ToJson());
+        }
+
+        return Unauthorized();
     }
 }
