@@ -26,6 +26,12 @@ namespace PCKonfiguratorBackend.Controllers
             return Ok(_db.Cpus.Include(i => i.cpuSpecification).ThenInclude(i => i.cpuMemory).ToJson());
         }
 
+        [HttpGet("getbymanifacture")]
+        public IActionResult GetByManifacture(Guid token, string manifacture)
+        {
+            return Ok(_db.Cpus.Include(i => i.cpuSpecification).ThenInclude(i => i.cpuMemory).Where(x=>x.manufacturer.ToLower()==manifacture.ToLower()).ToJson());
+        }
+
         [HttpGet("setcomponent")]
         public IActionResult SetComponent(Guid token, Guid componentId)
         {
