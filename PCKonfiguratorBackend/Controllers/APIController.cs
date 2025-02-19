@@ -49,7 +49,8 @@ namespace PCKonfiguratorBackend.Controllers
                         category = kvp.Value,
                         id = "",
                         name = "",
-                        price = ""
+                        price = "",
+                        image = ""
                     };
                 }
 
@@ -61,7 +62,8 @@ namespace PCKonfiguratorBackend.Controllers
                         category = kvp.Value,
                         id = "",
                         name = "",
-                        price = ""
+                        price = "",
+                        image = ""
                     };
                 }
 
@@ -72,7 +74,8 @@ namespace PCKonfiguratorBackend.Controllers
                     category = kvp.Value,
                     id = prop.GetType().GetProperty("id")?.GetValue(prop) as string ?? "",
                     name = prop.GetType().GetProperty("name")?.GetValue(prop) as string ?? "",
-                    price = prop.GetType().GetProperty("price")?.GetValue(prop)?.ToString() ?? ""
+                    price = prop.GetType().GetProperty("price")?.GetValue(prop)?.ToString() ?? "",
+                    image = prop.GetType().GetProperty("image")?.GetValue(prop) as string ?? ""
                 };
             }).ToArray();
 
