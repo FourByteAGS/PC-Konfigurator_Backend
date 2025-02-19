@@ -13,10 +13,11 @@ public class StorageController : ControllerBase, IComponentRepository
     public readonly ApplicationDbContext _db;
     public readonly List<ProductCollection> _productCollections;
 
-    public StorageController(IAuthRepository authRepository, ApplicationDbContext db)
+    public StorageController(IAuthRepository authRepository, ApplicationDbContext db,List<ProductCollection> productCollections)
     {
         _authService = authRepository;
         _db = db;
+        _productCollections = productCollections;
     }
 
     [HttpGet("getall")]
