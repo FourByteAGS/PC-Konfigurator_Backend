@@ -19,7 +19,17 @@ VALUES
 ('83380117-8816-487c-bcc4-c19fec2fd0eb', 231.0, 463.0, 450.0),
 ('6c1a7a55-95c5-4a6a-96b3-7de5d8988b51', 290.0, 471.0, 478.0),
 ('a63db671-49ff-4e91-bb9b-92de7883d334', 230.0, 500.0, 450.0),
-('1b3d6402-58e5-4e02-99c9-cf86a9f0d97b', 215.0, 469.0, 447.0);
+('1b3d6402-58e5-4e02-99c9-cf86a9f0d97b', 215.0, 469.0, 447.0),
+('2bb1b35c-9c4d-4bb5-9dc2-1c5e050ab75d', 200.0, 400.0, 380.0),
+('ea3a5927-36d3-4931-8c4c-4699efb7dfeb', 210.0, 450.0, 400.0),
+('03e0e205-7605-4b9f-8c45-2f327fe080c5', 215.0, 455.0, 400.0),
+('f1253425-68f8-42d0-b598-722e36fbc627', 280.0, 600.0, 550.0),
+('333a6830-3dd7-4284-8625-11271c540c0a', 220.0, 465.0, 425.0),
+('8ea5dfc1-7d36-4fb2-9480-5aceacfbe8c8', 180.0, 375.0, 370.0),
+('4b504bb5-5862-47ea-853c-57959859c524', 300.0, 630.0, 600.0),
+('b3e9b578-1638-404a-bbe6-395c43db2176', 230.0, 500.0, 490.0),
+('c5032095-a4f7-400d-a583-6ca0566db052', 190.0, 420.0, 400.0),
+('487a3ee6-a3b9-4e47-88b0-70a72a5158fa', 250.0, 560.0, 460.0);
 
 INSERT INTO TowerCompatibility (id, maxCpuCoolerHeight, maxGpuLenght) 
 VALUES 
@@ -27,32 +37,82 @@ VALUES
 ('49feed9c-99e6-4fdc-8906-8a9896dd7797', 178.0, 368.0),
 ('d4e58cd2-5e8f-44d8-84cb-4f1d67d999c4', 167.0, 455.7),
 ('aa320654-38f7-4e67-bdf3-5e6f2cd8bdfb', 184.0, 415.0),
-('b794f5cf-4e78-4e6f-928f-493542ba10bf', 170.0, 355.0);
+('b794f5cf-4e78-4e6f-928f-493542ba10bf', 170.0, 355.0),
+('5498e031-0e46-4443-8058-2df12a65a502', 160.0, 320.0),
+('a509d609-4f42-4823-9efa-713bd4941592', 158.0, 350.0),
+('fc924ed9-e5b9-4ca5-8f98-5fc706df6305', 140.0, 300.0),
+('a96ab2b7-3bea-425e-a61b-7f38e7be10b8', 185.0, 470.0),
+('ddfe2dbf-2f56-4c1d-8774-dbe3bb2f687f', 170.0, 360.0),
+('a1ef7f2d-3577-4b86-b072-d2d998c4b4b8', 155.0, 330.0),
+('bfec306f-0bc4-4052-a9e8-6c6abe1abc82', 190.0, 450.0),
+('df430e5d-c729-4415-a9e5-84a7b497e277', 180.0, 400.0),
+('3cda042e-c222-46f2-a23e-580ac7ffc13f', 175.0, 410.0),
+('061c7d31-71f1-4b81-9f51-b098c9d1f324', 200.0, 480.0);
 
 INSERT INTO Towers (id, name, manufacturer, price, image, color, towerType, formFactor, dimensionsid, towerCompatibilityid) 
 VALUES 
 ('715e5758-8c2a-447e-bc31-b959bdcc5c8e', 'Lian Li DAN Cases A3-mATX Black Wood Edition (A3-mATX-WD Black)', 'Lian Li', 80.26, 'https://gzhls.at/i/60/05/3326005-n0.jpg', 'Black', 0, 1, '45fd4ca1-ebe2-4adc-aad7-13d97596b21e', 'fb5e6660-9f69-4646-994d-70617fda14bb'),
-('cbe79af7-9175-4cfb-ba9b-83bd36e5d188', 'be quiet! Pure Base 501 Airflow Black, schallgedämmt (BG074)', 'be quiet!', 79.34, 'https://gzhls.at/i/07/12/3340712-n0.jpg', 'Black', 1, 1, '83380117-8816-487c-bcc4-c19fec2fd0eb', '49feed9c-99e6-4fdc-8906-8a9896dd7797'),
-('5a23d9fb-bae6-4f8a-805b-84744b1f27ea', 'Lian Li O11 Dynamic / O11D EVO RGB, schwarz, Glasfenster (O11DERGBX)', 'Lian Li', 171.9, 'https://gzhls.at/i/45/18/3094518-n0.jpg', 'Black', 1, 0, '6c1a7a55-95c5-4a6a-96b3-7de5d8988b51', 'd4e58cd2-5e8f-44d8-84cb-4f1d67d999c4'),
-('8c69d8aa-25b2-4c1e-bd04-97a8b9898e72', 'Phanteks XT Pro Ultra Satin Black, schwarz, Glasfenster (PH-XT523P1_DBK01)', 'Phanteks', 80.57, 'https://gzhls.at/i/72/61/3147261-n0.jpg', 'Black', 1, 1, 'a63db671-49ff-4e91-bb9b-92de7883d334', 'aa320654-38f7-4e67-bdf3-5e6f2cd8bdfb'),
-('f2b65862-29c7-47db-89c7-e936f68e843c', 'Fractal Design North Charcoal Black TG Dark, Glasfenster (FD-C-NOR1C-02)', 'Fractal Design', 157.08, 'https://gzhls.at/i/16/82/2861682-n0.jpg', 'Black', 1, 2, '1b3d6402-58e5-4e02-99c9-cf86a9f0d97b', 'b794f5cf-4e78-4e6f-928f-493542ba10bf');
-
+('cbe79af7-9175-4cfb-ba9b-83bd36e5d188', 'be quiet! Pure Base 501 Airflow Black, schallgedämmt (BG074)', 'be quiet!', 79.34, 'https://gzhls.at/i/07/12/3340712-n0.jpg', 'Black', 1, 0, '83380117-8816-487c-bcc4-c19fec2fd0eb', '49feed9c-99e6-4fdc-8906-8a9896dd7797'),
+('5a23d9fb-bae6-4f8a-805b-84744b1f27ea', 'Lian Li O11 Dynamic / O11D EVO RGB, schwarz, Glasfenster (O11DERGBX)', 'Lian Li', 171.90, 'https://gzhls.at/i/45/18/3094518-n0.jpg', 'Black', 1, 0, '6c1a7a55-95c5-4a6a-96b3-7de5d8988b51', 'd4e58cd2-5e8f-44d8-84cb-4f1d67d999c4'),
+('8c69d8aa-25b2-4c1e-bd04-97a8b9898e72', 'Phanteks XT Pro Ultra Satin Black, schwarz, Glasfenster (PH-XT523P1_DBK01)', 'Phanteks', 80.57, 'https://gzhls.at/i/72/61/3147261-n0.jpg', 'Black', 1, 0, 'a63db671-49ff-4e91-bb9b-92de7883d334', 'aa320654-38f7-4e67-bdf3-5e6f2cd8bdfb'),
+('f2b65862-29c7-47db-89c7-e936f68e843c', 'Fractal Design North Charcoal Black TG Dark, Glasfenster (FD-C-NOR1C-02)', 'Fractal Design', 157.08, 'https://gzhls.at/i/16/82/2861682-n0.jpg', 'Black', 1, 0, '1b3d6402-58e5-4e02-99c9-cf86a9f0d97b', 'b794f5cf-4e78-4e6f-928f-493542ba10bf'),
+('12ec29b6-d1ec-48c8-94e2-8c5b2a050c03', 'Cooler Master MasterBox Q300L', 'Cooler Master', 45.99, 'https://gzhls.at/i/54/88/3015488-l0.webp', 'Black', 0, 1, '2bb1b35c-9c4d-4bb5-9dc2-1c5e050ab75d', '5498e031-0e46-4443-8058-2df12a65a502'),
+('87c55f66-9905-4b2f-b6c8-d0b130b0da06', 'NZXT H510 Flow', 'NZXT', 89.99, 'https://gzhls.at/i/64/72/2606472-l0.jpg', 'White', 1, 0, 'ea3a5927-36d3-4931-8c4c-4699efb7dfeb', 'a509d609-4f42-4823-9efa-713bd4941592'),
+('4ad315ae-f02d-4c9b-9d53-797b88c79895', 'Corsair 275R Airflow', 'Corsair', 79.90, 'https://gzhls.at/i/32/43/2153243-l0.jpg', 'Black', 1, 0, '03e0e205-7605-4b9f-8c45-2f327fe080c5', 'fc924ed9-e5b9-4ca5-8f98-5fc706df6305'),
+('7877ac08-5e7b-4ef1-b29d-c6f3f9066a0b', 'Phanteks Enthoo Pro', 'Phanteks', 99.99, 'https://gzhls.at/i/01/85/1110185-l0.jpg', 'Black', 2, 0, 'f1253425-68f8-42d0-b598-722e36fbc627', 'a96ab2b7-3bea-425e-a61b-7f38e7be10b8'),
+('5aa49f21-85e0-477f-be6a-b8c6e4b247a0', 'Thermaltake Versa H18', 'Thermaltake', 40.50, 'https://gzhls.at/i/54/64/1755464-l0.jpg', 'Black', 0, 1, '333a6830-3dd7-4284-8625-11271c540c0a', 'ddfe2dbf-2f56-4c1d-8774-dbe3bb2f687f'),
+('9dd81804-0158-4ce8-abfc-61a90577e79d', 'Corsair Crystal 280X', 'Corsair', 129.90, 'https://gzhls.at/i/73/83/1827383-l0.jpg', 'White', 0, 1, '8ea5dfc1-7d36-4fb2-9480-5aceacfbe8c8', 'a1ef7f2d-3577-4b86-b072-d2d998c4b4b8'),
+('eb2781ce-f3f3-48a7-8f24-96c9a76bbe8f', 'Cooler Master Cosmos C700P', 'Cooler Master', 279.99, 'https://gzhls.at/i/09/53/1700953-l0.jpg', 'Gray', 2, 0, '4b504bb5-5862-47ea-853c-57959859c524', 'bfec306f-0bc4-4052-a9e8-6c6abe1abc82'),
+('63c22d34-63b8-49b6-b3d0-65d5ff1f23e4', 'Corsair Obsidian 750D', 'Corsair', 159.99, 'https://gzhls.at/i/15/12/1281512-l0.jpg', 'Black', 2, 0, 'b3e9b578-1638-404a-bbe6-395c43db2176', 'df430e5d-c729-4415-a9e5-84a7b497e277'),
+('70aab270-839a-4eef-bfd3-a80cc861e8d1', 'be quiet! Dark Base Pro 900', 'be quiet!', 249.90, 'https://gzhls.at/i/37/79/1453779-l0.jpg', 'Black', 2, 0, 'c5032095-a4f7-400d-a583-6ca0566db052', '3cda042e-c222-46f2-a23e-580ac7ffc13f'),
+('be2afebd-6b25-4b1a-9cde-8e3b89fb8de4', 'Fractal Design Define 7 XL', 'Fractal Design', 199.00, 'https://gzhls.at/i/98/47/2239847-l0.jpg', 'Black', 2, 0, '487a3ee6-a3b9-4e47-88b0-70a72a5158fa', '061c7d31-71f1-4b81-9f51-b098c9d1f324');
 
 
 
 INSERT INTO CPUMemory (id, memoryType, maxCapacity, maxSpeed) VALUES
-('5e1d1f89-2b6b-48cd-9d98-23a6f7e5e111', 1, 192, 5600.0),
-('6e2d3f9a-7c5b-49cd-9b98-45a7f8e6f222', 1, 192, 6400.0);
+('5e1d1f89-2b6b-48cd-9d98-23a6f7e5e111', 0, 192, 5600.0),
+('6e2d3f9a-7c5b-49cd-9b98-45a7f8e6f222', 0, 192, 6400.0),
+('b1ec3a47-012f-4c24-9ce9-78d24660b930', 1, 128, 3200.0),
+('27b2d51c-6a2e-472d-a0a1-898b9f75feb7', 1, 128, 3600.0),
+('f380fbaa-7c0c-47ab-9b81-b639755b1eb5', 1, 128, 3600.0),
+('6c624e90-888f-4da0-9291-7b4c4b5c0fa5', 0, 128, 5200.0),
+('93339899-61e1-48d2-b43e-af958ca8c341', 0, 128, 5600.0),
+('a06f2c55-bc3a-4d5f-b98a-8e0f5f6e7da7', 0, 128, 6000.0),
+('9afd31c2-b6c2-4e84-b580-9f561f9e42c2', 0, 128, 4800.0),
+('aed09f01-6687-407d-9e30-9e698b90323d', 0, 128, 5200.0),
+('de8fc720-5b53-4d93-b3ff-91c147d47b53', 0, 128, 5600.0),
+('0dc1186c-2b82-4c34-845c-418428947d30', 0, 192, 5600.0);
 
 -- Einfügen der CPU-Spezifikationen
 INSERT INTO CPUSpecification (id, power, l2Cache, l3Cache, maxTemp, threads, core, baseClock, boostClock, socket, cpuMemoryId) VALUES
-('f2b3c59a-6d2a-4e7d-892d-1a6f5d3f1c56',250, 28, 33, 100, 28, 20, 3.40, 5.60, 1, '5e1d1f89-2b6b-48cd-9d98-23a6f7e5e111'),
-('c3d4e69b-5f7a-48cd-8c78-12a3d9f7e567',253, 36, 30, 105, 24, 24, 3.70, 5.70, 1, '6e2d3f9a-7c5b-49cd-9b98-45a7f8e6f222');
+('f2b3c59a-6d2a-4e7d-892d-1a6f5d3f1c56', 250, 28, 33, 100, 28, 20, 3.40, 5.60, 2, '5e1d1f89-2b6b-48cd-9d98-23a6f7e5e111'),
+('c3d4e69b-5f7a-48cd-8c78-12a3d9f7e567', 253, 36, 36, 105, 32, 24, 3.70, 5.70, 2, '6e2d3f9a-7c5b-49cd-9b98-45a7f8e6f222'),
+('b49f5693-15d7-4c28-ba2a-cb38cd50d16c', 65, 3, 32, 95, 12, 6, 3.50, 4.40, 1, 'b1ec3a47-012f-4c24-9ce9-78d24660b930'),
+('1b689e3c-d918-49c1-bb62-aac149ae5ee3', 105, 4, 32, 90, 16, 8, 3.80, 4.70, 1, '27b2d51c-6a2e-472d-a0a1-898b9f75feb7'),
+('cc39a23e-17f6-4055-a1f2-ec6650d50728', 105, 6, 64, 90, 24, 12, 3.70, 4.80, 1, 'f380fbaa-7c0c-47ab-9b81-b639755b1eb5'),
+('92178a81-2eaf-4f88-bdf2-5844828058d6', 65, 6, 32, 95, 12, 6, 3.80, 5.10, 0, '6c624e90-888f-4da0-9291-7b4c4b5c0fa5'),
+('956141ce-b5c4-44fc-b73f-cdc31bcd5207', 105, 8, 32, 95, 16, 8, 4.50, 5.40, 0, '93339899-61e1-48d2-b43e-af958ca8c341'),
+('086e3cf1-53c0-4d2c-abf4-7b8608cda97f', 170, 16, 64, 95, 32, 16, 4.50, 5.70, 0, 'a06f2c55-bc3a-4d5f-b98a-8e0f5f6e7da7'),
+('fa2dbb6b-0db1-4a68-8f4f-093cd4b84b14', 125, 9, 20, 100, 16, 10, 3.70, 4.90, 2, '9afd31c2-b6c2-4e84-b580-9f561f9e42c2'),
+('0462aecd-4d2c-425e-ae6c-9313dc1991e0', 125, 14, 30, 100, 24, 16, 3.20, 5.20, 2, 'aed09f01-6687-407d-9e30-9e698b90323d'),
+('b04af56d-554e-4d86-9c52-4bbb8df90cdf', 125, 20, 24, 100, 20, 14, 3.50, 5.10, 2, 'de8fc720-5b53-4d93-b3ff-91c147d47b53'),
+('f91b9a26-5c5a-4e84-8f98-ceda0b79e48f', 125, 32, 36, 100, 32, 24, 3.00, 5.80, 2, '0dc1186c-2b82-4c34-845c-418428947d30');
+
 
 -- Einfügen der CPU-Daten
 INSERT INTO Cpus(id, name, manufacturer, price, image, cpuSpecificationId) VALUES
-('a8d2e3f4-6b9c-4e0d-99a6-7c1f2d8e3b4a', 'Intel Core i7-14700K, 8C+12c/28T, 3.40-5.60GHz, boxed ohne Kühler', 'Intel', 399.99, 'https://gzhls.at/i/31/51/3043151-n0.jpg', 'f2b3c59a-6d2a-4e7d-892d-1a6f5d3f1c56'),
-('b9e3d4c5-7a8b-48cd-99f8-23c5d7e6f678', 'Intel Core Ultra 9 285K, 8C+16c/24T, 3.70-5.70GHz, boxed ohne Kühler', 'Intel', 671.90, 'https://gzhls.at/i/94/02/3329402-n0.jpg', 'c3d4e69b-5f7a-48cd-8c78-12a3d9f7e567');
+('a8d2e3f4-6b9c-4e0d-99a6-7c1f2d8e3b4a', 'Intel Core i7-14700K, 8P+12E/28T, 3.40-5.60GHz, boxed ohne Kühler', 'Intel', 399.99, 'https://gzhls.at/i/31/51/3043151-n0.jpg', 'f2b3c59a-6d2a-4e7d-892d-1a6f5d3f1c56'),
+('b9e3d4c5-7a8b-48cd-99f8-23c5d7e6f678', 'Intel Core Ultra 9 285K, 8P+16E/24C => 32T, 3.70-5.70GHz, boxed ohne Kühler', 'Intel', 671.90, 'https://gzhls.at/i/94/02/3329402-n0.jpg', 'c3d4e69b-5f7a-48cd-8c78-12a3d9f7e567'),
+('e3ae57dd-07e4-4b73-97e7-d4a4b5d474a8', 'AMD Ryzen 5 5600, 6C/12T, 3.50-4.40GHz', 'AMD', 139.99, 'https://gzhls.at/i/91/14/2709114-l0.jpg', 'b49f5693-15d7-4c28-ba2a-cb38cd50d16c'),
+('a78eabf2-5f8c-4bdf-a69f-6301edf17afa', 'AMD Ryzen 7 5800X, 8C/16T, 3.80-4.70GHz', 'AMD', 209.99, 'https://gzhls.at/i/25/25/2392525-l0.jpg', '1b689e3c-d918-49c1-bb62-aac149ae5ee3'),
+('047ff6ce-56b9-4c55-bbb7-c721fb54288d', 'AMD Ryzen 9 5900X, 12C/24T, 3.70-4.80GHz', 'AMD', 329.99, 'https://gzhls.at/i/25/26/2392526-l0.jpg', 'cc39a23e-17f6-4055-a1f2-ec6650d50728'),
+('5e94c749-2c61-4c3e-8714-ecf46e81065c', 'AMD Ryzen 5 7600, 6C/12T, 3.80-5.10GHz', 'AMD', 229.00, 'https://gzhls.at/i/11/74/2871174-l0.jpg', '92178a81-2eaf-4f88-bdf2-5844828058d6'),
+('ef4c23da-9e0f-44ab-a549-ecd8e6bbee5a', 'AMD Ryzen 7 7700X, 8C/16T, 4.50-5.40GHz', 'AMD', 339.00, 'https://gzhls.at/i/12/29/2801229-l0.jpg', '956141ce-b5c4-44fc-b73f-cdc31bcd5207'),
+('1c4dab8e-7c94-4faa-9aa6-6fa62201fd71', 'AMD Ryzen 9 7950X, 16C/32T, 4.50-5.70GHz', 'AMD', 549.00, 'https://gzhls.at/i/19/76/2871976-l0.jpg', '086e3cf1-53c0-4d2c-abf4-7b8608cda97f'),
+('9dde94c9-2406-4f02-86d1-cce0a286a08f', 'Intel Core i5-12600K, 10C/16T, 3.70-4.90GHz', 'Intel', 219.99, 'https://gzhls.at/i/35/72/2613572-l0.jpg', 'fa2dbb6b-0db1-4a68-8f4f-093cd4b84b14'),
+('f2bb6b11-1a7e-44c8-89e9-7e5cb7424c6c', 'Intel Core i9-12900K, 16C/24T, 3.20-5.20GHz', 'Intel', 389.99, 'https://gzhls.at/i/34/75/2613475-l0.jpg', '0462aecd-4d2c-425e-ae6c-9313dc1991e0'),
+('a077a240-df22-4c1b-a7c4-b07792e7ec07', 'Intel Core i5-13600K, 14C/20T, 3.50-5.10GHz', 'Intel', 329.90, 'https://gzhls.at/i/01/86/2810186-l0.jpg', 'b04af56d-554e-4d86-9c52-4bbb8df90cdf'),
+('8f2362aa-1576-4cc8-9baf-f98fa5c21cc4', 'Intel Core i9-13900K, 24C/32T, 3.00-5.80GHz', 'Intel', 559.00, 'https://gzhls.at/i/00/39/2810039-l0.jpg', 'f91b9a26-5c5a-4e84-8f98-ceda0b79e48f');
 
 
 
