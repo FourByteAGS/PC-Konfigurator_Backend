@@ -63,7 +63,6 @@ public class PsuController : ControllerBase, IComponentRepository
             MaxTotalPower += (int)selectedProduct.selectedGPU.gpuSpecifications.power;
             MaxTotalPower += (int)selectedProduct.selectedStorage.storageSpecifications.power;
             MaxTotalPower += (int)selectedProduct.selectedFan.fanSpecifications.power;
-            MaxTotalPower += 100;
 
             var psu = _db.PSUs
                 .Include(i => i.psuSpecification)
