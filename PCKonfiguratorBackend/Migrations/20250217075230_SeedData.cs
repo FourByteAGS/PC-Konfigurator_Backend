@@ -97,14 +97,14 @@ INSERT INTO CPUSpecification (id, power, l2Cache, l3Cache, maxTemp, threads, cor
 ('c3d4e69b-5f7a-48cd-8c78-12a3d9f7e567', 253, 36, 36, 105, 32, 24, 3.70, 5.70, 2, '6e2d3f9a-7c5b-49cd-9b98-45a7f8e6f222'),
 ('b49f5693-15d7-4c28-ba2a-cb38cd50d16c', 65, 3, 32, 95, 12, 6, 3.50, 4.40, 1, 'b1ec3a47-012f-4c24-9ce9-78d24660b930'),
 ('1b689e3c-d918-49c1-bb62-aac149ae5ee3', 105, 4, 32, 90, 16, 8, 3.80, 4.70, 1, '27b2d51c-6a2e-472d-a0a1-898b9f75feb7'),
-('cc39a23e-17f6-4055-a1f2-ec6650d50728', 105, 6, 64, 90, 24, 12, 3.70, 4.80, 1, 'f380fbaa-7c0c-47ab-9b81-b639755b1eb5'),
+('cc39a23e-17f6-4055-a1f2-ec6650d50728', 150, 6, 64, 90, 24, 12, 3.70, 4.80, 1, 'f380fbaa-7c0c-47ab-9b81-b639755b1eb5'),
 ('92178a81-2eaf-4f88-bdf2-5844828058d6', 65, 6, 32, 95, 12, 6, 3.80, 5.10, 0, '6c624e90-888f-4da0-9291-7b4c4b5c0fa5'),
 ('956141ce-b5c4-44fc-b73f-cdc31bcd5207', 105, 8, 32, 95, 16, 8, 4.50, 5.40, 0, '93339899-61e1-48d2-b43e-af958ca8c341'),
 ('086e3cf1-53c0-4d2c-abf4-7b8608cda97f', 170, 16, 64, 95, 32, 16, 4.50, 5.70, 0, 'a06f2c55-bc3a-4d5f-b98a-8e0f5f6e7da7'),
 ('fa2dbb6b-0db1-4a68-8f4f-093cd4b84b14', 125, 9, 20, 100, 16, 10, 3.70, 4.90, 2, '9afd31c2-b6c2-4e84-b580-9f561f9e42c2'),
-('0462aecd-4d2c-425e-ae6c-9313dc1991e0', 125, 14, 30, 100, 24, 16, 3.20, 5.20, 2, 'aed09f01-6687-407d-9e30-9e698b90323d'),
+('0462aecd-4d2c-425e-ae6c-9313dc1991e0', 225, 14, 30, 100, 24, 16, 3.20, 5.20, 2, 'aed09f01-6687-407d-9e30-9e698b90323d'),
 ('b04af56d-554e-4d86-9c52-4bbb8df90cdf', 125, 20, 24, 100, 20, 14, 3.50, 5.10, 2, 'de8fc720-5b53-4d93-b3ff-91c147d47b53'),
-('f91b9a26-5c5a-4e84-8f98-ceda0b79e48f', 125, 32, 36, 100, 32, 24, 3.00, 5.80, 2, '0dc1186c-2b82-4c34-845c-418428947d30');
+('f91b9a26-5c5a-4e84-8f98-ceda0b79e48f', 225, 32, 36, 100, 32, 24, 3.00, 5.80, 2, '0dc1186c-2b82-4c34-845c-418428947d30');
 
 
 -- Einfügen der CPU-Daten
@@ -306,22 +306,22 @@ VALUES
 -- Einfügen von GPUSpecifications
 INSERT INTO GPUSpecifications (id, memory, speed, boostclock, coreclock, power)
 VALUES 
-('e4a2b42c-8f23-4d8e-9756-991ac5d6aeb1', 16, 30, 2617, 2295, 360),  -- Palit GeForce RTX 5080
-('f18d6eb7-d1a5-4c34-b81c-08fd3e59eebb', 32, 28, 2407, 2017, 575),  -- NVIDIA GeForce RTX 5090 Founders Edition
-('a3df5b68-2b47-49dc-a4c3-4e6c8d073fa3', 16, 30, 2617, 2295, 360),  -- Gainward GeForce RTX 5080 Phantom
-('ba4c6f91-1e37-4f3b-9c95-2e9d1fced3a4', 24, 20, 2565, 2395, 355),  -- ASUS TUF Gaming Radeon RX 7900 XTX OC
-('c2b8d4e6-5f31-49a1-98fa-4d23e7c9a8b2', 16, 23, 2550, 2295, 320),  -- GIGABYTE GeForce RTX 4080 SUPER Windforce V2
-('d1e59f8a-62c7-4891-85f6-3b29d7e8a4c1', 16, 21, 2625, 2340, 285),  -- GIGABYTE GeForce RTX 4070 Ti SUPER Windforce OC
-('31bacc20-3dab-4cfc-92e9-0574e1d3102b', 16, 22, 2490, 2100, 320),
-('46250ad6-4410-4de4-8221-eb5253af2fac', 12, 21, 2465, 2200, 285),
-('b880af19-6113-4ddc-9de9-a1968f54a08c', 20, 25, 2610, 2300, 340),
-('c1045d2a-82d0-41bf-bfe6-206258a82aec', 12, 19, 2385, 2025, 250),
-('a0c94b9a-c9be-4be2-b7d6-e0e4358e7c7f', 16, 27, 2625, 2250, 320),
-('5cc6c13e-c5df-42db-821d-a4173bc92631', 8, 16, 2200, 1900, 150),
-('ecc99eed-e865-4ce9-9ac8-444a77b660be', 24, 30, 2700, 2400, 350),
-('fe476801-420f-4ff7-9d1c-a5a1ec35fa12', 16, 20, 2485, 2180, 275),
-('d5c8c07e-b70d-4349-9040-12cd0b5655ec', 10, 17, 2230, 1850, 150),
-('bcf0b91c-dc06-4cff-bb16-44bd9f574ef3', 12, 18, 2350, 1950, 210);
+('e4a2b42c-8f23-4d8e-9756-991ac5d6aeb1', 16, 30, 2617, 2295, 600),  -- Palit GeForce RTX 5080
+('f18d6eb7-d1a5-4c34-b81c-08fd3e59eebb', 32, 28, 2407, 2017, 600),  -- NVIDIA GeForce RTX 5090 Founders Edition
+('a3df5b68-2b47-49dc-a4c3-4e6c8d073fa3', 16, 30, 2617, 2295, 600),  -- Gainward GeForce RTX 5080 Phantom
+('ba4c6f91-1e37-4f3b-9c95-2e9d1fced3a4', 24, 20, 2565, 2395, 450),  -- ASUS TUF Gaming Radeon RX 7900 XTX OC
+('c2b8d4e6-5f31-49a1-98fa-4d23e7c9a8b2', 16, 23, 2550, 2295, 600),  -- GIGABYTE GeForce RTX 4080 SUPER Windforce V2
+('d1e59f8a-62c7-4891-85f6-3b29d7e8a4c1', 16, 21, 2625, 2340, 400),  -- GIGABYTE GeForce RTX 4070 Ti SUPER Windforce OC
+('31bacc20-3dab-4cfc-92e9-0574e1d3102b', 16, 22, 2490, 2100, 600),
+('46250ad6-4410-4de4-8221-eb5253af2fac', 12, 21, 2465, 2200, 400),
+('b880af19-6113-4ddc-9de9-a1968f54a08c', 20, 25, 2610, 2300, 600),
+('c1045d2a-82d0-41bf-bfe6-206258a82aec', 12, 19, 2385, 2025, 400),
+('a0c94b9a-c9be-4be2-b7d6-e0e4358e7c7f', 16, 27, 2625, 2250, 500),
+('5cc6c13e-c5df-42db-821d-a4173bc92631', 8, 16, 2200, 1900, 400),
+('ecc99eed-e865-4ce9-9ac8-444a77b660be', 24, 30, 2700, 2400, 550),
+('fe476801-420f-4ff7-9d1c-a5a1ec35fa12', 16, 20, 2485, 2180, 400),
+('d5c8c07e-b70d-4349-9040-12cd0b5655ec', 10, 17, 2230, 1850, 400),
+('bcf0b91c-dc06-4cff-bb16-44bd9f574ef3', 12, 18, 2350, 1950, 520);
 
 -- Einfügen von GPU
 INSERT INTO GPUs (id, name, manufacturer, price, image, gpuSpecificationsId, dimensionsId)
